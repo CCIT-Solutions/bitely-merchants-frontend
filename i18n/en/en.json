@@ -1,0 +1,532 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "plans": "Plans",
+    "howItWork": "How It Work",
+    "features": "Features",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+
+  "footer": {
+    "tagline": "Simple healthy meal subscriptions bringing you fresh, delicious restaurant meals",
+    "links": {
+      "home": "Home",
+      "plans": "Plans",
+      "listing": "Listing",
+      "account": "Account",
+      "menu": "Menu",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    },
+    "newsletter": {
+      "title": "The Weekly Plate",
+      "description": "Fresh Ideas Every Week for Delicious Recipes and Smart Nutrition",
+      "email": "Enter your email",
+      "button": "Subscribe"
+    },
+    "copyright": " © 2026 Bitely. All Rights Reserved"
+  },
+
+  "shared": {
+    "close": "Close",
+    "sending": "Sending...",
+    "retry": "Retry",
+    "somethingwrong": "Something Wrong",
+    "noResult": "No results found.",
+    "clear": "Clear",
+    "search": "Search...",
+    "selectAll": "Select all",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "validationError": "Validation Error",
+    "cancel": "Cancel",
+    "previous": "Previous",
+    "next": "Next",
+    "tryAgain": "Try Again",
+    "learnMore": " Load More",
+    "cookies": {
+      "message": "We use cookies to improve your experience. By using our site, you agree to our cookie policy.",
+      "accept": "Accept",
+      "decline": "Decline"
+    }
+  },
+
+  "noInternet": {
+    "noInternet": "No Internet Connection",
+    "check": "Please check your internet connection and try again"
+  },
+
+  "home": {
+    "hero": {
+      "title_1": "Sleep more, eat",
+      "description": "Bitely makes healthy eating effortless. Discover meals from your favorite restaurants, subscribe with ease, and manage your weekly plan",
+      "getStarted": "See my Plan",
+      "seeMenu": "See menu",
+      "meals": "Meals"
+    },
+    "mealPlanner": {
+      "header": {
+        "title": "Your plan",
+        "live": "Live"
+      },
+      "goals": {
+        "title": "Goal",
+        "lean": {
+          "title": "Lean",
+          "sub": "-400 kcal"
+        },
+        "balance": {
+          "title": "Maintain",
+          "sub": "Balanced"
+        },
+        "build": {
+          "title": "Build",
+          "sub": "+400 kcal"
+        }
+      },
+      "calories": {
+        "title": "Calories",
+        "unit": "kcal / day"
+      },
+      "meals": {
+        "title": "Meals"
+      },
+      "footer": {
+        "perMeal": "per meal",
+        "claim": "Claim"
+      }
+    },
+    "cta": {
+      "title": {
+        "part1": "One",
+        "em": "bite",
+        "part2": "at a time. Starting Monday."
+      },
+      "description": "Take the 2-minute quiz. Your first box ships Sunday night, lands Monday morning. If it's not the calmest week of eating you've had, we'll refund it. All of it.",
+      "button": "Take the quiz"
+    },
+    "howItWorks": {
+      "title": "From kitchen <custom>to kitchen</custom> counter",
+      "subtitle": "A four-step rhythm that quietly becomes a weekly ritual. No prep, no dishes, no second-guessing."
+    
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "These are the answers to our most frequently asked questions",
+      "seeMore": "See More",
+      "faq1": {
+        "question": "How does Bitely work?",
+        "answer": "Bitely is a B2B platform that helps growing Yachts & Cars rental businesses in Saudi Arabia and all over the world, These are the answers to our most frequently asked questions, Growing Yachts & Cars rental businesses in Saudi Arabia and all over the world."
+      },
+      "faq2": {
+        "question": "What is the premium packages for yachts renting?",
+        "answer": "Our premium yacht packages include luxury vessels with full crew, catering services, and customized itineraries tailored to your business needs."
+      },
+      "faq3": {
+        "question": "Does the cars packages has car fleet?",
+        "answer": "Yes, our car packages include access to a diverse fleet of vehicles ranging from economy to luxury cars, all maintained to the highest standards."
+      },
+      "faq4": {
+        "question": "Does Bitely supports the business with dashboards?",
+        "answer": "Absolutely! Bitely provides comprehensive business dashboards with real-time analytics, booking management, and performance metrics."
+      }
+    }
+  },
+
+  "pricing": {
+    "title": "Pay by the <custom>week</custom>, not the year.",
+    "subtitle": "Month-to-month. No contracts. The longer you stay, the quieter it gets, and the less you pay per plate.",
+    "toggle": {
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "save": "SAVE 12%"
+    },
+    "footer": "Cancel anytime. No hidden fees. Meals crafted fresh daily.",
+    "unit": {
+      "weekly": "wk",
+      "monthly": "mo"
+    }
+  },
+
+ "menu": {
+    "title": "Seventeen <custom>dishes.</custom> One week.",
+    "subtitle": "The kitchen rotates every Sunday. Each plate is weighed, photographed, and logged, so your week reads like a magazine, not a meal plan",
+    "seeFullMenu": "See full menu",
+      "protein": "Protein",
+    "carbs": "Carbs",
+    "fat": "Fat",
+    "kcal": "kcal",
+    "customizableMacros": "Customisable macros",
+    "dietTabs": [
+      {
+        "id": "all",
+        "label": "All"
+      },
+      {
+        "id": "high-protein",
+        "label": "High Protein"
+      },
+      {
+        "id": "balanced",
+        "label": "Balanced"
+      },
+      {
+        "id": "vegetarian",
+        "label": "Vegetarian"
+      },
+      {
+        "id": "chef-picks",
+        "label": "Chef's Picks"
+      },
+      {
+        "id": "custom-macros",
+        "label": "Custom Macros"
+      },
+      {
+        "id": "low-carb",
+        "label": "Low Carb"
+      }
+    ],
+    "controlSection": {
+      "title": "Total control.\nFull flexibility.",
+      "cards": [
+        {
+          "title": "Calories and macros that match your goals",
+          "desc": "We do the hard work for you, measuring, cooking, and preparing meals that match your goals, with nothing but fresh, whole ingredients."
+        },
+        {
+          "title": "Choose what you like. Swap what you don't.",
+          "desc": "Pick your meals and swap the ones you don't like. Allergens and exclusions never reach your plate."
+        },
+        {
+          "title": "Pause. Skip. Change. Anytime.",
+          "desc": "Life changes and your plan can too. Adjust up to 24 hours before delivery with no hassle."
+        }
+      ]
+    }
+  },
+
+  "checkout": {
+    "paymentFailed": "Failed Payment. Please try again.",
+    "title": "Checkout",
+    "promoPlaceholder": "Enter promo code",
+    "apply": "Apply",
+    "selectPayment": "Select a payment method",
+    "creditCards": "Credit Cards",
+    "cardDetails": "Card Details",
+    "applePay": "Apple Pay",
+    "termsNotice": "By clicking <payNow></payNow>, I accept the <terms></terms> and have read the <privacy></privacy>. I agree that Eventis may <shareInfo></shareInfo> with the event organizer.",
+    "payNow": "Pay Now",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "infoShare": "share my information",
+    "tickets": "Tickets",
+    "ticketsCount": "Tickets",
+    "summary": "Summary",
+    "subtotal": "Subtotal",
+    "fees": "Fees",
+    "processing": "Processing...",
+    "noItems": "No items in checkout",
+    "paymentSuccess": "Payment completed successfully!",
+    "paymentInitError": "Failed to initialize payment",
+    "applePayError": "Failed to initiate Apple Pay. Please try again.",
+    "agreeToTerms": "Please agree to terms and conditions",
+    "creditCardNote": "Please fill in your card details above to complete payment",
+    "securePayment": "Secured payment powered by Moyasar",
+    "paymentSDKError": "Payment system not loaded. Please refresh the page.",
+    "eventNotFound": "Event not found.",
+    "paymentMethod": "Payment Method",
+    "timerLabel": "Time Remaining",
+    "secureCheckout": "Secure Checkout",
+    "paymentProcessing": "Processing your payment...",
+    "paymentSuccessTitle": "Payment Successful!",
+    "paymentSuccessDesc": "Your payment was successful. Enjoy your event!",
+    "paymentFailedTitle": "Payment Failed",
+    "paymentFailedDesc": "Something went wrong during the payment process. Please try again.",
+    "paymentConfigError": "Payment configuration error.",
+    "applePayNotSupported": "Apple Pay is only supported on Apple devices (iPhone, iPad, Mac). Please use another payment method.",
+    "applePayNote": "Use Apple Pay for a faster, secure checkout.",
+    "paymentMethodRequired": "Please select a payment method before proceeding.",
+    "acceptTerms": "By clicking this you agree to our Terms & Conditions.",
+    "acceptTermsFirst": "Please accept the terms and conditions first",
+    "cardholderName": "Cardholder Name",
+    "cardholderNamePlace": "Type Name",
+    "cardNumber": "Card Number",
+
+    "year": "Year",
+    "cvc": "CVC",
+    "confirmPay": "Confirm & Pay",
+    "expirationDate": "Expiration Date",
+    "cardNameRequired": "Cardholder name is required.",
+    "cardNumberInvalid": "Invalid card number.",
+    "monthInvalid": "Invalid month.",
+    "yearInvalid": "Invalid year.",
+    "cvcInvalid": "Invalid CVC.",
+    "timerAlert": "Hurry up! Your booking will be canceled when the time expires.",
+    "timerTooltip": "Your booking will be canceled when the time expires.",
+    "sessionExpired": "Session Expired",
+    "timeoutMessage": "Your booking time has expired and your tickets have been released. Please select your tickets and try again.",
+    "backToTickets": "Back to tickets",
+    "cardNameInvalid": "Name must contain only letters",
+    "cardNumberRequired": "Card number is required",
+    "monthRequired": "Month is required",
+    "yearRequired": "Year is required",
+    "yearExpired": "Card has expired",
+    "cardNameTwoWords": "Cardholder name must contain at least two words.",
+    "expiryDate": "Expiry date.",
+    "off": "OFF",
+    "premium": "Premium",
+    "month": "/month",
+    "phoneNumber": "Phone Number",
+    "email": "Email",
+    "country": "Country",
+    "promoCode": "Promo Code",
+    "yachtRentPremium": "Yacht Rent Premium",
+    "vat": "VAT",
+    "total": "Total",
+    "validation": {
+      "cardNumberInvalid": "Please enter a valid card number",
+      "cardNumberDigitsOnly": "Card number must contain only digits",
+
+      "cardHolderMin": "Cardholder name is too short",
+      "cardHolderMax": "Cardholder name is too long",
+
+      "expDateInvalid": "Enter a valid expiration date (MM/YY)",
+
+      "cvcMin": "CVC must be 3 digits",
+      "cvcMax": "CVC must be 3 digits",
+      "cvcDigitsOnly": "CVC must contain only digits"
+    }
+  },
+
+  "success": {
+    "title": "Thank you for choosing us!",
+    "description": "Your premium plan is confirmed successfully, Now your account is ready to use!",
+    "button": "Login"
+  },
+
+  "fail": {
+    "title": "Payment Failed",
+    "description": "Your payment could not be processed. Please check your details or try another payment method.",
+    "button": "Try Again"
+  },
+
+  "faq": {
+    "title": "The <custom>small print</custom>, out loud",
+     "subtitle": "You can always contact us, Please connect with our friendly team, we will answer withing 4 minutes.",
+    "stillHaveQuestions": "Still have questions?",
+    "contactDescription": "If you cannot find answer to your question in our FAQ, you can always contact us, Please connect with our friendly team, we will answer shortly!",
+    "contactButton": "Contact Us"
+  },
+
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "You can always contact us, Please connect with our friendly team, we will answer shortly.",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "Type Name",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Type Name",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+966 xxxx xxx xxx",
+    "email": "Email Address",
+    "emailPlaceholder": "Type Email",
+    "message": "Message",
+    "messagePlaceholder": "Type Message",
+    "sendMessage": "Send Message",
+    "sending": "Sending...",
+    "validation": {
+      "firstNameMin": "First name must be at least 2 characters",
+      "lastNameMin": "Last name must be at least 2 characters",
+      "phoneNumberValid": "Please enter a valid phone number",
+      "phoneNumberMin": "Phone number must be at least 9 digits",
+      "emailValid": "Please enter a valid email address",
+      "emailMin": "Email must be at least 5 characters",
+      "messageMin": "Message must be at least 10 characters"
+    }
+  },
+
+  "settings": {
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "profileUpdated": "Profile updated successfully",
+    "myTickets": "My Tickets",
+    "logout": "Logout",
+    "myInfo": "My Info",
+    "updatePersonalInfo": "Update your personal information",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "birthday": "Birthday",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "changePassword": "Change Password",
+    "updatePasswordSubtitle": "Update your password to keep your account secure",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "passwordRequirements": "Password must be at least 8 characters long and include uppercase, lowercase, and numbers",
+    "updatePassword": "Update Password",
+    "updating": "Updating...",
+    "upcomingEvents": "Upcoming Events",
+    "pastEvents": "Past Events",
+    "noUpcomingEvents": "You don't have any upcoming events",
+    "noUpcomingDescription": "When you purchase tickets to events, they appear here.",
+    "getTickets": "Get Tickets",
+    "time": "Time",
+    "seat": "Seat",
+    "price": "Price",
+    "noPastEvents": "You don’t have any past events.",
+    "ticketLabel": "Ticket:",
+    "ticketBgAlt": "My Ticket Background",
+    "phoneNumber": "Phone Number",
+    "firstNamePlaceholder": "Enter First name",
+    "lastNamePlaceholder": "Enter Last name",
+    "emailPlaceholder": "Enter Email",
+    "phonePlaceholder": "Enter Phone number",
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "firstNameShort": "First name is too short",
+    "lastNameShort": "Last name is too short",
+    "invalidEmail": "Invalid email address",
+    "invalidPhone": "Invalid phone number",
+    "currentPasswordPlaceholder": "Enter your current password",
+    "newPasswordPlaceholder": "Enter your new password",
+    "passwordUpdated": "Password updated.",
+    "uploadAvatar": "Upload Avatar",
+    "uploading": "Uploading...",
+    "avatarHint": "JPG, PNG or GIF (max 5MB)",
+    "invalidImageType": "Please select a valid image file",
+    "imageTooLarge": "Image size should be less than 5MB",
+    "avatarUpdated": "Avatar updated successfully",
+    "upload": "Upload",
+    "cropAvatar": "Crop Your Avatar",
+    "dragToCrop": "Drag the square to adjust the crop area",
+    "cropInstructions": "Drag to reposition • Scroll or use slider to zoom",
+    "zoom": "Zoom"
+  },
+
+  "terms": {
+    "termsAndConditions": "Terms and Conditions",
+    "pleaseReadCarefully": "Please read these terms and conditions carefully",
+    "introduction": "Introduction",
+    "userObligations": "User Obligations",
+    "privacyPolicy": "Privacy Policy",
+    "termination": "Termination",
+    "iAccept": "I accept the ",
+    "terms": "Terms and Conditions",
+    "and": " and ",
+    "privacy": "Privacy Policy"
+  },
+  "auth": {
+    "login": "Login",
+    "subtitle": "Let’s grow your business",
+    "createAccountSub": "Create an account & Let us help grow your rental business",
+    "title": "We Help Grow Your Rental Business!",
+    "brand": "Bitely",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+
+    "signInWithGoogle": "Sign in with Google",
+    "signInWithApple": "Sign in with Apple",
+    "orLoginWith": "Or login with",
+    "emailAddress": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "rememberMe": "Remember Me",
+    "forgotPassword": "Forgot Password?",
+    "loginButton": "Sign In",
+    "signingIn": "Signing in...",
+    "notRegistered": "Not registered yet?",
+    "createAccount": "Create an account",
+
+    "joinUs": "Best Place to Find Events You Love.",
+
+    "name": "Full Name",
+    "namePlaceholder": "Enter your full name",
+
+    "phone": "Phone Number",
+    "phonePlaceholder": "Phone number",
+
+    "passwordConfirm": "Password Confirm",
+
+    "signingUp": "Signing up...",
+    "or": "or",
+    "google": "Sign up with Google",
+    "haveAccount": "Have an account?",
+
+    "welcomeBack": "Hey! Welcome back",
+    "signInToAccount": "Sign In to your account",
+    "createNewAccount": "Join us! And Create a new account",
+    "dontHaveAccount": "Don’t have an account",
+    "register": "Sign Up",
+    "passwordConfirmPlaceholder": "Confirm your password",
+    "enterEmailToReset": "Enter your email to receive a password reset link.",
+    "sendingLink": "Sending...",
+    "sendResetLink": "Send reset link",
+    "rememberPassword": "Remember your password?",
+    "resetLinkSent": "A password reset link has been sent to your email.",
+    "loginFailed": "Login failed. Please check your credentials and try again.",
+    "resetPassword": "Reset Password",
+    "enterNewPassword": "Enter your new password below.",
+    "newPassword": "New Password",
+
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPasswordPlaceholder": "Confirm new password",
+    "resetingPassword": "Resetting...",
+    "resetPasswordButton": "Reset Password",
+    "passwordResetSuccess": "Your password has been successfully reset!",
+    "googleLoginFailed": "Google login failed. Please try again.",
+    "popupBlocked": "Popup was blocked. Please allow popups for this site.",
+    "popupClosed": "Login window was closed before completion.",
+    "loginSuccess": "Login successful! Redirecting...",
+    "completeProfile": "Complete Your Profile",
+    "enterPhoneNumber": "Enter your phone number to continue",
+    "profileCompleted": "Profile updated successfully!",
+    "saving": "Saving...",
+    "save": "Save",
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "licenseNumberRequired": "License number is required",
+      "licenseNumberNumeric": "License number must be numeric",
+      "locationUrl": "Please enter a valid Google Maps URL",
+      "phoneNumberMin": "Phone number must be at least 10 digits",
+      "phoneNumberValid": "Please enter a valid phone number",
+      "whatsappNumberValid": "Please enter a valid WhatsApp number",
+      "specialtiesRequired": "At least one specialty is required",
+      "specialOfferMin": "Special offer must be at least 10 characters",
+      "emailValid": "Please enter a valid email address",
+      "emailMin": "Email must be at least 5 characters",
+      "passwordMin": "Password must be at least 6 characters long",
+      "passwordStrong": "Password must include both letters and numbers",
+      "termsRequired": "You must accept the terms and privacy policy",
+      "passwordConfirmRequired": "Please confirm your password",
+      "passwordsMustMatch": "Passwords must match"
+    }
+  }
+}
