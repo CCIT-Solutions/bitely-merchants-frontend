@@ -138,7 +138,7 @@
     }
   },
 
-  "pricing": {
+  "plans": {
     "title": "Pay by the <custom>week</custom>, not the year.",
     "subtitle": "Month-to-month. No contracts. The longer you stay, the quieter it gets, and the less you pay per plate.",
     "toggle": {
@@ -324,21 +324,77 @@
     "contactButton": "Contact Us"
   },
 
+  
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "You can always contact us, Please connect with our friendly team, we will answer shortly.",
-    "firstName": "First Name",
-    "firstNamePlaceholder": "Type Name",
-    "lastName": "Last Name",
-    "lastNamePlaceholder": "Type Name",
-    "phone": "Phone Number",
-    "phonePlaceholder": "+966 xxxx xxx xxx",
-    "email": "Email Address",
-    "emailPlaceholder": "Type Email",
-    "message": "Message",
-    "messagePlaceholder": "Type Message",
-    "sendMessage": "Send Message",
-    "sending": "Sending...",
+     "title": "Say <custom>hello</custom>,We reply inside 4 minutes.",
+    "subtitle": "Delivery hiccup, menu request, press query, or a note from your dietitian, find the right door below. A real human, every time",
+    "header": {
+      "title": "Contact Us",
+      "subtitle": "You can always contact us, Please connect with our friendly team, we will answer shortly."
+    },
+
+    "form": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Type Name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Type Name",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+966 xxxx xxx xxx",
+      "email": "Email Address",
+      "emailPlaceholder": "Type Email",
+      "message": "Message",
+      "messagePlaceholder": "Type Message",
+      "sendMessage": "Send Message",
+      "sending": "Sending..."
+    },
+
+    "writeUs": {
+      "title": "Write",
+      "titleItalic": "us.",
+      "subtitle": "Pick a topic so we route you to the right desk."
+    },
+
+
+    "fields": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Mira Lahoud",
+      "email": "Email",
+      "emailPlaceholder": "you@domain.com",
+      "phoneOptional": "Phone (Optional)",
+      "plan": "Plan",
+      "message": "Message",
+      "messagePlaceholder": "Tell us what's on your plate..."
+    },
+
+
+
+    "feedback": {
+      "replyNote": "We'll reply from a real address within 4 minutes, 7am",
+      "sendMessage": "Send message",
+      "sending": "Sending..."
+    },
+
+    "chat": {
+      "agentsOnline": "8 Agents Online",
+      "title": "Chat now,",
+      "titleItalic": "right here.",
+      "subtitle": "Quickest way in. Reply usually lands before your coffee cools.",
+      "openChat": "Open chat"
+    },
+
+    "direct": {
+      "title": "Direct",
+      "titleItalic": "lines.",
+      "emailSub": "General inbox · reply < 4 min",
+      "phoneSub": "7 am – midnight, every day",
+      "address": "Kitchen N°01, Riyadh",
+      "addressSub": "Office tours by appointment"
+    },
+
+    "map": {
+      "coordinates": "Central Kitchen · 24.7136° N · 46.6753° E"
+    },
+
     "validation": {
       "firstNameMin": "First name must be at least 2 characters",
       "lastNameMin": "Last name must be at least 2 characters",
@@ -442,15 +498,23 @@
   },
   "auth": {
     "login": "Login",
-    "subtitle": "Let’s grow your business",
-    "createAccountSub": "Create an account & Let us help grow your rental business",
-    "title": "We Help Grow Your Rental Business!",
+    "subtitle": "Log in to tweak your week, swap a plate, or pause delivery. Your kitchen remembers you, right down to the chilli levels.",
+    "createAccountSub": "Two minutes. Then the chefs start cooking for you.",
+    "loginSub": "A two-second hello before your kitchen opens.",
+    "membersEntrance": "Members' entrance",
+    "title": "Welcome <custom>back</custom> to the table!",
     "brand": "Bitely",
     "signIn": "Sign In",
     "signUp": "Sign Up",
     "email": "Email Address",
     "password": "Password",
     "confirmPassword": "Confirm Password",
+        "downloadApp": "Download our app",
+    "appStoreTitle": "Download on the",
+    "appStoreName": "App Store",
+    "googlePlayTitle": "Get it on",
+    "googlePlayName": "Google Play",
+    "appRights": "All rights reserved.",
 
     "signInWithGoogle": "Sign in with Google",
     "signInWithApple": "Sign in with Apple",

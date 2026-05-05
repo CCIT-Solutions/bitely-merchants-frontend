@@ -1,3 +1,5 @@
+"use client";
+
 import {
   FieldError,
   FieldValues,
@@ -41,62 +43,77 @@ export function PhoneField<TFormValues extends FieldValues>({
   const [dialCode, setDialCode] = useState("966");
 
   return (
-    <div className="space-y-1 relative">
-      <Label htmlFor={name} className="font-medium mb-3">
+    <div className="space-y-1">
+      {/* Label */}
+      <Label htmlFor={name} className="font-medium mb-4 block">
         {label} {required && <span className="text-red-500">*</span>}
       </Label>
 
-      <div className="relative">
+      {/* Field Wrapper */}
+      <div
+        className={cn(
+          "flex items-center rounded-full border border-input bg-transparent px-2 py-1 shadow-xs",
+          "focus-within:border-primary focus-within:ring-[3px] focus-within:ring-primary/20 transition",
+          error && "border-destructive",
+          className
+        )}
+      >
+        {/* Optional Icon */}
         {icon && (
-          <div className="absolute inset-y-0 start-3 flex items-center pointer-events-none text-muted-foreground z-10">
+          <div className="mr-2 text-muted-foreground shrink-0">
             {icon}
           </div>
         )}
 
-        <div
+        {/* Country Code */}
+        <Select value={dialCode} onValueChange={setDialCode}>
+          <SelectTrigger
+            className="w-18 shrink-0 border-0 shadow-none p-0 px-3 h-auto focus:ring-0 focus:outline-none text-foreground/50"
+          >
+            <span className="text-sm">+{dialCode}</span>
+          </SelectTrigger>
+
+          <SelectContent>
+            {countries.map((item) => (
+              <SelectItem key={item.code} value={item.code}>
+                <div className="flex items-center gap-2">
+                  <span>+{item.code}</span>
+                  <span className="text-neutral-400 text-xs">
+                    {item.country}
+                  </span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Divider */}
+        <span
           className={cn(
-            "flex items-center gap-2 border focus-within:border-primary focus-within:ring-primary/0 focus-within:ring-[3px] rounded-full overflow-hidden transition file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 bg-transparent text-base shadow-xs  outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm  focus-visible:border-primary focus-visible:ring-primary/0 focus-visible:ring-[3px] py-6 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-            "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-            icon ? "ps-10 pe-6" : "ps-2 pe-2",
-            className
+            "mx-2 text-neutral-300 dark:text-neutral-600 select-none",
+            dividerClassName
           )}
-          aria-invalid={!!error}
         >
-          {/* Country Code Select */}
-          <Select value={dialCode} onValueChange={setDialCode}>
-            <SelectTrigger className="w-20 h-7 border-0 shadow-none focus:ring-0 focus:outline-none p-0 justify-center focus-visible:border-transparent focus-visible:ring-transparent">
-              <span className="text-sm">+{dialCode}</span>
-            </SelectTrigger>
+          |
+        </span>
 
-            <SelectContent>
-              {countries.map((item) => (
-                <SelectItem key={item.code} value={item.code}>
-                  <div className="flex items-center gap-2">
-                    <span>+{item.code}</span>
-                    <span className="text-neutral-400">{item.country}</span>
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          {/* Divider */}
-          <span className= {cn("text-neutral-200 dark:text-neutral-600", dividerClassName)}>|</span>
-
-          {/* Phone Input */}
-          <input
-            {...register(name, { valueAsNumber: true })}
-            id={name}
-            placeholder="5X XXX XXXX"
-            maxLength={13}
-            className={cn(
-              "flex-1 bg-transparent outline-none text-sm h-full [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_white]",
-              inputClassName
-            )}
-          />
-        </div>
+        {/* Phone Input */}
+        <input
+          {...register(name)} 
+          id={name}
+          type="tel"
+          inputMode="numeric"
+          placeholder="5X XXX XXXX"
+          className={cn(
+            "flex-1 min-w-0 bg-transparent outline-none text-sm",
+            "placeholder:text-muted-foreground",
+            "relative z-10",
+            inputClassName
+          )}
+        />
       </div>
 
+      {/* Error */}
       {error && (
         <p className="text-xs text-red-500 mt-1">
           {typeof error === "string" ? error : error?.message}

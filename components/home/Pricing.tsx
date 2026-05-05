@@ -7,21 +7,21 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/hooks/useLang";
-import { plans, type Plan } from "@/data/pricing";
+import { plans, type Plan } from "@/data/plans";
 import PlanTapSwitcher from "../plans/PlanTapSwitcher";
 import Heading from "../shared/Heading";
 import { Language } from "@/types/shared";
 import Animate from "../animation/Animate";
 import {  fadeDu4 } from "@/lib/animation";
 
-interface PricingCardProps {
+interface PlanCardProps {
   plan: Plan;
   billing: "weekly" | "monthly";
   lang: Language;
   unitLabel: string;
 }
 
-function PricingCard({ plan, billing, lang, unitLabel }: PricingCardProps) {
+function PlanCard({ plan, billing, lang, unitLabel }: PlanCardProps) {
   const price = billing === "weekly" ? plan.price_weekly : plan.price_monthly;
 
   return (
@@ -106,13 +106,13 @@ function PricingCard({ plan, billing, lang, unitLabel }: PricingCardProps) {
   );
 }
 
-// ─── Main Pricing Section ─────────────────────────────────────────────────────
-export default function Pricing() {
+// ─── Main Plan Section ─────────────────────────────────────────────────────
+export default function Plan() {
   const { t, lang } = useLang();
   const [billing, setBilling] = useState<"weekly" | "monthly">("weekly");
 
   const unitLabel =
-    billing === "weekly" ? t("pricing.unit.weekly") : t("pricing.unit.monthly");
+    billing === "weekly" ? t("plans.unit.weekly") : t("plans.unit.monthly");
 
   return (
     <section className="min-h-screen px-4 pt-20">
@@ -121,13 +121,13 @@ export default function Pricing() {
 
         <div className="mb-14 text-center">
           <Heading
-            i18nKey={"pricing.title"}
+            i18nKey={"plans.title"}
             components={{
               custom: <span className="text-primary" />,
             }}
           />
           <p className="mx-auto max-w-lg text-foreground/60 text-base leading-relaxed">
-            {t("pricing.subtitle")}
+            {t("plans.subtitle")}
           </p>
         </div>
 
@@ -139,7 +139,7 @@ export default function Pricing() {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 items-start relative">
           <h1 className="absolute inset-0 w-full text-center text-[8rem] md:text-[15rem] font-bold text-primary leading-2.5 ">
-            Pricing
+            Plan
           </h1>
 
           {plans.map((plan, i) => (
@@ -153,7 +153,7 @@ export default function Pricing() {
             
               variants={fadeDu4}
             >
-              <PricingCard
+              <PlanCard
                 plan={plan}
                 billing={billing}
                 lang={lang}
@@ -165,7 +165,7 @@ export default function Pricing() {
 
         {/* Footer note */}
         <p className="mt-10 text-center text-xs text-foreground/60 tracking-wide">
-          {t("pricing.footer")}
+          {t("plans.footer")}
         </p>
       </div>
     </section>

@@ -141,8 +141,7 @@ function Header({ className }: { className?: string }) {
         </nav>
 
         <div className="flex items-center gap-4">
-         
-            <LangSwitcher />
+          <LangSwitcher />
 
           <div className="w-10 h-10 rounded-full border border-neutral-200 dark:border-primary/20 flex items-center justify-center hover:bg-neutral-50 dark:hover:bg-primary transition">
             <ThemeSwitcher />
@@ -151,7 +150,6 @@ function Header({ className }: { className?: string }) {
           {!isAuthenticated && (
             <Link
               href="/login"
-              target="_blank"
               className="hidden sm:block px-6 py-2 rounded-full bg-primary text-primary-foreground font-semibold shadow-sm hover:bg-primary/80 transition"
             >
               {t("auth.login")}

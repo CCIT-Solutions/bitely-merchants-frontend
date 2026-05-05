@@ -72,7 +72,7 @@ function LoginForm() {
           <h1 className=" text-4xl font-bold leading-tight mb-2">
             {t("auth.login")}
           </h1>
-          <p className="text-neutral-500 text-base">{t("auth.subtitle")}</p>
+          <p className="text-neutral-500 text-base">{t("auth.loginSub")}</p>
         </div>
 
         <FormProvider {...form}>

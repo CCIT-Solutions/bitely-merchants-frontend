@@ -33,7 +33,6 @@ export default function FAQ() {
       <div className="w-full max-w-3xl">
         {/* Header */}
         <Animate variants={fade} className="text-center my-16 relative flex flex-col items-center">
-          <DecorativeParticles minSize={3} maxSize={4} particleDensity={15} />
           <div className="text-5xl sm:text-6xl font-semibold mb-3 tracking-tight leading-tight max-w-lg">
             {t("faq.title")}
           </div>

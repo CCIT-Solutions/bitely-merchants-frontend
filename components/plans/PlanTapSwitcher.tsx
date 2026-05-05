@@ -20,8 +20,8 @@ export default function PlanTapSwitcher({
   const { t } = useLang();
 
   const tabs = [
-    { key: "weekly", label: t("pricing.toggle.weekly") },
-    { key: "monthly", label: t("pricing.toggle.monthly") },
+    { key: "weekly", label: t("plans.toggle.weekly") },
+    { key: "monthly", label: t("plans.toggle.monthly") },
   ];
 
   return (
@@ -69,7 +69,7 @@ export default function PlanTapSwitcher({
                       " text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full border-0 ms-2 border-primary bg-primary dark:bg-primary text-primary-foreground dark:text-primary-foreground"
                     )}
                   >
-                    {t("pricing.toggle.save")}
+                    {t("plans.toggle.save")}
                   </Badge>
                 )}
               </button>
