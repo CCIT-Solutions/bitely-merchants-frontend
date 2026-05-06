@@ -65,7 +65,7 @@ export default function ResetPasswordPage() {
           form.reset();
           router.push("/login");
         },
-      }
+      },
     );
   };
 
@@ -73,70 +73,80 @@ export default function ResetPasswordPage() {
     <AuthLayout>
       <Animate
         variants={fade}
-        className="flex items-center justify-end lg:bg-transparent sm:min-w-md"
+        className="flex items-center justify-end w-full"
       >
-        <div className="bg-black/80 p-8 sm:p-10 rounded-2xl shadow-2xl w-full max-w-lg">
-          <h2 className="text-white text-2xl font-semibold">
-            <Translate text="auth.resetPassword" />
-          </h2>
-          <p className="text-neutral-400 text-sm font-semibold mb-6 mt-1">
-            <Translate text="auth.enterNewPassword" />
-          </p>
-
-          <FormProvider {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              {/* New Password */}
-              <CustomField
-                name="password"
-                label={t("auth.newPassword")}
-                icon={<Lock />}
-              >
-                {(field) => (
-                  <Input
-                    placeholder={t("auth.newPasswordPlaceholder")}
-                    {...field}
-                    type="password"
-                  />
-                )}
-              </CustomField>
-
-              {/* Confirm Password */}
-              <CustomField
-                name="password_confirmation"
-                label={t("auth.password_confirmation")}
-                icon={<Lock />}
-              >
-                {(field) => (
-                  <Input
-                    placeholder={t("auth.confirmPasswordPlaceholder")}
-                    {...field}
-                    type="password"
-                  />
-                )}
-              </CustomField>
-
-              {/* Submit */}
-              <SpinnerButton
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-6 text-base font-semibold bg-white text-neutral-800 rounded-2xl mt-4 cursor-pointer"
-                isSubmittingText="auth.resetingPassword"
-                text="auth.resetPasswordButton"
-                isSubmitting={isSubmitting}
-              />
-
-              {/* Back to login */}
-              <p className="text-neutral-400 text-sm text-center mt-6">
-                <Translate text="auth.rememberPassword" />{" "}
-                <Link
-                  href="/login"
-                  className="text-white font-medium hover:underline"
-                >
-                  <Translate text="auth.signIn" />
-                </Link>
+        <div className="flex items-center justify-center w-full">
+          <div className="w-full">
+            {/* Header */}
+            <div className="mb-10 text-center">
+              <h1 className="text-2xl font-medium text-primary-foreground leading-tight mb-2">
+                {t("auth.resetPassword")}
+              </h1>
+              <p className="text-neutral-500 text-lg max-w-sm">
+                {t("auth.enterNewPassword")}
               </p>
-            </form>
-          </FormProvider>
+            </div>
+
+            <FormProvider {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
+                {/* Password */}
+                <CustomField
+                  name="password"
+                  label={t("auth.newPassword")}
+                  icon={<Lock className="size-5" />}
+                >
+                  {(field) => (
+                    <Input
+                      type="password"
+                      placeholder={t("auth.newPasswordPlaceholder")}
+                      {...field}
+                      className="border-neutral-200"
+                    />
+                  )}
+                </CustomField>
+
+                {/* Confirm Password */}
+                <CustomField
+                  name="password_confirmation"
+                  label={t("auth.confirmPassword")}
+                  icon={<Lock className="size-5" />}
+                >
+                  {(field) => (
+                    <Input
+                      type="password"
+                      placeholder={t("auth.confirmPasswordPlaceholder")}
+                      {...field}
+                      className="border-neutral-200"
+                    />
+                  )}
+                </CustomField>
+
+                {/* Submit */}
+                <SpinnerButton
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-7 text-md mt-4"
+                  isSubmitting={isSubmitting}
+                  text="auth.resetPasswordButton"
+                  isSubmittingText="auth.resetingPassword"
+                />
+
+                {/* Back to login */}
+                <p className="text-center text-base">
+                  {t("auth.rememberPassword")}{" "}
+                  <Link
+                    href="/login"
+                    className="text-custom-green font-medium hover:underline"
+                  >
+                    {t("auth.login")}
+                  </Link>
+                </p>
+              </form>
+            </FormProvider>
+          </div>
         </div>
       </Animate>
     </AuthLayout>
