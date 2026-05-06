@@ -54,7 +54,7 @@ function ForgetPasswordForm({
           form.reset();
           if (typeof onSuccess === "function") onSuccess();
         },
-      }
+      },
     );
   };
 
@@ -62,65 +62,64 @@ function ForgetPasswordForm({
     <AuthLayout>
       <Animate
         variants={fade}
-        className="flex items-center justify-end lg:bg-transparent sm:min-w-md"
+        className="flex items-center justify-end lg:bg-transparent "
       >
-        <div className="bg-black/80 p-8 sm:p-10 rounded-2xl shadow-2xl w-full max-w-lg">
-          <h2 className="text-white text-2xl font-semibold">
-            <Translate text="auth.forgotPassword" />
-          </h2>
-          <p className="text-neutral-400 text-sm font-semibold mb-6 mt-1">
-            <Translate text="auth.enterEmailToReset" />
-          </p>
+        <div className="flex items-center justify-center w-full">
+          <div className="w-full ">
+            {/* Header */}
+            <div className="mb-10 text-center">
+              <h1 className="text-2xl font-medium text-primary-foreground leading-tight mb-2">
+                {t("auth.forgotPassword")}
+              </h1>
+              <p className="text-neutral-500 text-lg max-w-sm">
+                {t("auth.enterEmailToReset")}
+              </p>
+            </div>
 
-          <FormProvider {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              {/* Email */}
-              <CustomField
-                name="email"
-                label={t("auth.email")}
-                icon={<Email />}
+            <FormProvider {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
               >
-                {(field) => (
-                  <Input
-                    placeholder={t("auth.emailPlaceholder")}
-                    {...field}
-                    type="email"
-                  />
-                )}
-              </CustomField>
+                {/* Email */}
+                <CustomField
+                  name="email"
+                  label={t("auth.email")}
+                  icon={<Email className="size-5" />}
+                >
+                  {(field) => (
+                    <Input
+                      type="email"
+                      placeholder={t("auth.emailPlaceholder")}
+                      {...field}
+                      className="border-neutral-200"
+                    />
+                  )}
+                </CustomField>
 
-              {/* Submit */}
-              <SpinnerButton
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-6 text-base font-semibold bg-white text-neutral-800 rounded-2xl mt-4 cursor-pointer"
-                isSubmittingText="auth.sendingLink"
-                text="auth.sendResetLink"
-                isSubmitting={isSubmitting}
-              />
+                {/* Submit */}
+                <SpinnerButton
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-7 text-md mt-4"
+                  isSubmitting={isSubmitting}
+                  text="auth.sendResetLink"
+                  isSubmittingText="auth.sendingLink"
+                />
 
-              {/* Back to login */}
-              <p className="text-neutral-400 text-sm text-center mt-6">
-                <Translate text="auth.rememberPassword" />{" "}
-                {onSwitchToLogin ? (
-                  <button
-                    type="button"
-                    onClick={onSwitchToLogin}
-                    className="text-white font-medium hover:underline"
-                  >
-                    <Translate text="auth.signIn" />
-                  </button>
-                ) : (
+                {/* Back to login */}
+                <p className="text-center text-base">
+                  {t("auth.rememberPassword")}{" "}
                   <Link
                     href="/login"
-                    className="text-white font-medium hover:underline"
+                    className="text-custom-green font-medium hover:underline"
                   >
-                    <Translate text="auth.signIn" />
+                    {t("auth.login")}
                   </Link>
-                )}
-              </p>
-            </form>
-          </FormProvider>
+                </p>
+              </form>
+            </FormProvider>
+          </div>
         </div>
       </Animate>
     </AuthLayout>
