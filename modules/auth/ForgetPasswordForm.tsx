@@ -68,10 +68,10 @@ function ForgetPasswordForm({
           <div className="w-full ">
             {/* Header */}
             <div className="mb-10 text-center">
-              <h1 className="text-2xl font-medium text-primary-foreground leading-tight mb-2">
+              <h1 className="text-2xl font-medium text-primary-foreground dark:text-foreground/90 leading-tight mb-2">
                 {t("auth.forgotPassword")}
               </h1>
-              <p className="text-neutral-500 text-lg max-w-sm">
+              <p className="text-foreground/50 text-lg max-w-sm">
                 {t("auth.enterEmailToReset")}
               </p>
             </div>
@@ -92,7 +92,6 @@ function ForgetPasswordForm({
                       type="email"
                       placeholder={t("auth.emailPlaceholder")}
                       {...field}
-                      className="border-neutral-200"
                     />
                   )}
                 </CustomField>
@@ -112,7 +111,7 @@ function ForgetPasswordForm({
                   {t("auth.rememberPassword")}{" "}
                   <Link
                     href="/login"
-                    className="text-custom-green font-medium hover:underline"
+                    className="text-primary-foreground dark:text-primary font-medium hover:underline"
                   >
                     {t("auth.login")}
                   </Link>

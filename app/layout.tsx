@@ -60,7 +60,7 @@ export default function RootLayout({
       suppressHydrationWarning={true}
       data-scroll-behavior="smooth"
       style={{ scrollBehavior: "smooth" }}
-      className="dark"
+  
     >
       <head>
         {/* <link

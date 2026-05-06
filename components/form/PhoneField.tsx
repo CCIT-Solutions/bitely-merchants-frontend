@@ -54,7 +54,7 @@ export function PhoneField<TFormValues extends FieldValues>({
       {/* Field Wrapper */}
       <div
         className={cn(
-          "flex items-center rounded-full border border-input bg-transparent px-2 py-1 shadow-xs",
+          "flex items-center rounded-full border border-input px-2 py-1 shadow-xs bg-input/30 ",
           "focus-within:border-primary focus-within:ring-[3px] focus-within:ring-primary/20 transition",
           error && "border-destructive",
           className
@@ -71,7 +71,7 @@ export function PhoneField<TFormValues extends FieldValues>({
         {/* Country Code */}
         <Select value={dialCode} onValueChange={setDialCode}>
           <SelectTrigger
-            className={cn("w-18 shrink-0 border-0 shadow-none p-0 px-3 h-auto focus:ring-0 focus:outline-none text-foreground/50", selectTriggerClassName)}
+            className={cn("w-22 shrink-0 shadow-none p-0 h-auto focus:ring-0 focus:outline-none text-foreground/50 px-3 border border-input/50 ", selectTriggerClassName)}
           >
             <span className="text-sm">+{dialCode}</span>
           </SelectTrigger>

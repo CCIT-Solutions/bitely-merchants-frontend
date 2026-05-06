@@ -69,10 +69,10 @@ function LoginForm() {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="mb-10 text-center">
-          <h1 className=" text-2xl font-medium text-primary-foreground leading-tight mb-2">
+          <h1 className=" text-2xl font-medium text-primary- dark:text-foreground/90 leading-tight mb-2">
             {t("auth.loginTitle")}
           </h1>
-          <p className="text-neutral-500 text-base">{t("auth.loginSub")}</p>
+          <p className="text-foreground/50 text-base">{t("auth.loginSub")}</p>
         </div>
 
         <FormProvider {...form}>
@@ -82,7 +82,7 @@ function LoginForm() {
               <button
                 type="button"
                 onClick={handleGoogleLogin}
-                className="w-full py-4 bg-white border border-neutral-200 rounded-full flex items-center justify-center gap-2 hover:bg-neutral-50 transition-colors cursor-pointer"
+                className="w-full py-4 bg-background/20 dark:bg-primary-foreground/20 border border-foreground/10 rounded-full flex items-center justify-center gap-2 hover:bg-foreground/2 dark:hover:bg-primary-foreground transition-colors cursor-pointer"
               >
                 <FcGoogle className="size-5" />
                 <span className="text-sm font-medium">
@@ -93,7 +93,7 @@ function LoginForm() {
               <button
                 type="button"
                 onClick={handleAppleLogin}
-                className="w-full p-4 bg-white border border-neutral-200  rounded-full flex items-center justify-center gap-2 hover:bg-neutral-50 transition-colors cursor-pointer"
+                className="w-full p-4 bg-background/20  dark:bg-primary-foreground/20  border border-foreground/10  rounded-full flex items-center justify-center gap-2 hover:bg-foreground/2 dark:hover:bg-primary-foreground transition-colors cursor-pointer"
               >
                 <Apple className="size-5" />
                 <span className="text-sm font-medium">
@@ -104,11 +104,11 @@ function LoginForm() {
 
             {/* Divider */}
             <div className="flex items-center gap-4">
-              <div className="flex-1 h-px bg-neutral-200"></div>
+              <div className="flex-1 h-px bg-foreground/10"></div>
               <span className="text-neutral-500] text-sm">
                 {t("auth.orLoginWith")}
               </span>
-              <div className="flex-1 h-px bg-neutral-200"></div>
+              <div className="flex-1 h-px bg-foreground/10"></div>
             </div>
 
             {/* Email Field */}
@@ -118,7 +118,7 @@ function LoginForm() {
               icon={<Email className="size-5" />}
             >
               {(field) => (
-                <Input placeholder={t("auth.emailPlaceholder")} {...field}  className="border-neutral-100"/>
+                <Input placeholder={t("auth.emailPlaceholder")} {...field} />
               )}
             </CustomField>
 
@@ -127,7 +127,6 @@ function LoginForm() {
               name="password"
               label="Password"
               icon={<Lock className="size-5" />}
-              className="border-neutral-100 text-neutral-900"
               placeholder={t("auth.passwordPlaceholder")}
             />
 
@@ -137,14 +136,14 @@ function LoginForm() {
                 <Checkbox
                   checked={rememberMe}
                   onCheckedChange={(value) => setRememberMe(Boolean(value))}
-                  className="border-primary-foreground/60"
+            
                 />
 
                 <span className=" text-base">{t("auth.rememberMe")}</span>
               </label>
               <button
                 type="button"
-                className="text-primary-foreground/80 text-base font-medium hover:underline"
+                className="text-primary-foreground/80 dark:text-foreground text-base font-medium hover:underline"
               >
                 {t("auth.forgotPassword")}
               </button>
@@ -161,12 +160,12 @@ function LoginForm() {
             />
 
             {/* Sign Up Link */}
-            <p className="text-center  text-base">
+            <p className="text-center text-base">
               {t("auth.notRegistered")}{" "}
               <Link
                 href="/register"
                 type="button"
-                className="text-primary-foreground font-medium hover:underline"
+                className="text-primary-foreground dark:text-primary font-medium hover:underline"
               >
                 {t("auth.createAccount")}
               </Link>

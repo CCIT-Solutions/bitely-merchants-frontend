@@ -50,7 +50,7 @@ export function CustomFormPassword<T extends FieldValues>({
         render={({ field }) => (
           <div className="relative">
             {icon && (
-              <div className="absolute inset-y-0 start-3 flex items-center pointer-events-none text-muted-foreground">
+              <div className="absolute inset-y-0 inset-s-3 flex items-center pointer-events-none text-muted-foreground">
                 {icon}
               </div>
             )}
@@ -61,7 +61,7 @@ export function CustomFormPassword<T extends FieldValues>({
               type={showPassword ? "text" : "password"}
               placeholder={placeholder} 
               className={cn(
-                "border focus-visible:border-primary focus-visible:ring-primary/0 py-3 rounded-full w-full text-white placeholder:text-neutral-500",
+                "border focus-visible:border-primary focus-visible:ring-primary/0 focus-visible:ring-[3px] py-3 rounded-full w-full bg-input/30 border-input",
                 "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive focus:border-primary outline-0",
                 icon && "ps-10",
                 "pe-10", 
@@ -74,7 +74,7 @@ export function CustomFormPassword<T extends FieldValues>({
             <button
               type="button"
               onClick={togglePassword}
-              className="absolute inset-y-0 end-3 flex items-center text-neutral-400 hover:text-primary transition-colors cursor-pointer"
+              className="absolute inset-y-0 inset-e-3 flex items-center text-neutral-400 hover:text-primary transition-colors cursor-pointer"
               tabIndex={-1}
               aria-label="visibility toggle"
             >

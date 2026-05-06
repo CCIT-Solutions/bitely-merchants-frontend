@@ -78,10 +78,10 @@ function RegisterForm() {
       <div className="w-full max-w-md">
         {/* Header */}
             <div className="mb-10 text-center">
-          <h1 className=" text-2xl font-medium text-primary-foreground leading-tight mb-2">
+          <h1 className="text-2xl font-medium text-primary-foreground dark:text-foreground/90 leading-tight mb-2">
             {t("auth.createAccount")}
           </h1>
-          <p className="text-neutral-500 text-lg max-w-sm">
+          <p className="text-foreground/50 text-lg max-w-sm">
             {t("auth.createAccountSub")}
           </p>
         </div>
@@ -98,7 +98,6 @@ function RegisterForm() {
                 <Input
                   placeholder={t("auth.emailPlaceholder")}
                   {...field}
-                  className="border-neutral-200"
                 />
               )}
             </CustomField>
@@ -109,9 +108,6 @@ function RegisterForm() {
               name="phone_number"
               register={register}
               error={errors.phone_number}
-              className="border-neutral-200"
-              selectTriggerClassName="text-black/60"
-              dividerClassName="dark:text-neutral-200"
             />
 
             {/* Password */}
@@ -120,7 +116,6 @@ function RegisterForm() {
               label={t("auth.password")}
               icon={<Lock className="size-5" />}
               placeholder={t("auth.passwordPlaceholder")}
-              className="border-neutral-200 text-neutral-900"
             />
 
             {/* Confirm Password */}
@@ -129,7 +124,6 @@ function RegisterForm() {
               label={t("auth.confirmPassword")}
               icon={<Lock className="size-5" />}
               placeholder={t("auth.confirmPasswordPlaceholder")}
-              className="border-neutral-200 text-neutral-900"
             />
 
             {/* Submit Button */}
@@ -148,7 +142,7 @@ function RegisterForm() {
                <Link
                 href="/login"
                 type="button"
-                className="text-custom-green font-medium hover:underline"
+                className="text-primary-foreground dark:text-primary font-medium hover:underline"
               >
                 {t("auth.login")}
               </Link>

@@ -1,3 +1,4 @@
+import Providers from "@/providers";
 import dynamic from "next/dynamic";
 const MainLayout = dynamic(() => import("@/layout/MainLayout"));
 
@@ -6,5 +7,8 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <MainLayout minimal={true}>{children}</MainLayout>;
+  return (
+      <MainLayout minimal={true}>{children}</MainLayout>
+
+  );
 }
