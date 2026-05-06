@@ -65,12 +65,12 @@ function LoginForm() {
   };
 
   return (
-    <div className=" flex items-center justify-center p-4 text-black">
+    <div className=" flex items-center justify-center ">
       <div className="w-full max-w-md">
         {/* Header */}
-        <div className="mb-10">
-          <h1 className=" text-4xl font-bold leading-tight mb-2">
-            {t("auth.login")}
+        <div className="mb-10 text-center">
+          <h1 className=" text-2xl font-medium text-primary-foreground leading-tight mb-2">
+            {t("auth.loginTitle")}
           </h1>
           <p className="text-neutral-500 text-base">{t("auth.loginSub")}</p>
         </div>
@@ -137,13 +137,14 @@ function LoginForm() {
                 <Checkbox
                   checked={rememberMe}
                   onCheckedChange={(value) => setRememberMe(Boolean(value))}
+                  className="border-primary-foreground/60"
                 />
 
                 <span className=" text-base">{t("auth.rememberMe")}</span>
               </label>
               <button
                 type="button"
-                className="text-custom-green text-base font-medium hover:underline"
+                className="text-primary-foreground/80 text-base font-medium hover:underline"
               >
                 {t("auth.forgotPassword")}
               </button>
@@ -153,7 +154,7 @@ function LoginForm() {
             <SpinnerButton
               type={"submit"}
               disabled={isSubmitting}
-              className="w-full py-7 text-md  mt-4"
+              className="w-full py-7 text-md "
               isSubmittingText="auth.signingIn"
               text="auth.signIn"
               isSubmitting={isSubmitting}
@@ -165,7 +166,7 @@ function LoginForm() {
               <Link
                 href="/register"
                 type="button"
-                className="text-custom-green font-medium hover:underline"
+                className="text-primary-foreground font-medium hover:underline"
               >
                 {t("auth.createAccount")}
               </Link>
