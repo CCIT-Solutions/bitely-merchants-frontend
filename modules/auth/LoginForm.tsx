@@ -65,7 +65,7 @@ function LoginForm() {
   };
 
   return (
-    <div className=" flex items-center justify-center ">
+    <div className=" flex items-center justify-center w-full ">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="mb-10 text-center">

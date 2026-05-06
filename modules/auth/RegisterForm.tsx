@@ -74,11 +74,11 @@ function RegisterForm() {
   };
 
   return (
-    <div className=" flex items-center justify-center p-4 min-h-screen text-black">
+    <div className=" flex items-center justify-center w-full ">
       <div className="w-full max-w-md">
         {/* Header */}
-        <div className="mb-10">
-          <h1 className="text-[40px] font-bold leading-tight mb-2 ">
+            <div className="mb-10 text-center">
+          <h1 className=" text-2xl font-medium text-primary-foreground leading-tight mb-2">
             {t("auth.createAccount")}
           </h1>
           <p className="text-neutral-500 text-lg max-w-sm">
@@ -110,6 +110,7 @@ function RegisterForm() {
               register={register}
               error={errors.phone_number}
               className="border-neutral-200"
+              selectTriggerClassName="text-black/60"
               dividerClassName="dark:text-neutral-200"
             />
 

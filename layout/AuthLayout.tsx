@@ -145,8 +145,8 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
         </div>
 
         {/* Left Side - Forms*/}
-        <div className="min-w-113 w-full sm:w-fit lg:w-163 flex items-center px-4 lg:px-0 lg:rounded-none rounded-4xl mx-auto lg:mx-0">
-          <div className="w-fit shadow-[0px_0px_10px_10px_#f3f3f394] rounded-3xl text-black bg-white/50 p-10 flex flex-col justify-center items-center gap-5  md:ms-10 mx-auto lg:ms-5">
+        <div className=" w-full sm:w-fit lg:w-163 flex items-center px-4 lg:px-0 lg:rounded-none rounded-4xl mx-auto lg:mx-0">
+          <div className="min-w-100 w-full xs:w-fit shadow-[0px_0px_10px_10px_#f3f3f394] rounded-3xl text-black bg-white/50 p-10 flex flex-col justify-center items-center gap-5  md:ms-10 mx-auto lg:ms-5">
             <Image
               src="/logo-short.png"
               alt="Short Logo"

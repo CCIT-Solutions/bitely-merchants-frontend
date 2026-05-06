@@ -25,6 +25,7 @@ interface PhoneFieldProps<TFormValues extends FieldValues> {
   className?: string;
   dividerClassName?: string;
   inputClassName?: string;
+  selectTriggerClassName?: string;
   required?: boolean;
   icon?: React.ReactNode;
 }
@@ -39,6 +40,7 @@ export function PhoneField<TFormValues extends FieldValues>({
   dividerClassName,
   required,
   icon,
+  selectTriggerClassName
 }: PhoneFieldProps<TFormValues>) {
   const [dialCode, setDialCode] = useState("966");
 
@@ -57,6 +59,7 @@ export function PhoneField<TFormValues extends FieldValues>({
           error && "border-destructive",
           className
         )}
+         dir="ltr"
       >
         {/* Optional Icon */}
         {icon && (
@@ -68,7 +71,7 @@ export function PhoneField<TFormValues extends FieldValues>({
         {/* Country Code */}
         <Select value={dialCode} onValueChange={setDialCode}>
           <SelectTrigger
-            className="w-18 shrink-0 border-0 shadow-none p-0 px-3 h-auto focus:ring-0 focus:outline-none text-foreground/50"
+            className={cn("w-18 shrink-0 border-0 shadow-none p-0 px-3 h-auto focus:ring-0 focus:outline-none text-foreground/50", selectTriggerClassName)}
           >
             <span className="text-sm">+{dialCode}</span>
           </SelectTrigger>
