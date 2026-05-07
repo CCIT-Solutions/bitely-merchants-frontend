@@ -113,7 +113,6 @@
     "howItWorks": {
       "title": "From kitchen <custom>to kitchen</custom> counter",
       "subtitle": "A four-step rhythm that quietly becomes a weekly ritual. No prep, no dishes, no second-guessing."
-    
     },
     "faq": {
       "title": "Frequently Asked Questions",
@@ -153,11 +152,11 @@
     }
   },
 
- "menu": {
+  "menu": {
     "title": "Seventeen <custom>dishes.</custom> One week.",
     "subtitle": "The kitchen rotates every Sunday. Each plate is weighed, photographed, and logged, so your week reads like a magazine, not a meal plan",
     "seeFullMenu": "See full menu",
-      "protein": "Protein",
+    "protein": "Protein",
     "carbs": "Carbs",
     "fat": "Fat",
     "kcal": "kcal",
@@ -208,6 +207,66 @@
           "desc": "Life changes and your plan can too. Adjust up to 24 hours before delivery with no hassle."
         }
       ]
+    }
+  },
+  "mealPlanner": {
+    "order": "Order",
+    "headingPrefix": "Plate your",
+    "headingHighlight": "week.",
+    "subheading": "Click any plate to swap it, nutrition recalculates live and we lock the kitchen on Sunday, 12 PM.",
+    "exportWeek": "Export week",
+    "confirmWeek": "Confirm week",
+    "plates": "plates",
+    "addPlate": "+ add plate",
+    "add": "+ add",
+    "emptySlot": "Empty slot",
+    "swap": "Swap",
+    "kcal": "kcal",
+    "protein": "Protein",
+    "statsMealsPlanned": "Meals planned",
+    "statsDailyAvg": "Daily avg.",
+    "statsAvgProtein": "Avg protein / meal",
+    "statsFirstDelivery": "First Delivery",
+    "statsFirstDeliveryValue": "Mon",
+    "statsFirstDeliverySub": "20",
+    "statsKitchenLocks": "Kitchen locks",
+    "statsKitchenLocksValue": "Sun",
+    "statsKitchenLocksSub": "8 PM",
+    "week": "Week",
+    "weekRange": "April 20 — April 26, 2026",
+    "viewWeek": "Week",
+    "viewDay": "Day",
+    "viewList": "List",
+    "keepPlate": "Keep plate",
+    "chef": "Chef",
+    "viewRecipe": "View recipe",
+    "choosePlate": "Choose a plate…",
+    "swapFor": "Swap for…",
+    "filter": "Filter",
+    "filterAll": "All",
+    "filterHighProtein": "High protein",
+    "filterLowCal": "< 500 kcal",
+    "filterPlantBased": "Plant-based",
+    "confirmSwap": "Confirm swap",
+    "confirmAdd": "Confirm add",
+    "days": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "slots": {
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner"
+    },
+    "times": {
+      "breakfast": "7–9 AM",
+      "lunch": "12–2 PM",
+      "dinner": "6–8 PM"
     }
   },
 
@@ -318,15 +377,14 @@
 
   "faq": {
     "title": "The <custom>small print</custom>, out loud",
-     "subtitle": "You can always contact us, Please connect with our friendly team, we will answer withing 4 minutes.",
+    "subtitle": "You can always contact us, Please connect with our friendly team, we will answer withing 4 minutes.",
     "stillHaveQuestions": "Still have questions?",
     "contactDescription": "If you cannot find answer to your question in our FAQ, you can always contact us, Please connect with our friendly team, we will answer shortly!",
     "contactButton": "Contact Us"
   },
 
-  
   "contact": {
-     "title": "Say <custom>hello</custom>,We reply inside 4 minutes.",
+    "title": "Say <custom>hello</custom>,We reply inside 4 minutes.",
     "subtitle": "Delivery hiccup, menu request, press query, or a note from your dietitian, find the right door below. A real human, every time",
     "header": {
       "title": "Contact Us",
@@ -354,7 +412,6 @@
       "subtitle": "Pick a topic so we route you to the right desk."
     },
 
-
     "fields": {
       "fullName": "Full Name",
       "fullNamePlaceholder": "Mira Lahoud",
@@ -365,8 +422,6 @@
       "message": "Message",
       "messagePlaceholder": "Tell us what's on your plate..."
     },
-
-
 
     "feedback": {
       "replyNote": "We'll reply from a real address within 4 minutes, 7am",
@@ -509,14 +564,14 @@
     "loginTitle": "Welcome Back!",
     "loginSub": "A two-second hello before your kitchen opens.",
     "membersEntrance": "Members' entrance",
-   "createAccountSub": "Are you ready for healthy and delicious meals?",
+    "createAccountSub": "Are you ready for healthy and delicious meals?",
     "brand": "Bitely",
     "signIn": "Sign In",
     "signUp": "Sign Up",
     "email": "Email Address",
     "password": "Password",
     "confirmPassword": "Confirm Password",
-        "downloadApp": "Download our app",
+    "downloadApp": "Download our app",
     "appStoreTitle": "Download on the",
     "appStoreName": "App Store",
     "googlePlayTitle": "Get it on",

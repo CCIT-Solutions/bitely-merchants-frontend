@@ -209,6 +209,67 @@
       ]
     }
   },
+
+  "mealPlanner": {
+    "order": "الطلب",
+    "headingPrefix": "حضّر",
+    "headingHighlight": "أسبوعك.",
+    "subheading": "اضغط على أي طبق لاستبداله ، يتم تحديث القيم الغذائية مباشرة. يتم غلق مطعمنا يوم الأحد الساعة 12 مساءً.",
+    "exportWeek": "تصدير الأسبوع",
+    "confirmWeek": "تأكيد الأسبوع",
+    "plates": "أطباق",
+    "addPlate": "+ إضافة طبق",
+    "add": "+ إضافة",
+    "emptySlot": "خانة فارغة",
+    "swap": "استبدال",
+    "kcal": "سعرة ",
+    "protein": "بروتين",
+    "statsMealsPlanned": "عدد الوجبات",
+    "statsDailyAvg": "المتوسط اليومي",
+    "statsAvgProtein": "متوسط البروتين / وجبة",
+    "statsFirstDelivery": "أول توصيل",
+    "statsFirstDeliveryValue": "الإثنين",
+    "statsFirstDeliverySub": "20",
+    "statsKitchenLocks": "إغلاق المطبخ",
+    "statsKitchenLocksValue": "الأحد",
+    "statsKitchenLocksSub": "8 مساءً",
+    "week": "الأسبوع",
+    "weekRange": "20 أبريل — 26 أبريل 2026",
+    "viewWeek": "عرض الأسبوع",
+    "viewDay": "عرض اليوم",
+    "viewList": "عرض القائمة",
+    "keepPlate": "حفظ",
+    "chef": "الشيف",
+    "viewRecipe": "عرض الوصفة",
+    "choosePlate": "اختر طبقًا…",
+    "swapFor": "استبدل بـ…",
+    "filter": "تصفية",
+    "filterAll": "الكل",
+    "filterHighProtein": "عالي البروتين",
+    "filterLowCal": "< 500 سعرة حرارية",
+    "filterPlantBased": "نباتي",
+    "confirmSwap": "تأكيد الاستبدال",
+    "confirmAdd": "تأكيد الإضافة",
+    "days": {
+      "mon": "الإثنين",
+      "tue": "الثلاثاء",
+      "wed": "الأربعاء",
+      "thu": "الخميس",
+      "fri": "الجمعة",
+      "sat": "السبت",
+      "sun": "الأحد"
+    },
+    "slots": {
+      "breakfast": "فطور",
+      "lunch": "غداء",
+      "dinner": "عشاء"
+    },
+    "times": {
+      "breakfast": "٧–٩ ص",
+      "lunch": "١٢–٢ م",
+      "dinner": "٦–٨ م"
+    }
+  },
   "checkout": {
     "paymentFailed": "فشل في عملية الدفع، يرجى المحاولة مرة أخرى.",
     "title": "الدفع",
@@ -490,7 +551,7 @@
     "privacy": "سياسة الخصوصية"
   },
   "auth": {
-      "title_1": "وجبات صحية",
+    "title_1": "وجبات صحية",
     "title_2": "تصل إليك.",
     "subtitle": "وجبات صحية مُحضّرة على يد أمهر الطباخين , تصل طازجة إلى باب منزلك.",
     "feature_1": "طبيعية 100%",
@@ -592,6 +653,5 @@
       "passwordConfirmRequired": "يرجى تأكيد كلمة المرور",
       "passwordsMustMatch": "كلمتا المرور غير متطابقتين"
     }
-  
   }
 }

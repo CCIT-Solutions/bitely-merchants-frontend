@@ -13,7 +13,6 @@ import { FOOD_ITEMS } from "@/data/menu";
 import { FoodItem } from "@/types/menu";
 import Image from "next/image";
 import FoodCard from "@/components/menu/FoodCard";
-import { log } from "console";
 import { Language } from "@/types/shared";
 import { useLang } from "@/hooks/useLang";
 
@@ -21,32 +20,12 @@ type SlotKey = "breakfast" | "lunch" | "dinner";
 type ViewMode = "week" | "day" | "list";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 const DATES = [20, 21, 22, 23, 24, 25, 26];
 const SLOTS: { key: SlotKey; label: string; time: string }[] = [
-  { key: "breakfast", label: "Breakfast", time: "7–9 AM" },
-  { key: "lunch", label: "Lunch", time: "12–2 PM" },
-  { key: "dinner", label: "Dinner", time: "6–8 PM" },
-];
-
-const MEAL_COLORS = [
-  "bg-emerald-900/60 text-emerald-300",
-  "bg-amber-900/60 text-amber-300",
-  "bg-sky-900/60 text-sky-300",
-  "bg-rose-900/60 text-rose-300",
-  "bg-violet-900/60 text-violet-300",
-  "bg-teal-900/60 text-teal-300",
-  "bg-orange-900/60 text-orange-300",
-];
-
-const ACCENT_DOT = [
-  "bg-emerald-400",
-  "bg-amber-400",
-  "bg-sky-400",
-  "bg-rose-400",
-  "bg-violet-400",
-  "bg-teal-400",
-  "bg-orange-400",
+  { key: "breakfast", label: "breakfast", time: "7–9 AM" },
+  { key: "lunch", label: "lunch", time: "12–2 PM" },
+  { key: "dinner", label: "dinner", time: "6–8 PM" },
 ];
 
 function mapFoodToMeal(food: FoodItem): FoodItem {
@@ -76,25 +55,21 @@ function padTo7<T>(arr: T[]): (T | null)[] {
   return [...arr, ...Array(Math.max(0, 7 - arr.length)).fill(null)].slice(0, 7);
 }
 
-const WEEK_MEALS: Record<SlotKey, (FoodItem | null)[]> = {
+const INITIAL_WEEK_MEALS: Record<SlotKey, (FoodItem | null)[]> = {
   breakfast: padTo7(breakfastMeals.map(mapFoodToMeal)),
   lunch: padTo7(lunchMeals.map(mapFoodToMeal)),
   dinner: padTo7(dinnerMeals.map(mapFoodToMeal)),
 };
 
 function getSwapOptions(
-  currentMeal: FoodItem,
+  currentMeal: FoodItem | null,
   slot: SlotKey,
   filter: string,
 ): FoodItem[] {
   let options = FOOD_ITEMS.map(mapFoodToMeal).filter(
-    (m) => m.id !== currentMeal.id,
-  ); // exclude current meal
+    (m) => m.id !== currentMeal?.id,
+  );
 
-  // Optional: match slot (if you add mealTime later)
-  // options = options.filter(m => m.mealTime === slot)
-
-  // Apply filters
   switch (filter) {
     case "high protein":
       options = options.filter((m) => m?.protein && m.protein >= 40);
@@ -113,38 +88,18 @@ function getSwapOptions(
 }
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
-function MacroPill({
-  value,
-  unit,
-  label,
-}: {
-  value: string | number;
-  unit: string;
-  label: string;
-}) {
-  return (
-    <div className="flex flex-col items-center gap-0.5">
-      <span className="text-sm font-semibold text-foreground/90 font-mono tracking-tight">
-        {value}
-        <span className="text-foreground/60 text-xs ml-0.5">{unit}</span>
-      </span>
-      <span className="text-[10px] uppercase tracking-widest text-foreground/40">
-        {label}
-      </span>
-    </div>
-  );
-}
-
 function MealChip({
   meal,
   selected,
   onClick,
   lang,
+  addLabel,
 }: {
   meal: FoodItem | null;
   selected?: boolean;
   onClick?: () => void;
   lang: Language;
+  addLabel: string;
 }) {
   if (!meal) {
     return (
@@ -153,7 +108,7 @@ function MealChip({
         className="w-full h-full min-h-20 rounded-xl border border-dashed border-foreground/10 hover:border-foreground/25 flex items-center justify-center text-foreground/25 text-xs tracking-widest uppercase transition-all duration-200 hover:bg-foborder-foreground/[0.02] group"
       >
         <span className="group-hover:text-foreground/60 transition-colors">
-          + add plate
+          {addLabel}
         </span>
       </button>
     );
@@ -163,10 +118,10 @@ function MealChip({
     <button
       onClick={onClick}
       className={cn(
-        "w-full text-start rounded-xl border transition-all duration-200  group relative overflow-hidden h-full flex flex-col cursor-pointer",
+        "w-full text-start rounded-xl border transition-all duration-200 group relative overflow-hidden h-full flex flex-col cursor-pointer",
         selected
           ? "border-primary-foreground/40 bg-primary/10 shadow-[0_0_20px_rgba(163,230,53,0.08)]"
-          : " bg-fo border-foreground/5 hover:bg-foborder-foreground/[0.06] hover:border-foreground/15",
+          : "bg-fo border-foreground/5 hover:bg-foborder-foreground/[0.06] hover:border-foreground/15",
       )}
     >
       <div className="w-full h-14 overflow-hidden relative">
@@ -177,7 +132,7 @@ function MealChip({
           className="object-cover"
         />
         {selected && (
-          <div className="shrink-0 size-5 rounded-full text-primary  bg-primary-foreground/60 flex items-center justify-center mt-0.5 absolute z-1 top-2 inset-e-2">
+          <div className="shrink-0 size-5 rounded-full text-primary bg-primary-foreground/60 flex items-center justify-center mt-0.5 absolute z-1 top-2 inset-e-2">
             <FaCheck className="size-3.5" />
           </div>
         )}
@@ -213,7 +168,7 @@ function StatCard({
   progress: number;
 }) {
   return (
-    <div className=" border border-foreground/15 rounded-2xl p-5 flex flex-col gap-3 bg-foreground/1">
+    <div className="border border-foreground/15 rounded-2xl p-5 flex flex-col gap-3 bg-foreground/1">
       <div className="flex items-baseline gap-1">
         <span className="text-2xl font-bold text-foreground tracking-tight font-mono">
           {value}
@@ -235,23 +190,26 @@ function StatCard({
 
 // ─── Weekly Grid View ─────────────────────────────────────────────────────────
 function WeekView({
+  weekMeals,
   selectedMeal,
   onSelectMeal,
   totalMeals,
   lang,
+  t,
 }: {
+  weekMeals: Record<SlotKey, (FoodItem | null)[]>;
   selectedMeal: { slot: SlotKey; day: number } | null;
   onSelectMeal: (slot: SlotKey, day: number) => void;
   totalMeals: number;
   lang: Language;
+  t: (key: string) => string;
 }) {
   return (
     <div className="overflow-x-auto">
       <div className="min-w-175">
         {/* Header row */}
         <div className="grid grid-cols-[88px_repeat(7,1fr)] border-b border-foreground/10">
-          {/* Top-left corner: plates counter */}
-          <div className="flex flex-col items-start justify-center px-3 py-3 border-r border-foreground/10 bg-foreground/1.5">
+          <div className="flex flex-col items-start justify-center px-3 py-3 border-e border-foreground/10 bg-foreground/1.5">
             <span className="text-[18px] font-bold font-mono text-primary leading-none">
               {totalMeals}
               <span className="text-foreground/50 text-[13px] font-normal">
@@ -259,16 +217,15 @@ function WeekView({
               </span>
             </span>
             <span className="text-[9px] uppercase tracking-widest text-primary-foreground mt-0.5">
-              plates
+              {t("mealPlanner.plates")}
             </span>
           </div>
-          {/* Day headers */}
           {DAYS.map((d, i) => (
             <div
               key={d}
               className={cn(
                 "text-center py-3 px-1 bg-foreground/1.5",
-                i < DAYS.length - 1 ? "border-r border-foreground/10" : "",
+                i < DAYS.length - 1 ? "border-e border-foreground/10" : "",
               )}
             >
               <div
@@ -277,7 +234,7 @@ function WeekView({
                   i === 0 ? "text-primary" : "text-foreground/45",
                 )}
               >
-                {d}
+                         {t(`mealPlanner.days.${d}`)}
               </div>
               <div
                 className={cn(
@@ -300,22 +257,20 @@ function WeekView({
               slotIdx < SLOTS.length - 1 ? "border-b border-foreground/10" : "",
             )}
           >
-            {/* Row label */}
-            <div className="flex flex-col justify-center px-3 py-3 border-r border-foreground/10 bg-foreground/1.5">
+            <div className="flex flex-col justify-center px-3 py-3 border-e border-foreground/10 bg-foreground/1.5">
               <span className="text-[11px] font-semibold text-foreground/65">
-                {slot.label}
+                {t(`mealPlanner.slots.${slot.label}`)}
               </span>
               <span className="text-[9px] text-foreground/35 mt-0.5 tracking-wide">
                 {slot.time}
               </span>
             </div>
-            {/* Meal cells */}
-            {WEEK_MEALS[slot.key].map((meal, dayIdx) => (
+            {weekMeals[slot.key].map((meal, dayIdx) => (
               <div
                 key={dayIdx}
                 className={cn(
                   "p-2",
-                  dayIdx < 6 ? "border-r border-foreground/10" : "",
+                  dayIdx < 6 ? "border-e border-foreground/10" : "",
                 )}
               >
                 <MealChip
@@ -324,8 +279,9 @@ function WeekView({
                     selectedMeal?.slot === slot.key &&
                     selectedMeal?.day === dayIdx
                   }
-                  onClick={() => meal && onSelectMeal(slot.key, dayIdx)}
+                  onClick={() => onSelectMeal(slot.key, dayIdx)}
                   lang={lang}
+                  addLabel={t("mealPlanner.addPlate")}
                 />
               </div>
             ))}
@@ -337,7 +293,19 @@ function WeekView({
 }
 
 // ─── Daily View ───────────────────────────────────────────────────────────────
-function DayView({ day, dayIdx }: { day: string; dayIdx: number }) {
+function DayView({
+  day,
+  dayIdx,
+  weekMeals,
+  onSelectMeal,
+  t,
+}: {
+  day: string;
+  dayIdx: number;
+  weekMeals: Record<SlotKey, (FoodItem | null)[]>;
+  onSelectMeal: (slot: SlotKey, day: number) => void;
+  t: (key: string) => string;
+}) {
   return (
     <div className="space-y-4 p-5">
       <div className="flex items-baseline gap-3">
@@ -350,7 +318,7 @@ function DayView({ day, dayIdx }: { day: string; dayIdx: number }) {
       </div>
       <div className="flex gap-4">
         {SLOTS.map((slot) => {
-          const meal = WEEK_MEALS[slot.key][dayIdx];
+          const meal = weekMeals[slot.key][dayIdx];
 
           return (
             <div
@@ -365,7 +333,7 @@ function DayView({ day, dayIdx }: { day: string; dayIdx: number }) {
                   )}
                 />
                 <span className="text-[11px] uppercase tracking-widest text-foreground/60">
-                  {slot.label}
+                  {t(`mealPlanner.slots.${slot.label}`)}
                 </span>
                 <span className="text-[10px] text-foreground/40 ml-auto">
                   {slot.time}
@@ -374,8 +342,11 @@ function DayView({ day, dayIdx }: { day: string; dayIdx: number }) {
               {meal ? (
                 <FoodCard key={slot.key} item={meal} />
               ) : (
-                <button className="w-full h-auto py-4 border border-dashed border-foreground/15 rounded-xl text-foreground/40 text-sm hover:border-foreground/40 hover:text-foreground/35 transition-all">
-                  + Add plate
+                <button
+                  onClick={() => onSelectMeal(slot.key, dayIdx)}
+                  className="w-full h-auto py-4 border border-dashed border-foreground/15 rounded-xl text-foreground/40 text-sm hover:border-foreground/40 hover:text-foreground/35 transition-all"
+                >
+                  {t("mealPlanner.addPlate")}
                 </button>
               )}
             </div>
@@ -387,14 +358,22 @@ function DayView({ day, dayIdx }: { day: string; dayIdx: number }) {
 }
 
 // ─── List View ────────────────────────────────────────────────────────────────
-
-function ListView({ lang }: { lang: Language }) {
+function ListView({
+  lang,
+  weekMeals,
+  onSelectMeal,
+  t,
+}: {
+  lang: Language;
+  weekMeals: Record<SlotKey, (FoodItem | null)[]>;
+  onSelectMeal: (slot: SlotKey, day: number) => void;
+  t: (key: string) => string;
+}) {
   return (
     <div className="space-y-5 p-5">
       {DAYS.map((day, dayIdx) => (
         <div key={dayIdx} className="px-4">
-          {/* Day and Date Header (outside the slots) */}
-          <div className="flex items-center gap-4  py-2">
+          <div className="flex items-center gap-4 py-2">
             <div className="w-20 shrink-0">
               <div className="text-[10px] uppercase tracking-widest font-semibold text-foreground">
                 {day} {DATES[dayIdx]}
@@ -402,32 +381,26 @@ function ListView({ lang }: { lang: Language }) {
             </div>
           </div>
 
-          {/* Slots for the day */}
           {SLOTS.map((slot) => {
-            const meal = WEEK_MEALS[slot.key][dayIdx];
+            const meal = weekMeals[slot.key][dayIdx];
             const isBreakfast = slot.key === "breakfast";
             return (
               <div
                 key={`${dayIdx}-${slot.key}`}
                 className={cn(
-                  "flex items-center gap-4  py-3 hover:bg-foreground/2 transition-colors group  border-foreground/10 px-4",
+                  "flex items-center gap-4 py-3 hover:bg-foreground/2 transition-colors group border-foreground/10 px-4",
                   isBreakfast ? "" : "border-t",
                 )}
               >
-                {/* Empty space for alignment */}
-
-                {/* Slot Label (e.g., "Breakfast", "Lunch") */}
                 <div className="w-16 shrink-0">
                   <span className="text-[10px] uppercase tracking-widest text-foreground/50">
-                    {slot.label}
+                    {t(`mealPlanner.slots.${slot.label}`)}
                   </span>
                 </div>
 
-                {/* Meal Details or Empty Slot */}
                 {meal ? (
                   <>
                     <div className="w-1.5 h-1.5 rounded-full shrink-0 bg-foreground/10" />
-                    {/* Meal Name + Image */}
                     <div className="flex items-center gap-2 flex-1">
                       {meal.image && (
                         <Image
@@ -442,7 +415,6 @@ function ListView({ lang }: { lang: Language }) {
                         {meal.name[lang]}
                       </span>
                     </div>
-                    {/* Protein & Calories */}
                     <div className="flex gap-4 shrink-0">
                       <span className="text-[11px] font-mono text-foreground/50">
                         {meal.protein}g P
@@ -451,18 +423,24 @@ function ListView({ lang }: { lang: Language }) {
                         {meal.calories} kcal
                       </span>
                     </div>
-                    <button className="text-xs text-primary-foreground hover:text-primary-foreground/90 transition-colors opacity-0 group-hover:opacity-100 cursor-pointer">
-                      Swap
+                    <button
+                      onClick={() => onSelectMeal(slot.key, dayIdx)}
+                      className="text-xs text-primary-foreground hover:text-primary-foreground/90 transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
+                    >
+                      {t("mealPlanner.swap")}
                     </button>
                   </>
                 ) : (
                   <>
                     <div className="w-1.5 h-1.5 rounded-full shrink-0 bg-border-foreground/10" />
                     <span className="flex-1 text-sm text-foreground/15 italic">
-                      Empty slot
+                      {t("mealPlanner.emptySlot")}
                     </span>
-                    <button className="text-xs text-primary-foreground hover:text-primary-foreground/90 transition-colors opacity-0 group-hover:opacity-100 cursor-pointer">
-                      + add
+                    <button
+                      onClick={() => onSelectMeal(slot.key, dayIdx)}
+                      className="text-xs text-primary-foreground hover:text-primary-foreground/90 transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
+                    >
+                      {t("mealPlanner.add")}
                     </button>
                   </>
                 )}
@@ -474,63 +452,89 @@ function ListView({ lang }: { lang: Language }) {
     </div>
   );
 }
+
 // ─── Detail Panel ─────────────────────────────────────────────────────────────
 function DetailPanel({
   meal,
   day,
   slot,
   lang,
+  isAddMode,
+  onMealConfirmed,
+  t,
 }: {
-  meal: FoodItem;
+  meal: FoodItem | null;
   day: number;
   slot: SlotKey;
   lang: Language;
+  isAddMode: boolean;
+  onMealConfirmed: (slot: SlotKey, day: number, newMeal: FoodItem) => void;
+  t: (key: string) => string;
 }) {
   const [selectedSwap, setSelectedSwap] = useState<string | null>(null);
   const [swapFilter, setSwapFilter] = useState("all");
 
-  const filters = ["All", "High protein", "< 500 kcal", "Plant-based"];
+  const filters = [
+    t("mealPlanner.filterAll"),
+    t("mealPlanner.filterHighProtein"),
+    t("mealPlanner.filterLowCal"),
+    t("mealPlanner.filterPlantBased"),
+  ];
+  const filterKeys = ["all", "high protein", "< 500 kcal", "plant-based"];
 
   const swapOptions = getSwapOptions(meal, slot, swapFilter);
 
+  function handleConfirm() {
+    if (!selectedSwap) return;
+    const chosen = swapOptions.find((o) => o.id === selectedSwap);
+    if (chosen) {
+      onMealConfirmed(slot, day, chosen);
+      setSelectedSwap(null);
+    }
+  }
+
   return (
     <div className="flex gap-5 mt-6">
-      {/* Selected plate */}
-      <div className="flex flex-col items-center justify">
-        <FoodCard item={meal} />
+      {/* Selected plate (only shown when not in add mode / meal exists) */}
+      {!isAddMode && meal && (
+        <div className="flex flex-col items-center justify">
+          <FoodCard item={meal} />
 
-        <div className="grid grid-cols-2 gap-3 w-full max-w-60">
-          <button className="bg-primary hover:bg-primary/80 text-black text-sm font-semibold  py-3.5 rounded-xl transition-all duration-200">
-            Keep plate
-          </button>
-          <button className="text-sm text-foreground/60 hover:text-foreground/70 border border-foreground/10 hover:border-foreground/15 px-4 py-3.5 rounded-xl transition-all dark:bg-primary-foreground/20">
-            ↻ Chef
-          </button>
-          <button className="col-span-2 text-sm text-foreground/60 hover:text-foreground/70 transition-colors px-4 border rounded-xl py-3.5 dark:bg-primary-foreground/20 hover:border-foreground/15">
-            View recipe →
-          </button>
+          <div className="grid grid-cols-2 gap-3 w-full max-w-60">
+            <button className="bg-primary hover:bg-primary/80 text-black text-sm font-semibold py-3.5 rounded-xl transition-all duration-200">
+              {t("mealPlanner.keepPlate")}
+            </button>
+            <button className="text-sm text-foreground/60 hover:text-foreground/70 border border-foreground/10 hover:border-foreground/15 px-4 py-3.5 rounded-xl transition-all dark:bg-primary-foreground/20">
+              ↻ {t("mealPlanner.chef")}
+            </button>
+            <button className="col-span-2 text-sm text-foreground/60 hover:text-foreground/70 transition-colors px-4 border rounded-xl py-3.5 dark:bg-primary-foreground/20 hover:border-foreground/15">
+              {t("mealPlanner.viewRecipe")} →
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Swap panel */}
-      <div className=" border border-foreground/10 rounded-2xl p-5 flex-1 min-h-144 flex flex-col">
+      {/* Swap / Add panel */}
+      <div className="border border-foreground/10 rounded-2xl p-5 flex-1 min-h-144 flex flex-col">
         <div className="flex items-center justify-between mb-4">
           <h4 className="text-sm font-semibold text-foreground/70">
-            Swap for…
+            {isAddMode
+              ? t("mealPlanner.choosePlate")
+              : t("mealPlanner.swapFor")}
           </h4>
           <span className="text-xs uppercase tracking-widest text-foreground/25 cursor-pointer hover:text-foreground/45">
-            Filter ▾
+            {t("mealPlanner.filter")} ▾
           </span>
         </div>
 
         <div className="flex gap-1.5 flex-wrap mb-4">
-          {filters.map((f) => (
+          {filters.map((f, idx) => (
             <button
               key={f}
-              onClick={() => setSwapFilter(f.toLowerCase())}
+              onClick={() => setSwapFilter(filterKeys[idx])}
               className={cn(
                 "text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-lg transition-all cursor-pointer",
-                swapFilter === f.toLowerCase()
+                swapFilter === filterKeys[idx]
                   ? "bg-primary/5 text-primary-foreground/80 dark:text-primary border border-primary-foreground/40 dark:border-primary/50"
                   : "text-foreground/50 border border-foreground/10 hover:border-foreground/15 hover:text-foreground/60",
               )}
@@ -559,7 +563,6 @@ function DetailPanel({
                   )}
                 >
                   <div className="flex items-start gap-2.5">
-                  
                     <img
                       src={opt.image}
                       className="w-12 h-12 rounded-lg object-cover"
@@ -597,8 +600,13 @@ function DetailPanel({
 
         {selectedSwap && (
           <div className="flex mt-4 justify-end">
-            <button className="px-6 bg-primary hover:bg-primary/90 border border-primary-foreground/10 text-primary-foreground text-sm font-medium py-2.5 rounded-full transition-all cursor-pointer">
-              Confirm swap
+            <button
+              onClick={handleConfirm}
+              className="px-6 bg-primary hover:bg-primary/90 border border-primary-foreground/10 text-primary-foreground text-sm font-medium py-2.5 rounded-full transition-all cursor-pointer"
+            >
+              {isAddMode
+                ? t("mealPlanner.confirmAdd")
+                : t("mealPlanner.confirmSwap")}
             </button>
           </div>
         )}
@@ -609,9 +617,11 @@ function DetailPanel({
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function MenuMealPlanner() {
-  const { lang } = useLang();
+  const { lang, t, isRTL } = useLang();
   const [view, setView] = useState<ViewMode>("week");
   const [activeDay, setActiveDay] = useState(0);
+  const [weekMeals, setWeekMeals] =
+    useState<Record<SlotKey, (FoodItem | null)[]>>(INITIAL_WEEK_MEALS);
   const [selectedMeal, setSelectedMeal] = useState<{
     slot: SlotKey;
     day: number;
@@ -621,23 +631,50 @@ export default function MenuMealPlanner() {
   });
 
   const selectedMealData = selectedMeal
-    ? WEEK_MEALS[selectedMeal.slot][selectedMeal.day]
+    ? weekMeals[selectedMeal.slot][selectedMeal.day]
     : null;
 
-  const totalMeals = Object.values(WEEK_MEALS).flat().filter(Boolean).length;
-  const allMeals = Object.values(WEEK_MEALS)
+  // true when user clicked an empty slot (add mode), false when clicked an existing meal (swap mode)
+  const isAddMode = selectedMeal
+    ? weekMeals[selectedMeal.slot][selectedMeal.day] === null
+    : false;
+
+  const totalMeals = Object.values(weekMeals).flat().filter(Boolean).length;
+  const allMeals = Object.values(weekMeals)
     .flat()
     .filter((m): m is FoodItem => m !== null);
-  const avgKcal = Math.round(
-    allMeals.reduce((s, m) => s + (m.calories ? m.calories : 0), 0) / 7,
-  );
-  const avgProtein = Math.round(
-    allMeals.reduce((s, m) => s + (m.protein ? m.protein : 0), 0) /
-      allMeals.length,
-  );
+  const avgKcal = allMeals.length
+    ? Math.round(
+        allMeals.reduce((s, m) => s + (m.calories ? m.calories : 0), 0) / 7,
+      )
+    : 0;
+  const avgProtein = allMeals.length
+    ? Math.round(
+        allMeals.reduce((s, m) => s + (m.protein ? m.protein : 0), 0) /
+          allMeals.length,
+      )
+    : 0;
+
+  function handleSelectMeal(slot: SlotKey, day: number) {
+    setSelectedMeal({ slot, day });
+  }
+
+  function handleMealConfirmed(slot: SlotKey, day: number, newMeal: FoodItem) {
+    setWeekMeals((prev) => {
+      const updated = [...prev[slot]];
+      updated[day] = newMeal;
+      return { ...prev, [slot]: updated };
+    });
+    // keep the detail panel open, now showing the placed meal
+    setSelectedMeal({ slot, day });
+  }
+
+  const showDetailPanel =
+    selectedMeal !== null &&
+    (view === "week" || view === "day" || view === "list");
 
   return (
-    <div className="min-h-screen  pt-20">
+    <div className="min-h-screen pt-20">
       <div className="relative max-w-6xl mx-auto px-6 py-10">
         {/* ── Header ── */}
         <div className="flex items-start justify-between mb-10 flex-wrap gap-4">
@@ -645,20 +682,22 @@ export default function MenuMealPlanner() {
             <div className="flex items-center gap-2 mb-3">
               <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               <span className="text-[10px] uppercase tracking-[0.2em] text-foreground/40">
-                Order #BTL-24-07739
+                {t("mealPlanner.order")} #BTL-24-07739
               </span>
             </div>
             <h1 className="text-4xl font-bold text-foreground leading-none tracking-tight">
-              Plate your <span className="text-primary">week.</span>
+              {t("mealPlanner.headingPrefix")}{" "}
+              <span className="text-primary">
+                {t("mealPlanner.headingHighlight")}
+              </span>
             </h1>
             <p className="text-foreground/35 text-sm mt-2.5 max-w-md">
-              Click any plate to swap it — nutrition recalculates live and we
-              lock the kitchen on Sunday, 8 PM.
+              {t("mealPlanner.subheading")}
             </p>
           </div>
           <div className="flex items-center gap-2">
             <button className="flex items-center gap-2 text-sm text-foreground/60 border border-foreground/10 hover:border-foreground/20 px-4 py-2.5 rounded-full transition-all hover:text-foreground/70 cursor-pointer">
-              Export week
+              {t("mealPlanner.exportWeek")}
               <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
                 <path
                   d="M7 1v8m-3-3l3 3 3-3M2 11h10"
@@ -670,7 +709,7 @@ export default function MenuMealPlanner() {
               </svg>
             </button>
             <button className="flex items-center gap-2 text-sm font-semibold bg-primary hover:bg-primary/80 text-black px-5 py-2.5 rounded-full transition-all cursor-pointer">
-              Confirm week
+              {t("mealPlanner.confirmWeek")}
               <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
                 <path
                   d="M3 7l3 3 5-6"
@@ -689,31 +728,31 @@ export default function MenuMealPlanner() {
           <StatCard
             value={`${totalMeals}`}
             sub="/21"
-            label="Meals planned"
+            label={t("mealPlanner.statsMealsPlanned")}
             progress={(totalMeals / 21) * 100}
           />
           <StatCard
             value={`${avgKcal}`}
-            sub="kcal"
-            label="Daily avg."
+            sub={t("mealPlanner.kcal")}
+            label={t("mealPlanner.statsDailyAvg")}
             progress={82}
           />
           <StatCard
             value={`${avgProtein}g`}
-            sub="P"
-            label="Avg protein / meal"
+            sub={t("mealPlanner.protein")}
+            label={t("mealPlanner.statsAvgProtein")}
             progress={76}
           />
           <StatCard
-            value="Mon"
-            sub="20"
-            label="First Delivery"
+            value={t("mealPlanner.statsFirstDeliveryValue")}
+            sub={t("mealPlanner.statsFirstDeliverySub")}
+            label={t("mealPlanner.statsFirstDelivery")}
             progress={100}
           />
           <StatCard
-            value="Sun"
-            sub="8 PM"
-            label="Kitchen locks"
+            value={t("mealPlanner.statsKitchenLocksValue")}
+            sub={t("mealPlanner.statsKitchenLocksSub")}
+            label={t("mealPlanner.statsKitchenLocks")}
             progress={40}
           />
         </div>
@@ -724,14 +763,14 @@ export default function MenuMealPlanner() {
             <div>
               <div className="flex items-baseline gap-2">
                 <span className="text-xl font-bold text-foreground font-mono">
-                  Week
+                  {t("mealPlanner.week")}
                 </span>
                 <span className="text-xl font-bold text-primary font-mono">
                   17
                 </span>
               </div>
               <span className="text-sm text-foreground/50 tracking-wide">
-                April 20 — April 26, 2026
+                {t("mealPlanner.weekRange")}
               </span>
             </div>
             <div className="flex gap-1">
@@ -739,15 +778,17 @@ export default function MenuMealPlanner() {
                 variant={"outline"}
                 className="size-9 flex items-center justify-center rounded-full border border-foreground/8 hover:border-foreground/20 text-foreground/70 hover:text-foreground/60 text-xs transition-all"
               >
-                <MdOutlineArrowBackIos />
+                <MdOutlineArrowBackIos className={isRTL ? "rotate-180" : ""} />
               </Button>
               <Button
                 variant={"outline"}
                 className="size-9 flex items-center justify-center rounded-full border border-foreground/8 hover:border-foreground/20 text-foreground/70 hover:text-foreground/60 text-xs transition-all"
               >
-                <MdOutlineArrowForwardIos />
+                <MdOutlineArrowForwardIos
+                  className={isRTL ? "rotate-180" : ""}
+                />
               </Button>
-            </div>{" "}
+            </div>
           </div>
 
           <div className="flex items-center gap-1 border border-foreground/15 rounded-full p-1">
@@ -762,7 +803,7 @@ export default function MenuMealPlanner() {
                     : "text-foreground/70 hover:text-foreground/80",
                 )}
               >
-                {v}
+                {t(`mealPlanner.view${v.charAt(0).toUpperCase() + v.slice(1)}`)}
               </button>
             ))}
           </div>
@@ -778,12 +819,13 @@ export default function MenuMealPlanner() {
                 className={cn(
                   "shrink-0 flex flex-col items-center px-4 py-2.5 rounded-xl border transition-all",
                   activeDay === i
-                    ? "border-primary bg-primary/4  text-primary-foreground"
+                    ? "border-primary bg-primary/4 text-primary-foreground"
                     : "border-foreground/8 text-foreground/35 hover:text-foreground/60 hover:border-foreground/15",
                 )}
               >
                 <span className="text-[10px] uppercase tracking-widest">
-                  {d}
+                  {" "}
+                  {t(`mealPlanner.days.${d}`)}
                 </span>
                 <span className="text-lg font-bold font-mono mt-0.5">
                   {DATES[i]}
@@ -797,25 +839,43 @@ export default function MenuMealPlanner() {
         <div className="bg-foborder-foreground/[0.02] border border-foreground/15 rounded-2xl mb-5">
           {view === "week" && (
             <WeekView
+              weekMeals={weekMeals}
               selectedMeal={selectedMeal}
-              onSelectMeal={(slot, day) => setSelectedMeal({ slot, day })}
+              onSelectMeal={handleSelectMeal}
               totalMeals={totalMeals}
               lang={lang}
+              t={t}
             />
           )}
           {view === "day" && (
-            <DayView day={DAYS[activeDay]} dayIdx={activeDay} />
+            <DayView
+              day={DAYS[activeDay]}
+              dayIdx={activeDay}
+              weekMeals={weekMeals}
+              onSelectMeal={handleSelectMeal}
+              t={t}
+            />
           )}
-          {view === "list" && <ListView lang={lang} />}
+          {view === "list" && (
+            <ListView
+              lang={lang}
+              weekMeals={weekMeals}
+              onSelectMeal={handleSelectMeal}
+              t={t}
+            />
+          )}
         </div>
 
         {/* ── Detail panel ── */}
-        {selectedMealData && view === "week" && (
+        {showDetailPanel && (
           <DetailPanel
             meal={selectedMealData}
             day={selectedMeal!.day}
             slot={selectedMeal!.slot}
             lang={lang}
+            isAddMode={isAddMode}
+            onMealConfirmed={handleMealConfirmed}
+            t={t}
           />
         )}
       </div>
