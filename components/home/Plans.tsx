@@ -93,7 +93,7 @@ function PlanCard({ plan, billing, lang, unitLabel }: PlanCardProps) {
       </ul>
 
       {/* CTA */}
-      <Link href="/menu"
+      <Link href="/checkout/meal-plan"
       
         className={cn(
           "w-full rounded-xl font-semibold tracking-wide text-sm h-12 transition-all duration-200 flex justify-center items-center",

@@ -11,7 +11,8 @@ export type FoodItem = {
   protein?: number;
   carbs?: number;
   fat?: number;
-  dietType: string;
   image: string;
+  dietType?: string;
+  tag?: string;
   customMacros?: boolean;
 };

@@ -26,6 +26,8 @@ const macrosConfig: {
 const FoodCard = ({ item }: { item: FoodItem }) => {
   const { lang, t } = useLang();
 
+  console.log("item", item);
+
   return (
     <div
       className="flex flex-col gap-5 items-start text-start w-67.5 md:w-60 shrink-0"
@@ -69,7 +71,7 @@ const FoodCard = ({ item }: { item: FoodItem }) => {
               return (
                 <div
                   key={key}
-                  className="flex items-center justify-center gap-1 py-4 border border-foreground/5 rounded-xl"
+                  className="flex items-center justify-center gap-1 py-4 border border-foreground/5 rounded-xl dark:bg-primary-foreground/20 "
                 >
                   <div
                     className={`w-2 h-2 rounded-full shrink-0 ${macroColors[key]}`}
