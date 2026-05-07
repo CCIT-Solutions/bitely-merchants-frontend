@@ -38,7 +38,9 @@ const navItems = (t: TFunction) => [
 
 function Header({ className }: { className?: string }) {
   const { t, isRTL } = useLang();
-  const { isAuthenticated } = useUser();
+  // const { isAuthenticated } = useUser();
+
+  const isAuthenticated = false
 
   const pathname = usePathname();
 

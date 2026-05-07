@@ -1,6 +1,6 @@
 import { DIET_TABS, FOOD_ITEMS } from "@/data/menu";
 import  { useRef, useState, useEffect, useCallback, useMemo, memo } from "react";
-import FoodCard from "./FoodCard";
+import FoodCard from "../menu/FoodCard";
 import { useLang } from "@/hooks/useLang";
 import Heading from "../shared/Heading";
 import Image from "next/image";

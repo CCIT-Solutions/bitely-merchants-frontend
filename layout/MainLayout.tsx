@@ -2,7 +2,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useLanguageStore } from "@/stores/useLanguageStore";
-import { useUser } from "@/hooks/useUser";
+// import { useUser } from "@/hooks/useUser";
 import { AuthInitializer } from "@/components/auth/AuthInitializer";
 import i18n from "@/i18n/i18n";
 import Loading from "@/components/shared/Loading";
@@ -35,7 +35,11 @@ export default function MainLayout({
   const [completeProfile, setCompleteProfile] = useState(false);
   const [isLanguageReady, setIsLanguageReady] = useState(false);
   const { lang } = useLanguageStore();
-  const { logout } = useUser();
+
+
+  // const { logout } = useUser();
+
+  const logout = () => {}
 
   useEffect(() => {
     const checkLanguageSync = () => {
@@ -95,26 +99,26 @@ export default function MainLayout({
     };
   }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setCompleteProfile(false);
-      return;
-    }
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     setCompleteProfile(false);
+  //     return;
+  //   }
 
-    const checkProfile = async () => {
-      await apiRequest<UserData, { token: string }>(
-        ProfileApiEndpoints.user(),
-        {
-          showErrorToast: false,
-          onSuccess: () => setCompleteProfile(false),
-          onError: () => setCompleteProfile(true),
-        }
-      );
-    };
+  //   const checkProfile = async () => {
+  //     await apiRequest<UserData, { token: string }>(
+  //       ProfileApiEndpoints.user(),
+  //       {
+  //         showErrorToast: false,
+  //         onSuccess: () => setCompleteProfile(false),
+  //         onError: () => setCompleteProfile(true),
+  //       }
+  //     );
+  //   };
 
-    checkProfile();
-  }, []);
+  //   checkProfile();
+  // }, []);
 
   if (!isLanguageReady) {
     return (

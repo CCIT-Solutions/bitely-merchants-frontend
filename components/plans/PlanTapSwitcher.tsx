@@ -32,8 +32,7 @@ export default function PlanTapSwitcher({
             const isActive = billing === tab.key;
             const isMonthly = tab.key === "monthly";
 
-            console.log("billing", billing);
-            console.log("tab.key", tab.key);
+     
 
             return (
               <button

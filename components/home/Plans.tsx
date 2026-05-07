@@ -13,6 +13,7 @@ import Heading from "../shared/Heading";
 import { Language } from "@/types/shared";
 import Animate from "../animation/Animate";
 import {  fadeDu4 } from "@/lib/animation";
+import Link from "next/link";
 
 interface PlanCardProps {
   plan: Plan;
@@ -92,16 +93,17 @@ function PlanCard({ plan, billing, lang, unitLabel }: PlanCardProps) {
       </ul>
 
       {/* CTA */}
-      <Button
+      <Link href="/menu"
+      
         className={cn(
-          "w-full rounded-xl font-semibold tracking-wide text-sm h-12 transition-all duration-200",
+          "w-full rounded-xl font-semibold tracking-wide text-sm h-12 transition-all duration-200 flex justify-center items-center",
           plan.featured
             ? "bg-primary-foreground text-white hover:bg-primary-foreground/90 shadow-md"
             : "bg-foreground/2 text-primbg-primary-foreground hover:bg-foreground/5 border border-fobg-foreground/5",
         )}
       >
         {plan.cta[lang]}
-      </Button>
+      </Link>
     </div>
   );
 }

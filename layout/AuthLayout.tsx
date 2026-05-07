@@ -29,8 +29,6 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
   const { isDark } = useThemeStore();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  console.log("isDark", isDark);
   
   const authRef = useRef<HTMLDivElement>(null);
 

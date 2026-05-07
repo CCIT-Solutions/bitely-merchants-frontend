@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 const Hero = dynamic(() => import("@/components/home/hero"));
 const Menu = dynamic(() => import("@/components/home/Menu"));
 const HowItWorks = dynamic(() => import("@/components/home/HowItWorks"));
-const Pricing = dynamic(() => import("@/components/home/Pricing"));
+const Pricing = dynamic(() => import("@/components/home/Plans"));
 const FAQ = dynamic(() => import("@/components/home/FAQ"));
 const CTA = dynamic(() => import("@/components/home/CTA"));
 

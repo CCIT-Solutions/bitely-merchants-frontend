@@ -40,12 +40,16 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
   const { t, lang } = useLang();
 
   const { isAuthenticated } = useUser();
+
   const { data } = useGetUser(lang, {
     enabled: isAuthenticated,
   });
   const user = data?.data;
+  
 
   const userAvatar = user?.avatar && user?.avatar !== userAvatarFallback;
+
+
 
   const getCurrentPage = () => {
     if (pathname?.includes("/my-info")) return "my-info";

@@ -26,8 +26,6 @@ export default function Footer({
   const { t, isRTL } = useLang();
   const { isDark } = useThemeStore();
 
-  console.log("isDark", isDark);
-
   const MaybeLink = ({
     href,
     children,
