@@ -145,9 +145,9 @@ function Header({ className }: { className?: string }) {
         <div className="flex items-center gap-4">
           <LangSwitcher />
 
-          <div className="w-10 h-10 rounded-full border border-neutral-200 dark:border-primary/20 flex items-center justify-center hover:bg-neutral-50 dark:hover:bg-primary transition">
+          {/* <div className="w-10 h-10 rounded-full border border-neutral-200 dark:border-primary/20 flex items-center justify-center hover:bg-neutral-50 dark:hover:bg-primary transition">
             <ThemeSwitcher />
-          </div>
+          </div> */}
 
           {!isAuthenticated && (
             <Link
