@@ -359,8 +359,8 @@ function ContactPage() {
             {/* Chat Now Card */}
             <div className="border rounded-3xl p-8 bg-background/50 backdrop-blur-xs">
               <div className="flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
-                <span className="text-xs font-semibold uppercase tracking-widest text-primary-foreground">
+                <span className="w-2 h-2 rounded-full bg-primary-foreground dark:bg-primary animate-pulse" />
+                <span className="text-xs font-semibold uppercase tracking-widest text-primary-foreground dark:text-white">
                   {t("contact.chat.agentsOnline")}
                 </span>
               </div>

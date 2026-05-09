@@ -54,7 +54,7 @@ export function PhoneField<TFormValues extends FieldValues>({
       {/* Field Wrapper */}
       <div
         className={cn(
-          "flex items-center rounded-full border border-input px-2 py-1 shadow-xs bg-input/30 ",
+          "flex items-center rounded-full border border-input px-2 py-1 shadow-xs dark:bg-input/30 ",
           "focus-within:border-primary focus-within:ring-[3px] focus-within:ring-primary/20 transition",
           error && "border-destructive",
           className

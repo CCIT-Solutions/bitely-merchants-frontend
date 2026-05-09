@@ -7,14 +7,15 @@ import Link from "next/link";
 type LogoProps = {
   className?: string;
   preventLinks?: boolean;
+  isAlwaysDark?: boolean;
 };
 
-function Logo({ className, preventLinks }: Readonly<LogoProps>) {
+function Logo({ className, preventLinks, isAlwaysDark }: Readonly<LogoProps>) {
   const { isDark } = useThemeStore();
 
   const imageElement = (
     <Image
-      src={`/logo${isDark ? "-light" : ""}.png`}
+      src={`/logo${isDark || isAlwaysDark ? "-light" : ""}.png`}
       alt="Logo"
       fill
       className="w-full h-full object-contain"

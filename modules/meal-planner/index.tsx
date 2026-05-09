@@ -15,6 +15,9 @@ import Image from "next/image";
 import FoodCard from "@/components/menu/FoodCard";
 import { Language } from "@/types/shared";
 import { useLang } from "@/hooks/useLang";
+import OrderHeading from "@/components/shared/OrderHeading";
+import Stepper from "@/components/shared/Stepper";
+import RecipeDetails from "@/components/meal-planner/RecipeDetails";
 
 type SlotKey = "breakfast" | "lunch" | "dinner";
 type ViewMode = "week" | "day" | "list";
@@ -206,7 +209,7 @@ function WeekView({
 }) {
   return (
     <div className="overflow-x-auto">
-      <div className="min-w-175">
+      <div className="min-w-253">
         {/* Header row */}
         <div className="grid grid-cols-[88px_repeat(7,1fr)] border-b border-foreground/10">
           <div className="flex flex-col items-start justify-center px-3 py-3 border-e border-foreground/10 bg-foreground/1.5">
@@ -216,7 +219,7 @@ function WeekView({
                 /21
               </span>
             </span>
-            <span className="text-[9px] uppercase tracking-widest text-primary-foreground mt-0.5">
+            <span className="text-[9px] uppercase tracking-widest text-foreground mt-0.5">
               {t("mealPlanner.plates")}
             </span>
           </div>
@@ -234,7 +237,7 @@ function WeekView({
                   i === 0 ? "text-primary" : "text-foreground/45",
                 )}
               >
-                         {t(`mealPlanner.days.${d}`)}
+                {t(`mealPlanner.days.${d}`)}
               </div>
               <div
                 className={cn(
@@ -316,14 +319,14 @@ function DayView({
           {day}, Apr 2026
         </span>
       </div>
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-4">
         {SLOTS.map((slot) => {
           const meal = weekMeals[slot.key][dayIdx];
 
           return (
             <div
               key={slot.key}
-              className="bg-foborder-foreground/3] border border-foreground/8 rounded-2xl p-5 min-w-65"
+              className="bg-foborder-foreground/3] border border-foreground/8 rounded-2xl p-5 w-fit md:min-w-65 mx-auto"
             >
               <div className="flex items-center gap-2 mb-4">
                 <span
@@ -388,19 +391,19 @@ function ListView({
               <div
                 key={`${dayIdx}-${slot.key}`}
                 className={cn(
-                  "flex items-center gap-4 py-3 hover:bg-foreground/2 transition-colors group border-foreground/10 px-4",
+                  "flex flex-col md:flex-row md:items-center gap-4 py-3 hover:bg-foreground/2 transition-colors group border-foreground/10 px-4",
                   isBreakfast ? "" : "border-t",
                 )}
               >
                 <div className="w-16 shrink-0">
-                  <span className="text-[10px] uppercase tracking-widest text-foreground/50">
+                  <span className="text-[10px]  uppercase tracking-widest text-foreground/50">
                     {t(`mealPlanner.slots.${slot.label}`)}
                   </span>
                 </div>
 
                 {meal ? (
                   <>
-                    <div className="w-1.5 h-1.5 rounded-full shrink-0 bg-foreground/10" />
+                    {/* <div className="w-1.5 h-1.5 rounded-full shrink-0 bg-foreground/10" /> */}
                     <div className="flex items-center gap-2 flex-1">
                       {meal.image && (
                         <Image
@@ -425,7 +428,7 @@ function ListView({
                     </div>
                     <button
                       onClick={() => onSelectMeal(slot.key, dayIdx)}
-                      className="text-xs text-primary-foreground hover:text-primary-foreground/90 transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
+                      className="text-xs text-primary-foreground dark:text-foreground text-end hover:text-primary-foreground/90 transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
                     >
                       {t("mealPlanner.swap")}
                     </button>
@@ -433,12 +436,12 @@ function ListView({
                 ) : (
                   <>
                     <div className="w-1.5 h-1.5 rounded-full shrink-0 bg-border-foreground/10" />
-                    <span className="flex-1 text-sm text-foreground/15 italic">
+                    <span className="flex-1 text-sm text-foreground/50 italic">
                       {t("mealPlanner.emptySlot")}
                     </span>
                     <button
                       onClick={() => onSelectMeal(slot.key, dayIdx)}
-                      className="text-xs text-primary-foreground hover:text-primary-foreground/90 transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
+                      className="text-xs text-primary-foreground dark:text-foreground text-end hover:text-primary-foreground/90 transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
                     >
                       {t("mealPlanner.add")}
                     </button>
@@ -474,6 +477,8 @@ function DetailPanel({
   const [selectedSwap, setSelectedSwap] = useState<string | null>(null);
   const [swapFilter, setSwapFilter] = useState("all");
 
+  const [showRecipe, setShowRecipe] = useState(false);
+
   const filters = [
     t("mealPlanner.filterAll"),
     t("mealPlanner.filterHighProtein"),
@@ -494,7 +499,7 @@ function DetailPanel({
   }
 
   return (
-    <div className="flex gap-5 mt-6">
+    <div className="flex flex-col md:flex-row gap-5 mt-6">
       {/* Selected plate (only shown when not in add mode / meal exists) */}
       {!isAddMode && meal && (
         <div className="flex flex-col items-center justify">
@@ -507,7 +512,10 @@ function DetailPanel({
             <button className="text-sm text-foreground/60 hover:text-foreground/70 border border-foreground/10 hover:border-foreground/15 px-4 py-3.5 rounded-xl transition-all dark:bg-primary-foreground/20">
               ↻ {t("mealPlanner.chef")}
             </button>
-            <button className="col-span-2 text-sm text-foreground/60 hover:text-foreground/70 transition-colors px-4 border rounded-xl py-3.5 dark:bg-primary-foreground/20 hover:border-foreground/15">
+            <button
+              className="col-span-2 text-sm text-foreground/60 hover:text-foreground/70 transition-colors px-4 border rounded-xl py-3.5 dark:bg-primary-foreground/20 hover:border-foreground/15"
+              onClick={() => setShowRecipe(true)}
+            >
               {t("mealPlanner.viewRecipe")} →
             </button>
           </div>
@@ -546,7 +554,7 @@ function DetailPanel({
 
         <div className="flex-1">
           <div
-            className="max-h-110 overflow-y-auto scrollbar-none grid grid-cols-2 gap-4"
+            className="max-h-110 overflow-y-auto scrollbar-none grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4"
             onWheel={(e) => e.stopPropagation()}
           >
             {swapOptions.slice(0, 20).map((opt) => {
@@ -558,7 +566,7 @@ function DetailPanel({
                   className={cn(
                     "w-full text-left p-3 rounded-xl border transition-all cursor-pointer dark:bg-primary-foreground/20",
                     isSel
-                      ? "border-primary bg-primary/5"
+                      ? "border-primary/40 bg-primary/5"
                       : "border-foreground/6 hover:border-foreground/15 hover:bg-foborder-foreground/[0.04]",
                   )}
                 >
@@ -611,6 +619,13 @@ function DetailPanel({
           </div>
         )}
       </div>
+      {showRecipe && meal && (
+        <RecipeDetails
+          meal={meal}
+          lang={lang}
+          onClose={() => setShowRecipe(false)}
+        />
+      )}
     </div>
   );
 }
@@ -677,23 +692,16 @@ export default function MenuMealPlanner() {
     <div className="min-h-screen pt-20">
       <div className="relative max-w-6xl mx-auto px-6 py-10">
         {/* ── Header ── */}
-        <div className="flex items-start justify-between mb-10 flex-wrap gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              <span className="text-[10px] uppercase tracking-[0.2em] text-foreground/40">
-                {t("mealPlanner.order")} #BTL-24-07739
-              </span>
-            </div>
-            <h1 className="text-4xl font-bold text-foreground leading-none tracking-tight">
-              {t("mealPlanner.headingPrefix")}{" "}
-              <span className="text-primary">
-                {t("mealPlanner.headingHighlight")}
-              </span>
-            </h1>
-            <p className="text-foreground/35 text-sm mt-2.5 max-w-md">
-              {t("mealPlanner.subheading")}
-            </p>
+        <div className="flex items-start justify-between flex-wrap gap-4">
+          <div className="space-y-4">
+            <OrderHeading
+              label={`${t("mealPlanner.order")} #BTL-24-07739`}
+              headingPrefix={t("mealPlanner.headingPrefix")}
+              headingHighlight={t("mealPlanner.headingHighlight")}
+              subheading={t("mealPlanner.subheading")}
+            />
+
+            <Stepper currentIndex={1} />
           </div>
           <div className="flex items-center gap-2">
             <button className="flex items-center gap-2 text-sm text-foreground/60 border border-foreground/10 hover:border-foreground/20 px-4 py-2.5 rounded-full transition-all hover:text-foreground/70 cursor-pointer">
@@ -724,7 +732,7 @@ export default function MenuMealPlanner() {
         </div>
 
         {/* ── Stats ── */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-8 mt-8 lg:mt-0">
           <StatCard
             value={`${totalMeals}`}
             sub="/21"
@@ -819,7 +827,7 @@ export default function MenuMealPlanner() {
                 className={cn(
                   "shrink-0 flex flex-col items-center px-4 py-2.5 rounded-xl border transition-all",
                   activeDay === i
-                    ? "border-primary bg-primary/4 text-primary-foreground"
+                    ? "border-primary/30 bg-primary/4 text-primary-foreground dark:text-primary/80"
                     : "border-foreground/8 text-foreground/35 hover:text-foreground/60 hover:border-foreground/15",
                 )}
               >

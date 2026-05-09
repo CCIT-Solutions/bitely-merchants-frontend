@@ -77,7 +77,7 @@ export default function FAQ() {
           </p>
           <Link
             href="/contact"
-            className="bg-primary hover:bg-primary/80 cursor-pointer text-foreground font-medium text-sm px-8 py-3.5 rounded-full transition-colors duration-200 shadow-sm"
+            className="bg-primary hover:bg-primary/80 cursor-pointer text-primary-foreground font-medium text-sm px-8 py-3.5 rounded-full transition-colors duration-200 shadow-sm"
           >
             {t("faq.contactButton")}
           </Link>

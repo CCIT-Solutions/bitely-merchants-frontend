@@ -272,6 +272,9 @@
 
   "checkout": {
     "paymentFailed": "Failed Payment. Please try again.",
+     "headingPrefix": "Start your",
+    "headingHighlight": "week.",
+    "subheading": "Your meals are ready. Just one step to get them delivered to your door.",
     "title": "Checkout",
     "promoPlaceholder": "Enter promo code",
     "apply": "Apply",
