@@ -13,7 +13,7 @@ import { PhoneField } from "@/components/form/PhoneField";
 import Container from "@/components/shared/Container";
 import Animate from "@/components/animation/Animate";
 import { fade, fadeD1 } from "@/lib/animation";
-import Heading from "@/components/shared/Heading";
+import Heading from "@/components/shared/headings/Heading";
 import WaveLines from "@/components/animation/WaveLines";
 import {
   Select,
@@ -28,7 +28,6 @@ import Email from "@/components/icons/Email";
 import Phone from "@/components/icons/Phone";
 import Location from "@/components/icons/Location";
 
-
 // ─── Icons (inline SVG to avoid extra deps) ─────────────────────────────────
 
 const ChatIcon = () => (
@@ -42,8 +41,6 @@ const ChatIcon = () => (
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
   </svg>
 );
-
-
 
 // ─── Schema ──────────────────────────────────────────────────────────────────
 export const ContactSchema = (t: any) =>
@@ -202,10 +199,7 @@ function ContactPage() {
 
         <div className="mb-14 text-center">
           <Heading
-            i18nKey={"contact.title"}
-            components={{
-              custom: <span className="text-primary" />,
-            }}
+            title={"contact.title"}
           />
           <p className="mx-auto max-w-lg text-foreground/60 text-base leading-relaxed">
             {t("contact.subtitle")}
@@ -375,7 +369,7 @@ function ContactPage() {
               </p>
               <button className="w-full flex items-center justify-between bg-primary hover:bg-primary/90 transition-colors text-primary-foreground font-semibold rounded-full py-4 px-7 text-sm">
                 <span>{t("contact.chat.openChat")}</span>
-                <IoArrowForward className={isRTL? "rotate-180": ""}/>
+                <IoArrowForward className={isRTL ? "rotate-180" : ""} />
               </button>
             </div>
 

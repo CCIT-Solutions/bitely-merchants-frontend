@@ -3,7 +3,7 @@ import Animate from "@/components/animation/Animate";
 import FloatingDraggable from "@/components/animation/FloatingDraggable";
 import Android from "@/components/icons/Android";
 import Apple from "@/components/icons/Apple";
-import Heading from "@/components/shared/Heading";
+import Heading from "@/components/shared/headings/Heading";
 import Logo from "@/components/shared/Logo";
 import { useLang } from "@/hooks/useLang";
 import { fadeDu1D3 } from "@/lib/animation";
@@ -29,7 +29,7 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
   const { isDark } = useThemeStore();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  
+
   const authRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -51,7 +51,11 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <div className={`h-screen w-screen flex bg-[#fbfbf9] dark:bg-background/80 ${isDark? "dark": "light"}`}  ref={authRef}   onMouseMove={handleMouseMove}>
+    <div
+      className={`h-screen w-screen flex bg-[#fbfbf9] dark:bg-background/80 ${isDark ? "dark" : "light"}`}
+      ref={authRef}
+      onMouseMove={handleMouseMove}
+    >
       <div className="flex gap-0 w-full h-full max-w-400 mx-auto">
         {/* Right Side - Form */}
         <div className="hidden lg:flex lg:w-[60%] relative">
@@ -60,10 +64,13 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
               src="/media/images/auth/auth-bg.png"
               alt="Auth Background"
               fill
-              className={`object-contain ${isRTL ? "-scale-x-100": ""}`}
+              className={`object-contain ${isRTL ? "-scale-x-100" : ""}`}
             />
           </div>
-          <div className="size-50 xl:size-120 absolute top-[calc((100%-300px)/2)] xl:top-[calc((100%-500px)/2)] inset-e-0 my-10"  style={float1Style}>
+          <div
+            className="size-50 xl:size-120 absolute top-[calc((100%-300px)/2)] xl:top-[calc((100%-500px)/2)] inset-e-0 my-10"
+            style={float1Style}
+          >
             <Image
               src="/media/images/auth/dish.png"
               alt="Auth Background"
@@ -75,8 +82,7 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
           <div className="absolute inset-0 flex flex-col w-full p-20 z-10">
             {/* Logo and Brand */}
             <div className="flex gap-10 justify-between w-40 h-18 relative  cursor-pointer">
-     
-               <Logo/>
+              <Logo />
             </div>
 
             {/* Main Title */}
@@ -92,7 +98,7 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
                 {t("auth.subtitle")}
               </p>
 
-              <div className="flex gap-4 mt-10"  style={float3Style}>
+              <div className="flex gap-4 mt-10" style={float3Style}>
                 <div className="flex flex-col gap-4 justify-center items-center bg-[#fbfbf9]/30 dark:bg-background/40 backdrop-blur-xs border border-primary/50 rounded-lg p-2">
                   <BsLeaf className="text-primary size-12" />
                   <span className="text-foregroundk/50 font-medium max-w-20 text-center">
@@ -114,7 +120,10 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
               </div>
             </div>
 
-            <div className="flex gap-3 items-center mt-25 bg-[#fbfbf9]/60 dark:bg-background/70 border  rounded-lg shadow-xs w-fit  p-3 font-medium" style={float1Style}>
+            <div
+              className="flex gap-3 items-center mt-25 bg-[#fbfbf9]/60 dark:bg-background/70 border  rounded-lg shadow-xs w-fit  p-3 font-medium"
+              style={float1Style}
+            >
               <div className="rounded-full size-10 bg-primary-foreground flex justify-center items-center">
                 <PiPlantFill className="text-white size-6" />
               </div>

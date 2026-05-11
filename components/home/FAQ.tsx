@@ -7,7 +7,7 @@ import Link from "next/link";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Animate from "@/components/animation/Animate";
 import { fade } from "@/lib/animation";
-import Heading from "../shared/Heading";
+import Heading from "../shared/headings/Heading";
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -33,13 +33,13 @@ export default function FAQ() {
       <div className="w-full ">
         {/* Header */}
 
-         
-      
-        <Animate variants={fade} className="text-center my-16 relative flex flex-col items-center">
-        <Heading
-              i18nKey={"faq.title"}
-              components={{ custom: <span className="text-primary" /> }}
-            />
+        <Animate
+          variants={fade}
+          className="text-center my-16 relative flex flex-col items-center"
+        >
+          <Heading
+            title={"faq.title"}
+          />
           <p className="text-neutral-500 dark:text-neutral-400 text-xl mt-4 max-w-md">
             {t("faq.subtitle")}
           </p>
@@ -56,7 +56,6 @@ export default function FAQ() {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                
               >
                 <FAQItem
                   faq={faq}
@@ -70,7 +69,10 @@ export default function FAQ() {
         </div>
 
         {/* Bottom Section */}
-        <Animate variants={fade}  className="text-center flex flex-col items-center">
+        <Animate
+          variants={fade}
+          className="text-center flex flex-col items-center"
+        >
           <p className="text-3xl mb-5">{t("faq.stillHaveQuestions")}</p>
           <p className="text-neutral-500 text-sm mb-5 max-w-lg">
             {t("faq.contactDescription")}

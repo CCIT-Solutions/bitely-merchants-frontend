@@ -16,3 +16,5 @@ export type FoodItem = {
   tag?: string;
   customMacros?: boolean;
 };
+
+

@@ -1,11 +1,11 @@
 import { DIET_TABS, FOOD_ITEMS } from "@/data/menu";
-import  { useRef, useState, useEffect, useCallback, useMemo, memo } from "react";
+import { useRef, useState, useEffect, useCallback, useMemo, memo } from "react";
 import FoodCard from "../menu/FoodCard";
 import { useLang } from "@/hooks/useLang";
-import Heading from "../shared/Heading";
+import Heading from "../shared/headings/Heading";
 import Image from "next/image";
 import Animate from "../animation/Animate";
-import {  fadeDu2 } from "@/lib/animation";
+import { fadeDu2 } from "@/lib/animation";
 
 // Normalize scrollLeft across browsers in RTL
 function getNormalizedScrollLeft(el: HTMLElement): number {
@@ -38,10 +38,8 @@ function setNormalizedScrollLeft(el: HTMLElement, value: number) {
   el.scrollLeft = maxScroll - value;
 }
 
-
-
 function Menu() {
- const { t, lang } = useLang();
+  const { t, lang } = useLang();
   const [activeDietTab, setActiveDietTab] = useState("all");
 
   const foodScrollRef = useRef<HTMLDivElement>(null);
@@ -55,7 +53,7 @@ function Menu() {
       activeDietTab === "all"
         ? FOOD_ITEMS
         : FOOD_ITEMS.filter((item) => item.dietType === activeDietTab),
-    [activeDietTab]
+    [activeDietTab],
   );
 
   const dietTabs = useMemo(() => DIET_TABS, []);
@@ -102,7 +100,8 @@ function Menu() {
     const normalizedDelta = isRTL ? -delta : delta;
 
     const atLeftEdge = targetScrollLeft.current <= 0 && normalizedDelta < 0;
-    const atRightEdge = targetScrollLeft.current >= maxScroll && normalizedDelta > 0;
+    const atRightEdge =
+      targetScrollLeft.current >= maxScroll && normalizedDelta > 0;
 
     if (atLeftEdge || atRightEdge) return;
 
@@ -111,7 +110,7 @@ function Menu() {
 
     targetScrollLeft.current = Math.max(
       0,
-      Math.min(maxScroll, targetScrollLeft.current + normalizedDelta)
+      Math.min(maxScroll, targetScrollLeft.current + normalizedDelta),
     );
 
     if (animationRef.current === null) {
@@ -145,8 +144,7 @@ function Menu() {
           {/* Header */}
           <div className="w-full max-w-300 px-5 lg:px-0 flex flex-col items-center gap-6 text-start lg:text-center">
             <Heading
-              i18nKey={"menu.title"}
-              components={{ custom: <span className="text-primary" /> }}
+              title={"menu.title"}
             />
             <p className="text-foreground/50 text-lg font-normal max-w-lg text-center">
               {t("menu.subtitle")}

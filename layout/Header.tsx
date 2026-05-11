@@ -29,7 +29,7 @@ import { fade } from "@/lib/animation";
 const navItems = (t: TFunction) => [
   { label: t("nav.home"), href: "/" },
   { label: t("nav.menu"), href: "/menu" },
-  { label: t("nav.plans"), href: "/plans" },
+  // { label: t("nav.plans"), href: "/plans" },
   { label: t("nav.howItWork"), href: "/#howItWork" },
   // { label: t("nav.features"), href: "/#features" },
   { label: t("nav.faq"), href: "/faq" },
@@ -151,10 +151,10 @@ function Header({ className }: { className?: string }) {
 
           {!isAuthenticated && (
             <Link
-              href="/login"
+              href="/plans"
               className="hidden sm:block px-6 py-2 rounded-full bg-primary text-primary-foreground font-semibold shadow-sm hover:bg-primary/80 transition"
             >
-              {t("auth.login")}
+              {t("nav.start")}
             </Link>
           )}
 
@@ -195,7 +195,7 @@ function Header({ className }: { className?: string }) {
                       href="/login"
                       className="mt-4 px-4 py-2 rounded-full bg-primary text-primary-foreground font-semibold text-center hover:bg-primary/80 transition"
                     >
-                      {t("auth.login")}
+                      {t("nav.start")}
                     </Link>
                   </SheetClose>
                 )}

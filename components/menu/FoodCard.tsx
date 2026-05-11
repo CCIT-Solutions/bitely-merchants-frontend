@@ -2,6 +2,7 @@ import { FoodItem } from "@/types/menu";
 import React from "react";
 import { useLang } from "@/hooks/useLang";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 type MacroKey = "protein" | "carbs" | "fat" | "calories";
 
@@ -23,15 +24,13 @@ const macrosConfig: {
   { key: "calories", labelKey: "menu.kcal", unit: "" },
 ];
 
-const FoodCard = ({ item }: { item: FoodItem }) => {
+const FoodCard = ({ item, className }: { item: FoodItem; className?: string }) => {
   const { lang, t } = useLang();
 
   console.log("item", item);
 
   return (
-    <div
-      className="flex flex-col gap-5 items-start text-start w-67.5 md:w-60 shrink-0"
-    >
+    <div className={cn("flex flex-col gap-5 items-start text-start w-67.5 md:w-60 shrink-0", className)}>
       <div className="relative w-67.5 h-67.5 md:w-60 md:h-60 rounded-4xl overflow-hidden">
         <Image
           src={item.image}
@@ -42,14 +41,15 @@ const FoodCard = ({ item }: { item: FoodItem }) => {
         />
       </div>
 
-      <div className="flex flex-col gap-0.5 w-full grow">
-        <h3 className="text-sm font-bold text-foreground/80">
-          {item.name[lang]}
-        </h3>
-        <p className="text-xs text-foreground/50">
-          {item.description?.[lang] || item.name[lang]}
-        </p>
-
+      <div className="flex flex-col justify-between gap-0.5 w-full grow">
+        <div>
+          <h3 className="text-sm font-bold text-foreground/80">
+            {item.name[lang]}
+          </h3>
+          <p className="text-xs text-foreground/50">
+            {item.description?.[lang] || item.name[lang]}
+          </p>
+        </div>
         {item.customMacros ? (
           <div className="flex flex-col justify-center items-center gap-1.5 my-4 border border-foreground/5 rounded-xl h-full grow">
             <div className="flex gap-2">

@@ -1,12 +1,12 @@
+import Heading from "./Heading";
+
 const OrderHeading = ({
   label,
-  headingPrefix,
-  headingHighlight,
+title,
   subheading,
 }: {
   label: string;
-  headingPrefix: string;
-  headingHighlight: string;
+  title: string;
   subheading: string;
 }) => {
   return (
@@ -18,14 +18,9 @@ const OrderHeading = ({
         </span>
       </div>
 
-      <h1 className="text-4xl font-bold text-foreground leading-none tracking-tight">
-      {headingPrefix}{" "}
-        <span className="text-primary">
-         {headingHighlight}
-        </span>
-      </h1>
+      <Heading title= {title} className="sm:text-4xl text-start leading-none tracking-tight"/>
 
-      <p className="text-foreground/35 text-sm mt-2.5 max-w-md">
+      <p className="text-foreground/35 text-sm mt-2.5 max-w-3xl">
        {subheading}
       </p>
     </div>

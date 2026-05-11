@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
-import Heading from "../shared/Heading";
+import Heading from "../shared/headings/Heading";
 import Translate from "../shared/Translate";
 import { useLang } from "@/hooks/useLang";
 import { motion } from "framer-motion";
@@ -154,10 +154,7 @@ export default function HowItWorks() {
       {/* Heading */}
       <div className="text-center mb-12">
         <Heading
-          i18nKey={"home.howItWorks.title"}
-          components={{
-            custom: <span className="text-primary" />,
-          }}
+          title={"home.howItWorks.title"}
         />
 
         <p className="text-foreground/50 text-base max-w-2xl mx-auto leading-relaxed">

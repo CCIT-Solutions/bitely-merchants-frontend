@@ -6,7 +6,8 @@
     "howItWork": "How It Work",
     "features": "Features",
     "faq": "FAQ",
-    "contact": "Contact"
+    "contact": "Contact",
+    "start": "Start Now"
   },
 
   "footer": {
@@ -137,19 +138,64 @@
     }
   },
 
+   "steppers": {
+    "plan": "Plan",
+    "menu": "Menu",
+    "checkout": "Checkout",
+    "confirm": "Confirm"
+  },
+
   "plans": {
-    "title": "Pay by the <custom>week</custom>, not the year.",
-    "subtitle": "Month-to-month. No contracts. The longer you stay, the quieter it gets, and the less you pay per plate.",
-    "toggle": {
-      "weekly": "Weekly",
-      "monthly": "Monthly",
-      "save": "SAVE 12%"
-    },
-    "footer": "Cancel anytime. No hidden fees. Meals crafted fresh daily.",
-    "unit": {
-      "weekly": "wk",
-      "monthly": "mo"
-    }
+    "plan": "Plan",
+    "heading": "Customize Your <custom>Perfect Meal</custom> Plan",
+    "subheading": "Build a meal plan tailored to your lifestyle, goals, and taste preferences with fresh meals delivered to your door.",
+    "title": "Customize Your\nPerfect Meal Plan",
+    "startingFrom": "Starting from",
+    "perDay": "/day",
+    "dietQuestion": "What kind of <custom>meals</custom> do you <custom>prefer</custom>?",
+    "mealsQuestion": "How many meals<custom> per day</custom>?",
+    "mealsSubtitle": "Select a minimum of 2 meals.",
+    "daysQuestion": "How many <custom>days</custom> a week?",
+    "daysSubtitle": "Select a minimum of 5 days",
+    "minimumDays": "Select a minimum of 5 days",
+    "paymentCycle": "Payment Cycle",
+      "enterPromoCode": "Enter promo code",
+      "apply": "Apply",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "quarterly": "3-months",
+    "perWeek": "Per week",
+    "perMonth": "Per month",
+    "quarterly_label": "Quarterly",
+    "save": "Save",
+    "gymMembership": "3 month gym membership",
+    "yourPackage": "Your package, your way",
+    "paymentSummary": "Payment summary",
+    "planPrice": "Plan price",
+    "delivery": "Delivery fee",
+    "free": "Free",
+    "vat": "VAT (14%)",
+    "total": "Total",
+    "continue": "Continue",
+    "selectPlan": "Select Plan",
+    "selected": "Selected",
+    "viewMenu": "View menu",
+    "snackIncluded": "Snack is always included",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "snack": "Snack",
+    "balanced_desc": "Provides the nutrients your body needs to thrive",
+    "customMacros_desc": "Designed for athletes and fitness focused individuals",
+    "chefPicks_desc": "Dishes crafted for your cravings, not your fitness goals",
+    "lowCarb_desc": "Low in carbs, but high in healthy fats, and non-starchy veggies",
+    "highProtein_desc": "Boosts muscle strength and vitality with lean proteins",
+    "vegetarian_desc": "Plant-based dishes with colorful veggies and hearty grains",
+    "menuTitle": "Menu Sneak Peek",
+    "menuSubtitle": "macros",
+    "menuClose": "Close", 
+      "meals": "meals",
+    "days": "days per week"
   },
 
   "menu": {
@@ -211,8 +257,7 @@
   },
   "mealPlanner": {
     "order": "Order",
-    "headingPrefix": "Plate your",
-    "headingHighlight": "week.",
+    "heading": "Plate your <custom>week.</custom/>",
     "subheading": "Click any plate to swap it, nutrition recalculates live and we lock the kitchen on Sunday, 12 PM.",
     "exportWeek": "Export week",
     "confirmWeek": "Confirm week",
@@ -272,8 +317,7 @@
 
   "checkout": {
     "paymentFailed": "Failed Payment. Please try again.",
-     "headingPrefix": "Start your",
-    "headingHighlight": "week.",
+    "heading": "Start your <custom> week.</custom>",
     "subheading": "Your meals are ready. Just one step to get them delivered to your door.",
     "title": "Checkout",
     "promoPlaceholder": "Enter promo code",

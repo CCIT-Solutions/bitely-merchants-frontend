@@ -1,8 +1,10 @@
+import { useLang } from "@/hooks/useLang";
 import { FaCheck } from "react-icons/fa6";
 
 
 function Stepper({currentIndex}: {currentIndex: number}) {
-  const steps = ["Plan", "Menu", "Checkout", "Confirm"];
+  const steps = ["plan", "menu", "checkout", "confirm"];
+  const {t} = useLang()
   return (
     <div className="flex items-center gap-3 flex-wrap mb-8">
       {steps.map((s, i) => {
@@ -18,10 +20,10 @@ function Stepper({currentIndex}: {currentIndex: number}) {
                 {done ? <FaCheck size={10} strokeWidth={3} /> : i + 1}
               </div>
               <span
-                className={`font-mono text-[10px] tracking-widest uppercase 
+                className={`text-[10px] tracking-widest uppercase 
                   ${done || active ? "text-foreground" : "text-muted-foreground"}`}
               >
-                {s}
+                {t(`steppers.${s}`)}
               </span>
             </div>
           {i < steps.length - 1 && (

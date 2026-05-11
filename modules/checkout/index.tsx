@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/custom/select";
-import OrderHeading from "@/components/shared/OrderHeading";
+import OrderHeading from "@/components/shared/headings/OrderHeading";
 import { useLang } from "@/hooks/useLang";
 import Stepper from "@/components/shared/Stepper";
 import {
@@ -603,8 +603,7 @@ export default function CheckoutPage() {
         <div className="space-y-4 mb-4">
           <OrderHeading
             label={`${t("checkout.title")} `}
-            headingPrefix={t("checkout.headingPrefix")}
-            headingHighlight={t("checkout.headingHighlight")}
+            title={t("checkout.heading")}
             subheading={t("checkout.subheading")}
           />
           <Stepper currentIndex={2} />

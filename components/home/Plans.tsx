@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils";
 import { useLang } from "@/hooks/useLang";
 import { plans, type Plan } from "@/data/plans";
 import PlanTapSwitcher from "../plans/PlanTapSwitcher";
-import Heading from "../shared/Heading";
+import Heading from "../shared/headings/Heading";
 import { Language } from "@/types/shared";
 import Animate from "../animation/Animate";
-import {  fadeDu4 } from "@/lib/animation";
+import { fadeDu4 } from "@/lib/animation";
 import Link from "next/link";
 
 interface PlanCardProps {
@@ -93,8 +93,8 @@ function PlanCard({ plan, billing, lang, unitLabel }: PlanCardProps) {
       </ul>
 
       {/* CTA */}
-      <Link href="/checkout/meal-plan"
-      
+      <Link
+        href="/checkout/meal-plan"
         className={cn(
           "w-full rounded-xl font-semibold tracking-wide text-sm h-12 transition-all duration-200 flex justify-center items-center",
           plan.featured
@@ -123,10 +123,7 @@ export default function Plan() {
 
         <div className="mb-14 text-center">
           <Heading
-            i18nKey={"plans.title"}
-            components={{
-              custom: <span className="text-primary" />,
-            }}
+            title={"plans.title"}
           />
           <p className="mx-auto max-w-lg text-foreground/60 text-base leading-relaxed">
             {t("plans.subtitle")}
@@ -152,7 +149,6 @@ export default function Plan() {
                 delay: 0.6 + i * 0.1,
                 ease: "easeInOut",
               }}
-            
               variants={fadeDu4}
             >
               <PlanCard

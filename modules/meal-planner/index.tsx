@@ -15,7 +15,7 @@ import Image from "next/image";
 import FoodCard from "@/components/menu/FoodCard";
 import { Language } from "@/types/shared";
 import { useLang } from "@/hooks/useLang";
-import OrderHeading from "@/components/shared/OrderHeading";
+import OrderHeading from "@/components/shared/headings/OrderHeading";
 import Stepper from "@/components/shared/Stepper";
 import RecipeDetails from "@/components/meal-planner/RecipeDetails";
 
@@ -696,8 +696,7 @@ export default function MenuMealPlanner() {
           <div className="space-y-4">
             <OrderHeading
               label={`${t("mealPlanner.order")} #BTL-24-07739`}
-              headingPrefix={t("mealPlanner.headingPrefix")}
-              headingHighlight={t("mealPlanner.headingHighlight")}
+              title={t("mealPlanner.heading")}
               subheading={t("mealPlanner.subheading")}
             />
 

@@ -38,7 +38,7 @@
     "components/home/FindYourPLan.jsx",
     "components/home/Testimonial.jsx",
     ".next/dev/types/**/*.ts"
-  ],
+, "modules/settings/MyPlan.jsx", "modules/settings/MyProfile.jsx"  ],
   "exclude": [
     "node_modules"
   ]
