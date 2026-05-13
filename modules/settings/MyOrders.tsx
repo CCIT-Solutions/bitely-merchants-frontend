@@ -21,11 +21,6 @@ import { orders } from "@/data/orders";
 import Currency from "@/components/icons/Currency";
 
 // ─────────────────────────────────────────────
-// Types
-// ─────────────────────────────────────────────
-
-
-// ─────────────────────────────────────────────
 // Status stepper config
 // ─────────────────────────────────────────────
 
@@ -68,16 +63,16 @@ const OrderStepper = ({ status, t }: { status: OrderStatus; t: (k: string) => st
   const currentIdx = STATUS_INDEX[status];
 
   return (
-    <div className="flex items-start justify-between w-full mt-4 mb-1 relative">
+    <div className="flex items-start justify-between w-full mt-2 mb-1 relative">
       {STATUS_STEPS.map(({ key, labelKey, Icon }, idx) => {
         const done = idx < currentIdx;
         const active = idx === currentIdx;
         return (
           <React.Fragment key={key}>
-            <div className="flex flex-col items-center gap-1.5 flex-1 relative z-10">
+            <div className="flex flex-col items-center gap-1 flex-1 relative z-10">
               <div
                 className={cn(
-                  "w-9 h-9 rounded-full flex items-center justify-center border-2 transition-all",
+                  "w-7 h-7 rounded-full flex items-center justify-center border-2 transition-all",
                   done
                     ? "bg-primary border-primary text-primary-foreground"
                     : active
@@ -85,11 +80,11 @@ const OrderStepper = ({ status, t }: { status: OrderStatus; t: (k: string) => st
                     : "bg-background border-foreground/15 text-foreground/30"
                 )}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-3.5 h-3.5" />
               </div>
               <span
                 className={cn(
-                  "text-[10px] text-center leading-tight",
+                  "text-[8px] text-center leading-tight",
                   active ? "font-bold text-foreground" : done ? "text-foreground/60" : "text-foreground/30"
                 )}
               >
@@ -99,7 +94,7 @@ const OrderStepper = ({ status, t }: { status: OrderStatus; t: (k: string) => st
 
             {/* Connector line */}
             {idx < STATUS_STEPS.length - 1 && (
-              <div className="flex-1 h-0.5 mt-4 relative">
+              <div className="flex-1 h-0.5 mt-3 relative">
                 <div className="absolute inset-0 bg-foreground/10 rounded-full" />
                 <div
                   className={cn(
@@ -132,23 +127,22 @@ const ActiveOrderCard = ({
   const statusLabelKey = `orders.${order.status}`;
 
   return (
-    <div className="rounded-2xl border border-foreground/8 bg-card overflow-hidden shadow-sm">
+    <div className="rounded-xl border border-foreground/8 bg-card overflow-hidden shadow-sm">
       {/* Status bar */}
-      <div className="flex items-center justify-between px-4 pt-4 pb-2">
+      <div className="flex items-center justify-between px-3 pt-3 pb-1">
         <span className="text-xs font-semibold text-primary capitalize">
           {t(statusLabelKey)}
         </span>
         {order.deliveryDate && (
           <span className="text-xs text-foreground/50">
-            {t("orders.deliveryToday")}{" "}
-            {formatShortDate(order.deliveryDate, lang)}
+            {t("orders.deliveryToday")} {formatShortDate(order.deliveryDate, lang)}
           </span>
         )}
       </div>
 
       {/* Meal info row */}
-      <div className="flex items-start gap-3 px-4 py-2">
-        <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0">
+      <div className="flex items-start gap-2 px-3 py-2">
+        <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0">
           <Image
             src={order.image}
             alt={order.planName[lang as "en" | "ar"]}
@@ -163,7 +157,7 @@ const ActiveOrderCard = ({
           <h3 className="text-sm font-bold text-foreground leading-snug">
             {order.planName[lang as "en" | "ar"]}
           </h3>
-          <div className="flex items-center gap-1.5 mt-1 text-xs text-foreground/50">
+          <div className="flex items-center gap-1 mt-1 text-xs text-foreground/50 flex-wrap">
             <span>
               {order.meals} {t("orders.meals")}
             </span>
@@ -174,26 +168,26 @@ const ActiveOrderCard = ({
             </span>
           </div>
         </div>
-        <span className="text-base font-bold text-foreground shrink-0 flex gap-1 items-center">
-          {order.price.toFixed(2)} <Currency/>
+        <span className="text-sm font-bold text-foreground shrink-0 flex gap-1 items-center">
+          {order.price.toFixed(2)} <Currency />
         </span>
       </div>
 
       {/* Stepper */}
-      <div className="px-4">
+      <div className="px-3">
         <OrderStepper status={order.status} t={t} />
       </div>
 
       {/* Actions */}
-      <div className="grid grid-cols-2 gap-3 px-4 py-4 mt-1 border-t border-foreground/6">
+      <div className="grid grid-cols-2 gap-2 px-3 py-3 border-t border-foreground/6">
         <Button
           variant="outline"
-          className="rounded-xl border-foreground/15 text-sm font-medium h-10"
+          className="rounded-lg border-foreground/15 text-xs font-medium h-8"
         >
           {t("orders.viewDetails")}
         </Button>
-        <Button className="rounded-xl bg-primary text-primary-foreground text-sm font-medium h-10 gap-1.5 hover:bg-primary/90">
-          <MapPin className="w-3.5 h-3.5" />
+        <Button className="rounded-lg bg-primary text-primary-foreground text-xs font-medium h-8 gap-1 hover:bg-primary/90">
+          <MapPin className="w-3 h-3" />
           {t("orders.trackOrder")}
         </Button>
       </div>
@@ -214,8 +208,8 @@ const PastOrderRow = ({
   lang: string;
   t: (k: string) => string;
 }) => (
-  <div className="flex items-center gap-3 py-4 border-b border-foreground/6 last:border-0">
-    <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0">
+  <div className="flex items-center gap-2 py-3 border-b border-foreground/6 last:border-0">
+    <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0">
       <Image
         src={order.image}
         alt={order.planName[lang as "en" | "ar"]}
@@ -236,16 +230,16 @@ const PastOrderRow = ({
         {t("orders.orderNumber")} #{order.orderNumber}
       </p>
     </div>
-    <div className="flex flex-col items-end gap-2 shrink-0">
-      <span className="text-sm font-bold text-foreground  flex gap-1 items-center">
-       {order.price.toFixed(2)} <Currency/>
+    <div className="flex flex-col items-end gap-1 shrink-0">
+      <span className="text-sm font-bold text-foreground flex gap-1 items-center">
+        {order.price.toFixed(2)} <Currency />
       </span>
       <Button
         variant="outline"
         size="sm"
-        className="rounded-lg border-foreground/15 text-xs h-7 gap-1 px-3"
+        className="rounded-lg border-foreground/15 text-xs h-6 gap-1 px-2"
       >
-        <RotateCcw className="w-3 h-3" />
+        <RotateCcw className="w-2.5 h-2.5" />
         {t("orders.reorder")}
       </Button>
     </div>
@@ -265,8 +259,8 @@ const CancelledOrderRow = ({
   lang: string;
   t: (k: string) => string;
 }) => (
-  <div className="flex items-center gap-3 py-4 border-b border-foreground/6 last:border-0">
-    <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 opacity-60">
+  <div className="flex items-center gap-2 py-3 border-b border-foreground/6 last:border-0">
+    <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 opacity-60">
       <Image
         src={order.image}
         alt={order.planName[lang as "en" | "ar"]}
@@ -286,13 +280,13 @@ const CancelledOrderRow = ({
         {t("orders.orderNumber")} #{order.orderNumber}
       </p>
     </div>
-    <div className="flex flex-col items-end gap-2 shrink-0">
-      <span className="text-sm font-bold text-foreground/50  flex gap-1 items-center">
-        {order.price.toFixed(2)}<Currency/>
+    <div className="flex flex-col items-end gap-1 shrink-0">
+      <span className="text-sm font-bold text-foreground/50 flex gap-1 items-center">
+        {order.price.toFixed(2)} <Currency />
       </span>
       <Badge
         variant="secondary"
-        className="text-[10px] bg-destructive/10 text-destructive border-0"
+        className="text-[10px] bg-destructive/10 text-destructive border-0 px-2 py-0.5"
       >
         {t("orders.cancelled")}
       </Badge>
@@ -305,8 +299,8 @@ const CancelledOrderRow = ({
 // ─────────────────────────────────────────────
 
 const SupportBanner = ({ t }: { t: (k: string) => string }) => (
-  <div className="relative rounded-3xl overflow-hidden bg-muted/50 border border-foreground/5 px-6 py-6 flex items-center justify-between gap-4">
-    <div className="absolute -top-6 -end-6 w-28 h-28 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
+  <div className="relative rounded-2xl overflow-hidden bg-muted/50 border border-foreground/5 px-4 py-4 flex items-center justify-between gap-3">
+    <div className="absolute -top-4 -end-4 w-20 h-20 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
     <div className="relative z-10">
       <h2 className="text-sm font-bold text-foreground">
         {t("orders.supportTitle")}
@@ -317,13 +311,13 @@ const SupportBanner = ({ t }: { t: (k: string) => string }) => (
       <Button
         variant="outline"
         size="sm"
-        className="mt-4 rounded-full border-foreground/20 text-sm gap-2"
+        className="mt-3 rounded-full border-foreground/20 text-xs gap-1.5 px-3"
       >
         {t("orders.contactSupport")}
       </Button>
     </div>
-    <div className="relative z-10 shrink-0 text-5xl select-none hidden sm:block">
-      <Headphones className="w-16 h-16 text-primary/40" strokeWidth={1.5} />
+    <div className="relative z-10 shrink-0 text-4xl select-none hidden sm:block">
+      <Headphones className="w-12 h-12 text-primary/40" strokeWidth={1.5} />
     </div>
   </div>
 );
@@ -342,8 +336,6 @@ const TABS: { key: OrderTab; labelKey: string }[] = [
 // Main Page
 // ─────────────────────────────────────────────
 
-
-
 const MyOrdersPage = () => {
   const { t, lang } = useLang();
   const isRtl = lang === "ar";
@@ -351,22 +343,20 @@ const MyOrdersPage = () => {
   const [activeTab, setActiveTab] = useState<OrderTab>("active");
   const [showAllPast, setShowAllPast] = useState(false);
 
-  const PAST_PREVIEW = 3;
+  const PAST_PREVIEW = 2;
 
-  const activeOrders    = orders.filter((o) => o.tab === "active");
-  const pastOrders      = orders.filter((o) => o.tab === "past");
+  const activeOrders = orders.filter((o) => o.tab === "active");
+  const pastOrders = orders.filter((o) => o.tab === "past");
   const cancelledOrders = orders.filter((o) => o.tab === "cancelled");
 
   const visiblePast = showAllPast ? pastOrders : pastOrders.slice(0, PAST_PREVIEW);
 
   return (
-    <div
-      className="min-h-screen bg-background text-foreground"
-    >
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 pb-8 space-y-6">
-        {/* ── Header ── */}
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="max-w-xl mx-auto px-3 sm:px-4 pb-6 space-y-4">
+        {/* Header */}
         <div>
-          <h1 className="text-2xl font-bold text-foreground">
+          <h1 className="text-xl font-bold text-foreground">
             {t("orders.myOrders")}
           </h1>
           <p className="text-sm text-foreground/50 mt-0.5">
@@ -374,14 +364,14 @@ const MyOrdersPage = () => {
           </p>
         </div>
 
-        {/* ── Tabs ── */}
-        <div className="flex gap-1 border-b border-foreground/8">
+        {/* Tabs */}
+        <div className="flex gap-1 border-b border-foreground/8 overflow-x-auto pb-1 -mx-3 px-3">
           {TABS.map(({ key, labelKey }) => (
             <button
               key={key}
               onClick={() => setActiveTab(key)}
               className={cn(
-                "px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-200 border-b-2 -mb-px",
+                "px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-200 border-b-2 -mb-px",
                 activeTab === key
                   ? "border-primary text-primary"
                   : "border-transparent text-foreground/50 hover:text-foreground"
@@ -392,9 +382,9 @@ const MyOrdersPage = () => {
           ))}
         </div>
 
-        {/* ── Active Orders ── */}
+        {/* Active Orders */}
         {activeTab === "active" && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {activeOrders.length === 0 ? (
               <EmptyState message={t("orders.noActiveOrders")} />
             ) : (
@@ -405,11 +395,11 @@ const MyOrdersPage = () => {
 
             {/* Past orders preview section */}
             {pastOrders.length > 0 && (
-              <div className="pt-4">
-                <h2 className="text-base font-bold text-foreground mb-3">
+              <div className="pt-2">
+                <h2 className="text-base font-bold text-foreground mb-2">
                   {t("orders.pastOrders")}
                 </h2>
-                <div className="rounded-2xl border border-foreground/8 bg-card px-4 divide-y divide-foreground/6 shadow-sm">
+                <div className="rounded-xl border border-foreground/8 bg-card px-3 divide-y divide-foreground/6 shadow-sm">
                   {visiblePast.map((order) => (
                     <PastOrderRow key={order.id} order={order} lang={lang} t={t} />
                   ))}
@@ -418,7 +408,7 @@ const MyOrdersPage = () => {
                 {pastOrders.length > PAST_PREVIEW && (
                   <button
                     onClick={() => setShowAllPast((v) => !v)}
-                    className="mt-3 flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                    className="mt-2 flex items-center gap-1 text-sm font-medium text-primary hover:underline"
                   >
                     {showAllPast
                       ? t("orders.showLess")
@@ -433,13 +423,13 @@ const MyOrdersPage = () => {
           </div>
         )}
 
-        {/* ── Past Orders Tab ── */}
+        {/* Past Orders Tab */}
         {activeTab === "past" && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {pastOrders.length === 0 ? (
               <EmptyState message={t("orders.noPastOrders")} />
             ) : (
-              <div className="rounded-2xl border border-foreground/8 bg-card px-4 shadow-sm">
+              <div className="rounded-xl border border-foreground/8 bg-card px-3 shadow-sm">
                 {pastOrders.map((order) => (
                   <PastOrderRow key={order.id} order={order} lang={lang} t={t} />
                 ))}
@@ -449,13 +439,13 @@ const MyOrdersPage = () => {
           </div>
         )}
 
-        {/* ── Cancelled Tab ── */}
+        {/* Cancelled Tab */}
         {activeTab === "cancelled" && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {cancelledOrders.length === 0 ? (
               <EmptyState message={t("orders.noCancelledOrders")} />
             ) : (
-              <div className="rounded-2xl border border-foreground/8 bg-card px-4 shadow-sm">
+              <div className="rounded-xl border border-foreground/8 bg-card px-3 shadow-sm">
                 {cancelledOrders.map((order) => (
                   <CancelledOrderRow key={order.id} order={order} lang={lang} t={t} />
                 ))}
@@ -474,9 +464,9 @@ const MyOrdersPage = () => {
 // ─────────────────────────────────────────────
 
 const EmptyState = ({ message }: { message: string }) => (
-  <div className="flex flex-col items-center justify-center py-16 gap-3 text-center">
-    <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center">
-      <PackageCheck className="w-7 h-7 text-foreground/25" />
+  <div className="flex flex-col items-center justify-center py-12 gap-2 text-center">
+    <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
+      <PackageCheck className="w-6 h-6 text-foreground/25" />
     </div>
     <p className="text-sm text-foreground/50">{message}</p>
   </div>
