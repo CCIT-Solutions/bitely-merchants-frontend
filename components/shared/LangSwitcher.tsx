@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/custom/button";
 import { useLanguageStore } from "@/stores/useLanguageStore";
 import { useEffect, useState } from "react";
 import { useLang } from "@/hooks/useLang";

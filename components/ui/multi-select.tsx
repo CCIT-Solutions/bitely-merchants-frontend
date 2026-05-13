@@ -4,7 +4,7 @@ import { CheckIcon, X, ChevronDown, XIcon, WandSparkles } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/custom/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Popover,

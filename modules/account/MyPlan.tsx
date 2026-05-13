@@ -112,9 +112,8 @@ function mapToMeal(food: FoodItem): FoodItem {
   return {
     id: food.id,
     name: { en: food.name.en, ar: food.name.ar },
-    description: food.description
-      ? { en: food.description.en, ar: food.description.ar }
-      : undefined,
+    description: { en: food.description.en, ar: food.description.ar },
+
     tag: food.tag,
     protein: food.protein ?? 0,
     carbs: food.carbs ?? 0,
@@ -127,13 +126,18 @@ function mapToMeal(food: FoodItem): FoodItem {
   };
 }
 
-function getSwapOptions(currentId: string | null, filter: FilterKey): FoodItem[] {
+function getSwapOptions(
+  currentId: string | null,
+  filter: FilterKey,
+): FoodItem[] {
   let opts = FOOD_ITEMS.map(mapToMeal).filter((m) => m.id !== currentId);
-  if (filter === "high protein") opts = opts.filter((m) => (m.protein ?? 0) >= 30);
-  if (filter === "< 500 kcal") opts = opts.filter((m) => (m.calories ?? 0) <= 500);
+  if (filter === "high protein")
+    opts = opts.filter((m) => (m.protein ?? 0) >= 30);
+  if (filter === "< 500 kcal")
+    opts = opts.filter((m) => (m.calories ?? 0) <= 500);
   if (filter === "plant-based")
     opts = opts.filter(
-      (m) => FOOD_ITEMS.find((f) => f.id === m.id)?.dietType === "vegetarian"
+      (m) => FOOD_ITEMS.find((f) => f.id === m.id)?.dietType === "vegetarian",
     );
   return opts;
 }
@@ -145,7 +149,7 @@ function buildInitialMeals(days: Date[]): MealsMap {
       f.name.en.toLowerCase().includes("salad") ||
       f.name.en.toLowerCase().includes("oat") ||
       f.name.en.toLowerCase().includes("egg") ||
-      f.name.en.toLowerCase().includes("toast")
+      f.name.en.toLowerCase().includes("toast"),
   ).map(mapToMeal);
   const lunchPool = FOOD_ITEMS.slice(0, 7).map(mapToMeal);
   const dinnerPool = FOOD_ITEMS.slice(7, 14).map(mapToMeal);
@@ -168,7 +172,9 @@ function buildInitialMeals(days: Date[]): MealsMap {
 
 // ─── Draggable Strip Hook ─────────────────────────────────────────────────────
 
-function useDraggableScroll(ref: React.RefObject<HTMLDivElement>) {
+function useDraggableScroll(
+  ref: React.RefObject<HTMLDivElement | null>,
+) {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
@@ -293,7 +299,7 @@ function MealCard({ meal, lang, onSwap, t }: MealCardProps) {
           "text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold text-foreground/40",
           "hover:border-primary-foreground/20 hover:text-primary-foreground hover:bg-primary",
           "transition-all duration-150 cursor-pointer",
-          "group-hover:opacity-100 focus:opacity-100 opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
+          "group-hover:opacity-100 focus:opacity-100 opacity-100 sm:opacity-0 sm:group-hover:opacity-100",
         )}
       >
         <MdSwapHoriz className="size-3 sm:size-4" />
@@ -316,7 +322,7 @@ function EmptySlot({ onAdd, t }: EmptySlotProps) {
         "border border-dashed border-foreground/10 rounded-2xl",
         "text-[11px] uppercase tracking-widest text-foreground/25",
         "hover:border-foreground/25 hover:text-foreground/45 hover:bg-foreground/[0.01]",
-        "transition-all duration-150 cursor-pointer"
+        "transition-all duration-150 cursor-pointer",
       )}
     >
       <MdAdd className="size-4" />
@@ -335,7 +341,15 @@ interface SlotCardProps {
   isRTL: boolean;
 }
 
-function SlotCard({ slot, meal, lang, onSwap, onAdd, t, isRTL }: SlotCardProps) {
+function SlotCard({
+  slot,
+  meal,
+  lang,
+  onSwap,
+  onAdd,
+  t,
+  isRTL,
+}: SlotCardProps) {
   const timeLabel = slot.key === "snacks" ? t(slot.time) : slot.time;
 
   return (
@@ -352,10 +366,7 @@ function SlotCard({ slot, meal, lang, onSwap, onAdd, t, isRTL }: SlotCardProps) 
         <span className="text-[11px] font-bold uppercase tracking-widest text-foreground/60 flex-1">
           {t(slot.labelKey)}
         </span>
-        <span
-          className="text-[10px] tracking-wide px-2 py-0.5 rounded-full font-medium bg-primary text-white"
-        
-        >
+        <span className="text-[10px] tracking-wide px-2 py-0.5 rounded-full font-medium bg-primary text-white">
           {timeLabel}
         </span>
       </div>
@@ -372,7 +383,7 @@ function SlotCard({ slot, meal, lang, onSwap, onAdd, t, isRTL }: SlotCardProps) 
                 "border border-dashed border-foreground/20 rounded-xl",
                 "text-[10px] uppercase tracking-widest text-foreground/60",
                 "hover:border-foreground/20 hover:text-foreground/70",
-                "transition-all duration-150 cursor-pointer"
+                "transition-all duration-150 cursor-pointer",
               )}
             >
               <MdAdd className="size-3.5" />
@@ -436,12 +447,14 @@ function SwapModal({
         "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm",
         // Mobile: bottom sheet | Desktop: centered
         "flex items-end justify-center",
-        "sm:items-center sm:justify-center sm:p-6"
+        "sm:items-center sm:justify-center sm:p-6",
       )}
       onClick={handleBackdrop}
       role="dialog"
       aria-modal="true"
-      aria-label={isAddMode ? t("mealPlanner.choosePlate") : t("mealPlanner.swapFor")}
+      aria-label={
+        isAddMode ? t("mealPlanner.choosePlate") : t("mealPlanner.swapFor")
+      }
     >
       <div
         className={cn(
@@ -453,7 +466,7 @@ function SwapModal({
           // Desktop: centered card shape
           "sm:rounded-2xl sm:border sm:border-foreground/15",
           "sm:max-h-[85vh] sm:shadow-2xl sm:shadow-black/20",
-          "animate-in slide-in-from-bottom-4 sm:zoom-in-95 duration-200"
+          "animate-in slide-in-from-bottom-4 sm:zoom-in-95 duration-200",
         )}
         onClick={(e) => e.stopPropagation()}
       >
@@ -471,7 +484,9 @@ function SwapModal({
             />
             <div>
               <h3 className="text-sm font-semibold text-foreground/80">
-                {isAddMode ? t("mealPlanner.choosePlate") : t("mealPlanner.swapFor")}
+                {isAddMode
+                  ? t("mealPlanner.choosePlate")
+                  : t("mealPlanner.swapFor")}
               </h3>
               <p className="text-[11px] text-foreground/40 mt-0.5">
                 {t(slotInfo.labelKey)}
@@ -520,7 +535,7 @@ function SwapModal({
                 "shrink-0 px-3.5 py-1.5 rounded-full text-[10px] font-semibold uppercase tracking-wider transition-all cursor-pointer",
                 filter === fk
                   ? "bg-primary text-primary-foreground border border-primary-foreground/10"
-                  : "border border-foreground/10 text-foreground/45 hover:border-foreground/20 hover:text-foreground/65"
+                  : "border border-foreground/10 text-foreground/45 hover:border-foreground/20 hover:text-foreground/65",
               )}
             >
               {t(FILTER_LABEL_KEYS[fk])}
@@ -549,7 +564,7 @@ function SwapModal({
                       "text-start rounded-xl border overflow-hidden transition-all duration-150 cursor-pointer flex flex-col",
                       isSel
                         ? "border-primary/50 ring-1 ring-primary/20 bg-primary/[0.04]"
-                        : "border-foreground/8 hover:border-foreground/20 dark:bg-primary-foreground/10"
+                        : "border-foreground/8 hover:border-foreground/20 dark:bg-primary-foreground/10",
                     )}
                   >
                     <div className="relative w-full aspect-video overflow-hidden bg-foreground/5">
@@ -604,10 +619,12 @@ function SwapModal({
               "w-full py-3.5 rounded-xl text-sm font-semibold transition-all duration-150",
               selectedSwap
                 ? "bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
-                : "bg-foreground/5 text-foreground/25 cursor-not-allowed"
+                : "bg-foreground/5 text-foreground/25 cursor-not-allowed",
             )}
           >
-            {isAddMode ? t("mealPlanner.confirmAdd") : t("mealPlanner.confirmSwap")}
+            {isAddMode
+              ? t("mealPlanner.confirmAdd")
+              : t("mealPlanner.confirmSwap")}
           </button>
         </div>
       </div>
@@ -636,9 +653,13 @@ export default function MenuMealPlanner() {
   useEffect(() => {
     if (!stripRef.current) return;
     const btn = stripRef.current.querySelector<HTMLButtonElement>(
-      `[data-day-idx="${activeDayIdx}"]`
+      `[data-day-idx="${activeDayIdx}"]`,
     );
-    btn?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    btn?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
   }, [activeDayIdx]);
 
   const activeDay = DAYS[activeDayIdx];
@@ -650,7 +671,9 @@ export default function MenuMealPlanner() {
     snacks: null,
   };
 
-  const allDayMeals = Object.values(dayMeals).filter((m): m is FoodItem => m !== null);
+  const allDayMeals = Object.values(dayMeals).filter(
+    (m): m is FoodItem => m !== null,
+  );
   const dailyKcal = allDayMeals.reduce((s, m) => s + (m.calories ?? 0), 0);
   const dailyProtein = allDayMeals.reduce((s, m) => s + (m.protein ?? 0), 0);
   const dailyCarbs = allDayMeals.reduce((s, m) => s + (m.carbs ?? 0), 0);
@@ -689,8 +712,18 @@ export default function MenuMealPlanner() {
 
   function getMonthLabel(d: Date): string {
     const keys = [
-      "jan", "feb", "mar", "apr", "may", "jun",
-      "jul", "aug", "sep", "oct", "nov", "dec",
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec",
     ];
     return (
       t(`mealPlanner.months.${keys[d.getMonth()]}`) ||
@@ -701,7 +734,6 @@ export default function MenuMealPlanner() {
   return (
     <div className="min-h-screen">
       <div className="relative max-w-2xl mx-auto  sm:px-6 py-6">
-
         {/* ── Day strip (draggable) ── */}
         <div
           ref={stripRef}
@@ -726,8 +758,8 @@ export default function MenuMealPlanner() {
                   active
                     ? "bg-primary border-primary text-primary-foreground"
                     : today
-                    ? "border-primary/30 bg-primary/[0.04] text-primary dark:text-primary/80"
-                    : "border-foreground/8 text-foreground/35 hover:text-foreground/60 hover:border-foreground/18"
+                      ? "border-primary/30 bg-primary/[0.04] text-primary dark:text-primary/80"
+                      : "border-foreground/8 text-foreground/35 hover:text-foreground/60 hover:border-foreground/18",
                 )}
               >
                 <span className="text-[9px] font-bold uppercase tracking-widest leading-none pointer-events-none">
@@ -766,17 +798,23 @@ export default function MenuMealPlanner() {
           <div className="flex gap-2 flex-wrap">
             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-foreground/8 text-[11px] text-foreground/50 bg-foreground/[0.01]">
               <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
-              <strong className="text-foreground/70 font-semibold">{dailyKcal}</strong>{" "}
+              <strong className="text-foreground/70 font-semibold">
+                {dailyKcal}
+              </strong>{" "}
               {t("menu.kcal")}
             </span>
             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-foreground/8 text-[11px] text-foreground/50 bg-foreground/[0.01]">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              <strong className="text-foreground/70 font-semibold">{dailyProtein}g</strong>{" "}
+              <strong className="text-foreground/70 font-semibold">
+                {dailyProtein}g
+              </strong>{" "}
               {t("menu.protein")}
             </span>
             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-foreground/8 text-[11px] text-foreground/50 bg-foreground/[0.01]">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-              <strong className="text-foreground/70 font-semibold">{dailyCarbs}g</strong>{" "}
+              <strong className="text-foreground/70 font-semibold">
+                {dailyCarbs}g
+              </strong>{" "}
               {t("menu.carbs")}
             </span>
           </div>
