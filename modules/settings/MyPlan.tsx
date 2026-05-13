@@ -319,7 +319,7 @@ function DayView({
           {day}, Apr 2026
         </span>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col lg:flex-row gap-4">
         {SLOTS.map((slot) => {
           const meal = weekMeals[slot.key][dayIdx];
 
@@ -689,10 +689,10 @@ export default function MenuMealPlanner() {
     (view === "week" || view === "day" || view === "list");
 
   return (
-    <div className="min-h-screen pt-20">
-      <div className="relative max-w-6xl mx-auto px-6 py-10">
+    <div className="min-h-screen">
+      <div className="relative max-w-6xl mx-auto px-6">
         {/* ── Header ── */}
-        <div className="flex items-start justify-between flex-wrap gap-4">
+        {/* <div className="flex items-start justify-between flex-wrap gap-4">
           <div className="space-y-4">
             <OrderHeading
               label={`${t("mealPlanner.order")} #BTL-24-07739`}
@@ -728,10 +728,10 @@ export default function MenuMealPlanner() {
               </svg>
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* ── Stats ── */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-8 mt-8 lg:mt-0">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-8 ">
           <StatCard
             value={`${totalMeals}`}
             sub="/21"

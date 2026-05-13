@@ -157,7 +157,7 @@
     "mealsSubtitle": "اختر على الأقل وجبتين.",
     "daysQuestion": "كم عدد <custom>الأيام</custom> في الأسبوع؟",
     "daysSubtitle": "اختر على الأقل ٥ أيام",
-    "minimumDays":"اختر على الأقل ٥ أيام",
+    "minimumDays": "اختر على الأقل ٥ أيام",
     "paymentCycle": "نظام الدفع",
     "enterPromoCode": "أضف رمز الخصم",
     "apply": "تطبيق",
@@ -194,7 +194,7 @@
     "menuTitle": "لمحة عن القائمة",
     "menuSubtitle": "القيم الغذائية",
     "menuClose": "إغلاق",
-      "meals": " وجبات",
+    "meals": " وجبات",
     "days": "أيام في الأسبوع"
   },
   "menu": {
@@ -202,10 +202,42 @@
     "subtitle": "يتجدّد المطبخ كل يوم أحد. كل طبق يُوزن ويُصوَّر ويُوثَّق، لتكون تجربتك طوال الأسبوع أشبه بمجلة فاخرة، لا مجرد خطة وجبات.",
     "seeFullMenu": "عرض القائمة الكاملة",
     "protein": "البروتين",
-    "carbs": "الكربوهيدرات",
+    "carbs": "كارب",
     "fat": "الدهون",
-    "kcal": "سعرة حرارية",
+    "kcal": "سعرة ",
     "customizableMacros": "إمكانية تخصيص القيم الغذائية",
+    "myMeals": "وجباتي",
+    "myMealsSubtitle": "جميع وجباتك المحفوظة في مكان واحد.",
+    "searchPlaceholder": "ابحث عن وجباتك...",
+    "filters": "تصفية",
+    "filtersPlaceholder": "ستظهر خيارات التصفية هنا.",
+    "allMeals": "جميع الوجبات",
+    "breakfast": "الإفطار",
+    "lunch": "الغداء",
+    "dinner": "العشاء",
+    "snacks": "الوجبات الخفيفة",
+    "sortBy": "ترتيب حسب",
+    "recentlyAdded": "الأحدث إضافةً",
+    "caloriesAsc": "السعرات (من الأقل)",
+    "caloriesDesc": "السعرات (من الأعلى)",
+    "name": "الاسم",
+    "loadMore": "تحميل المزيد من الوجبات",
+    "noMealsFound": "لا توجد وجبات",
+    "noMealsFoundSubtitle": "حاول تعديل البحث أو التصفية.",
+    "createMealTitle": "أنشئ وجبتك الخاصة",
+    "createMealSubtitle": "امزج المكونات واحفظ وصفتك لتصبح جزءًا من خطتك.",
+    "createMeal": "إنشاء وجبة",
+    "favourite": "أضف إلى المفضلة",
+    "unfavourite": "إزالة من المفضلة",
+    "advancedFilters": "الفلاتر المتقدمة",
+    "macros": "العناصر الغذائية",
+    "calories": "السعرات الحرارية",
+    "min": "الحد الأدنى",
+    "max": "الحد الأقصى",
+    "dietTypes": "أنواع الحمية",
+    "resetFilters": "إعادة تعيين الفلاتر",
+    "applyFilters": "تطبيق الفلاتر",
+
     "dietTabs": [
       {
         "id": "all",
@@ -253,6 +285,211 @@
         }
       ]
     }
+  },
+
+  "account": {
+    "myProfile": "الملف الشخصي",
+    "myPlan": "باقتي",
+    "myMeals": "وجباتي",
+    "myOrders": "طلباتي",
+    "favorites": "مفضلاتي",
+    "myProgress": "تقدمي",
+    "paymentAndBilling": "الدفع والفواتير",
+    "accountSection": "قسم الحساب",
+    "myAccount": "حسابي",
+    "manageProfileAndPlans": "إدارة ملفك الشخصي وخططك",
+    "oneBiteAtATime": "خطوة صحية لحياة أفضل.",
+    "startingMonday": "ابدأ معنا يوم الإثنين.",
+    "takeTheGuessworkOut": "خلّي Bitely يهتم بوجباتك الصحية لتستمتع بالأكل الصحي بكل سهولة.",
+    "explorePlans": "استكشف الخطط",
+    "healthyMealsAlt": "وجبات صحية",
+    "sidebarDishAlt": "طبق جانبي",
+    "currentSubscription": "الاشتراك الحالي",
+    "bitelySignature": "باقة Bitely المميزة",
+    "active": "نشط",
+    "perfectBalanceDescription": "التوازن المثالي بين التخصيص، التنوع، والإرشادات الاحترافية.",
+    "personalizedMealPlans": "خطط وجبات مخصصة",
+    "newDishesEveryWeek": "أكثر من 17 طبقًا جديدًا كل أسبوع",
+    "advancedNutritionInsights": "تحليلات غذائية متقدمة",
+    "groceryListAndSmartShopping": "قائمة مشتريات وتسوق ذكي",
+    "prioritySupport": "دعم أولوية",
+    "perMonth": "/ شهريًا",
+    "renewsOn": "يتجدد في",
+    "manageSubscription": "إدارة الاشتراك"
+  },
+
+  "profile": {
+    "proMember": "عضو برو",
+    "joined": "تاريخ الانضمام",
+    "edit": "تعديل",
+     "day": "يوم",
+    "mealsCooked": "وجبة صحية ",
+    "currentStreak": "الإلتزام الصحي",
+    "weightLost": "الوزن المفقود",
+    "goalProgress": "التقدم نحو الهدف",
+    "yourPlanUsage": "استخدام خطتك",
+    "mealsThisMonth": "الوجبات هذا الشهر",
+    "plansCreated": "الخطط التي تم إنشاؤها",
+    "customRecipes": "وصفات مخصصة",
+    "needMore": "تحتاج المزيد؟ قم بترقية خطتك للحصول على المزيد من الوجبات والميزات المتقدمة.",
+    "upgradePlan": "ترقية الخطة",
+    "personalInformation": "المعلومات الشخصية",
+    "fullName": "الاسم الكامل",
+    "emailAddress": "البريد الإلكتروني",
+    "phoneNumber": "رقم الهاتف",
+    "location": "الموقع",
+    "password": "كلمة المرور",
+    "changePassword": "تغيير كلمة المرور"
+  },
+
+  "preferences": {
+    "personalPreferences": "التفضيلات الشخصية",
+    "dietaryPreference": "النظام الغذائي المفضل",
+    "highProtein": "عالي البروتين",
+    "allergies": "الحساسيات الغذائية",
+    "nutsDairy": "المكسرات، الألبان",
+    "cookingTime": "مدة التحضير",
+    "thirtyToFortyFiveMin": "30–45 دقيقة",
+    "spiceLevel": "مستوى التوابل",
+    "mild": "خفيف",
+    "units": "الوحدات",
+    "metric": "النظام المتري (كجم، سم)",
+    "currentSubscription": "الاشتراك الحالي",
+    "bitelySignature": "باقة Bitely المميزة",
+    "active": "نشط",
+    "perfectBalanceDescription": "التوازن المثالي بين التخصيص، التنوع، والإرشادات الاحترافية.",
+    "personalizedMealPlans": "خطط وجبات مخصصة",
+    "newDishesEveryWeek": "أكثر من 17 طبقًا جديدًا كل أسبوع",
+    "advancedNutritionInsights": "تحليلات غذائية متقدمة",
+    "groceryListAndSmartShopping": "قائمة مشتريات وتسوق ذكي",
+    "prioritySupport": "دعم أولوية",
+    "perMonth": "/ شهريًا",
+    "renewsOn": "يتجدد في",
+    "manageSubscription": "إدارة الاشتراك"
+  },
+
+  "orders": {
+    "myOrders": "طلباتي",
+    "subtitle": "تابع وأدر خطط وجباتك وطلبات التوصيل بسهولة.",
+
+    "activeOrders": "الطلبات النشطة",
+    "pastOrders": "الطلبات السابقة",
+    "cancelled": "الملغاة",
+
+    "confirmed": "تم التأكيد",
+    "preparing": "قيد التحضير",
+    "onTheWay": "في الطريق",
+    "delivered": "تم التوصيل",
+
+    "deliveryToday": "التوصيل:",
+    "deliveredOn": "تم التوصيل بتاريخ",
+    "cancelledOn": "تم الإلغاء بتاريخ",
+
+    "orderNumber": "رقم الطلب",
+    "meals": "وجبات",
+
+    "viewDetails": "عرض التفاصيل",
+    "trackOrder": "تتبع الطلب",
+    "reorder": "إعادة الطلب",
+
+    "viewAllPastOrders": "عرض جميع الطلبات السابقة",
+    "showLess": "عرض أقل",
+
+    "supportTitle": "هل تحتاج مساعدة بخصوص طلبك؟",
+    "supportSubtitle": "فريق الدعم متاح دائمًا لمساعدتك.",
+    "contactSupport": "تواصل مع الدعم",
+
+    "noActiveOrders": "لا توجد لديك طلبات نشطة.",
+    "noPastOrders": "لا توجد لديك طلبات سابقة.",
+    "noCancelledOrders": "لا توجد لديك طلبات ملغاة."
+  },
+
+  "favourites": {
+    "title": "المفضلة",
+    "subtitle": "تم حفظ {{count}} وجبات مفضلة",
+    "clearAll": "حذف الكل",
+    "clearAllConfirmTitle": "حذف جميع المفضلات؟",
+    "clearAllConfirmDescription": "سيتم إزالة جميع الوجبات من قائمة المفضلة الخاصة بك.",
+    "emptyTitle": "لا توجد مفضلات بعد",
+    "emptySubtitle": "ابدأ بإضافة الوجبات التي تحبها للوصول إليها بسهولة في أي وقت.",
+    "emptyHint": "اضغط على أيقونة القلب على أي وجبة لحفظها هنا."
+  },
+
+  "progress": {
+    "title": "تقدمي",
+    "subtitle": "تابع رحلتك وتحسنك مع الوقت",
+
+    "overview": "نظرة عامة",
+    "weight": "الوزن",
+    "nutrition": "التغذية",
+    "activity": "النشاط",
+
+    "range1Month": "شهر واحد",
+    "range3Months": "3 أشهر",
+    "range6Months": "6 أشهر",
+    "range1Year": "سنة واحدة",
+
+    "weightLost": "الوزن المفقود",
+    "weekStreak": "الإلتزام الصحي",
+    "goalProgress": "تقدم الهدف",
+    "mealsCooked": "الوجبات المحضرة",
+
+    "weightProgress": "تقدم الوزن",
+    "insights": "رؤى",
+
+    "insight1": "أنت تفقد الوزن بشكل منتظم وبمعدل صحي.",
+    "insight2": "تناولك للسعرات الحرارية متوافق مع هدفك.",
+    "insight3": "حاول زيادة البروتين لتحسين النتائج.",
+
+    "viewFullReport": "عرض التقرير الكامل",
+
+    "progressPhotos": "صور التقدم",
+    "milestones": "الإنجازات",
+    "viewAllMilestones": "عرض كل الإنجازات",
+
+    "milestoneFirstWeek": "إكمال الأسبوع الأول",
+    "milestone5kg": "خسارة 5 كجم",
+    "milestone10Meals": "تسجيل 10 وجبات صحية",
+    "milestone7Day": "سلسلة 7 أيام",
+
+    "coachTitle": "تحتاج إرشاد من المدرب؟",
+    "coachSubtitle": "احصل على نصائح مخصصة لتحقيق هدفك بشكل أسرع.",
+    "chatWithCoach": "تحدث مع المدرب"
+  },
+
+  "payment": {
+    "title": "الدفع والفواتير",
+    "subtitle": "إدارة الاشتراك وطرق الدفع وسجل الفواتير",
+
+    "currentSubscription": "الاشتراك الحالي",
+    "planName": "الباقة الاحترافية",
+    "planActive": "نشط",
+    "planDescription": "احصل على وصول كامل لجميع المميزات والمحتوى المميز.",
+    "perMonth": "شهريًا",
+    "renewsOn": "يتجدد في",
+    "manageSubscription": "إدارة الاشتراك",
+
+    "billingHistory": "سجل الفواتير",
+    "viewAllInvoices": "عرض جميع الفواتير",
+    "billingDescMonthly": "دفع اشتراك شهري",
+
+    "paymentMethods": "طرق الدفع",
+    "expires": "ينتهي في",
+    "default": "افتراضي",
+    "addNewCard": "إضافة بطاقة جديدة",
+
+    "billingDetails": "تفاصيل الفواتير",
+    "edit": "تعديل",
+
+    "detailName": "الاسم",
+    "detailEmail": "البريد الإلكتروني",
+    "detailAddress": "العنوان",
+    "detailPhone": "رقم الهاتف",
+    "detailTaxId": "الرقم الضريبي",
+
+    "setDefault": "تعيين كافتراضي",
+    "editCard": "تعديل البطاقة",
+    "removeCard": "حذف البطاقة"
   },
 
   "mealPlanner": {

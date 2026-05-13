@@ -191,7 +191,7 @@ function Menu() {
           >
             <div className="flex gap-5 lg:gap-7.5 px-5">
               {filteredFoodItems.map((item) => (
-                <FoodCard key={item.id} item={item} />
+                <FoodCard key={item.id} item={item} className="min-w-50" />
               ))}
             </div>
           </div>

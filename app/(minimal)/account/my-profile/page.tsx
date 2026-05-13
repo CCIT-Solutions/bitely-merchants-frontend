@@ -1,12 +1,12 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-const Menu = dynamic(() => import("@/modules/meal-planner"));
+const MyProfile = dynamic(() => import("@/modules/settings/MyProfile"));
 
 export const metadata: Metadata = {
-  title: "Bitely - Menu",
+  title: "Bitely - My Profile",
 };
 
 function page() {
-  return <Menu />;
+  return <MyProfile />;
 }
 export default page;

@@ -138,7 +138,7 @@
     }
   },
 
-   "steppers": {
+  "steppers": {
     "plan": "Plan",
     "menu": "Menu",
     "checkout": "Checkout",
@@ -159,8 +159,8 @@
     "daysSubtitle": "Select a minimum of 5 days",
     "minimumDays": "Select a minimum of 5 days",
     "paymentCycle": "Payment Cycle",
-      "enterPromoCode": "Enter promo code",
-      "apply": "Apply",
+    "enterPromoCode": "Enter promo code",
+    "apply": "Apply",
     "weekly": "Weekly",
     "monthly": "Monthly",
     "quarterly": "3-months",
@@ -193,8 +193,8 @@
     "vegetarian_desc": "Plant-based dishes with colorful veggies and hearty grains",
     "menuTitle": "Menu Sneak Peek",
     "menuSubtitle": "macros",
-    "menuClose": "Close", 
-      "meals": "meals",
+    "menuClose": "Close",
+    "meals": "meals",
     "days": "days per week"
   },
 
@@ -207,6 +207,37 @@
     "fat": "Fat",
     "kcal": "kcal",
     "customizableMacros": "Customisable macros",
+    "myMeals": "My Meals",
+    "myMealsSubtitle": "All your saved meals, in one place.",
+    "searchPlaceholder": "Search your meals...",
+    "filters": "Filters",
+    "filtersPlaceholder": "Filter options will appear here.",
+    "allMeals": "All Meals",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "snacks": "Snacks",
+    "sortBy": "Sort by",
+    "recentlyAdded": "Recently Added",
+    "caloriesAsc": "Calories (Low → High)",
+    "caloriesDesc": "Calories (High → Low)",
+    "name": "Name",
+    "loadMore": "Load more meals",
+    "noMealsFound": "No meals found",
+    "noMealsFoundSubtitle": "Try adjusting your search or filters.",
+    "createMealTitle": "Create your own meal",
+    "createMealSubtitle": "Mix ingredients, save your recipe and make it part of your plan.",
+    "createMeal": "Create a Meal",
+    "favourite": "Add to favourites",
+    "unfavourite": "Remove from favourites",
+    "advancedFilters": "Advanced Filters",
+    "macros": "Macros",
+    "calories": "Calories",
+    "min": "Min",
+    "max": "Max",
+    "dietTypes": "Diet Types",
+    "resetFilters": "Reset Filters",
+    "applyFilters": "Apply Filters",
     "dietTabs": [
       {
         "id": "all",
@@ -255,6 +286,88 @@
       ]
     }
   },
+
+  "account": {
+    "myProfile": "My Profile",
+    "myPlan": "My Plan",
+    "myMeals": "My Meals",
+    "myOrders": "My Orders",
+    "favorites": "Favorites",
+    "myProgress": "My Progress",
+    "paymentAndBilling": "Payment & Billing",
+    "accountSection": "Account Section",
+    "myAccount": "My Account",
+    "manageProfileAndPlans": "Manage your profile & plans",
+    "oneBiteAtATime": "One bite at a time.",
+    "startingMonday": "Starting Monday.",
+    "takeTheGuessworkOut": "Take the guesswork out of eating healthy. Let Bitely handle the planning.",
+    "explorePlans": "Explore Plans",
+    "healthyMealsAlt": "healthy meals",
+    "sidebarDishAlt": "Sidebar Dish", 
+     "currentSubscription": "Current Subscription",
+    "bitelySignature": "Bitely Signature",
+    "active": "Active",
+    "perfectBalanceDescription": "Perfect balance of personalization, variety, and expert guidance.",
+    "personalizedMealPlans": "Personalized meal plans",
+    "newDishesEveryWeek": "17+ new dishes every week",
+    "advancedNutritionInsights": "Advanced nutrition insights",
+    "groceryListAndSmartShopping": "Grocery list & smart shopping",
+    "prioritySupport": "Priority support",
+    "perMonth": "/ month",
+    "renewsOn": "Renews on",
+    "manageSubscription": "Manage Subscription"
+  },
+
+  "profile": {
+    "proMember": "Pro Member",
+    "joined": "Joined",
+    "edit": "Edit",
+     "day": "Day",
+    "mealsCooked": "Meals Cooked",
+    "currentStreak": "Current Streak",
+    "weightLost": "Weight Lost",
+    "goalProgress": "Goal Progress",
+    "yourPlanUsage": "Your Plan Usage",
+    "mealsThisMonth": "Meals this month",
+    "plansCreated": "Plans created",
+    "customRecipes": "Custom recipes",
+    "needMore": "Need more? Upgrade your plan for more meals and advanced features.",
+    "upgradePlan": "Upgrade Plan",
+    "personalInformation": "Personal Information",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "phoneNumber": "Phone Number",
+    "location": "Location",
+    "password": "Password",
+    "changePassword": "Change Password"
+  },
+
+  "preferences": {
+    "personalPreferences": "Personal Preferences",
+    "dietaryPreference": "Dietary Preference",
+    "highProtein": "High Protein",
+    "allergies": "Allergies",
+    "nutsDairy": "Nuts, Dairy",
+    "cookingTime": "Cooking Time",
+    "thirtyToFortyFiveMin": "30–45 min",
+    "spiceLevel": "Spice Level",
+    "mild": "Mild",
+    "units": "Units",
+    "metric": "Metric (kg, cm)", 
+      "currentSubscription": "Current Subscription",
+    "bitelySignature": "Bitely Signature",
+    "active": "Active",
+    "perfectBalanceDescription": "Perfect balance of personalization, variety, and expert guidance.",
+    "personalizedMealPlans": "Personalized meal plans",
+    "newDishesEveryWeek": "17+ new dishes every week",
+    "advancedNutritionInsights": "Advanced nutrition insights",
+    "groceryListAndSmartShopping": "Grocery list & smart shopping",
+    "prioritySupport": "Priority support",
+    "perMonth": "/ month",
+    "renewsOn": "Renews on",
+    "manageSubscription": "Manage Subscription"
+  },
+
   "mealPlanner": {
     "order": "Order",
     "heading": "Plate your <custom>week.</custom/>",
@@ -313,6 +426,131 @@
       "lunch": "12–2 PM",
       "dinner": "6–8 PM"
     }
+  },
+
+  "orders": {
+    "myOrders": "My Orders",
+    "subtitle": "Track and manage your meal plans and deliveries.",
+
+    "activeOrders": "Active Orders",
+    "pastOrders": "Past Orders",
+    "cancelled": "Cancelled",
+
+    "confirmed": "Confirmed",
+    "preparing": "Preparing",
+    "onTheWay": "On the Way",
+    "delivered": "Delivered",
+
+    "deliveryToday": "Delivery:",
+    "deliveredOn": "Delivered on",
+    "cancelledOn": "Cancelled on",
+
+    "orderNumber": "Order",
+    "meals": "Meals",
+
+    "viewDetails": "View Details",
+    "trackOrder": "Track Order",
+    "reorder": "Reorder",
+
+    "viewAllPastOrders": "View all past orders",
+    "showLess": "Show less",
+
+    "supportTitle": "Need help with your order?",
+    "supportSubtitle": "Our support team is available anytime for assistance.",
+    "contactSupport": "Contact Support",
+
+    "noActiveOrders": "You don't have any active orders.",
+    "noPastOrders": "You don't have any past orders.",
+    "noCancelledOrders": "You don't have any cancelled orders."
+  },
+
+  "favourites": {
+    "title": "Favourites",
+    "subtitle": "{{count}} favourite meals saved",
+    "clearAll": "Clear All",
+    "clearAllConfirmTitle": "Clear all favourites?",
+    "clearAllConfirmDescription": "This will remove all meals from your favourites list.",
+    "emptyTitle": "No favourites yet",
+    "emptySubtitle": "Start adding meals you love to quickly access them anytime.",
+    "emptyHint": "Tap the heart icon on any meal to save it here."
+  },
+
+  "progress": {
+    "title": "My Progress",
+    "subtitle": "Track your journey and improvements over time",
+
+    "overview": "Overview",
+    "weight": "Weight",
+    "nutrition": "Nutrition",
+    "activity": "Activity",
+
+    "range1Month": "1 Month",
+    "range3Months": "3 Months",
+    "range6Months": "6 Months",
+    "range1Year": "1 Year",
+
+    "weightLost": "Weight Lost",
+    "weekStreak": "Week Streak",
+    "goalProgress": "Goal Progress",
+    "mealsCooked": "Meals Cooked",
+
+    "weightProgress": "Weight Progress",
+    "insights": "Insights",
+
+    "insight1": "You are consistently losing weight at a healthy pace.",
+    "insight2": "Your calorie intake is well aligned with your goal.",
+    "insight3": "Try increasing protein intake for better results.",
+
+    "viewFullReport": "View Full Report",
+
+    "progressPhotos": "Progress Photos",
+    "milestones": "Milestones",
+    "viewAllMilestones": "View All Milestones",
+
+    "milestoneFirstWeek": "Completed first week",
+    "milestone5kg": "Lost 5 kg",
+    "milestone10Meals": "Logged 10 healthy meals",
+    "milestone7Day": "7-day streak",
+
+    "coachTitle": "Need guidance from your coach?",
+    "coachSubtitle": "Get personalized advice to reach your goal faster.",
+    "chatWithCoach": "Chat with Coach"
+  },
+
+  "payment": {
+    "title": "Payment & Billing",
+    "subtitle": "Manage your subscription, payment methods, and billing history",
+
+    "currentSubscription": "Current Subscription",
+    "planName": "Pro Plan",
+    "planActive": "Active",
+    "planDescription": "Unlock full access to all features and premium content.",
+    "perMonth": "/ month",
+    "renewsOn": "Renews on",
+    "manageSubscription": "Manage Subscription",
+
+    "billingHistory": "Billing History",
+    "viewAllInvoices": "View All Invoices",
+    "billingDescMonthly": "Monthly subscription payment",
+
+    "paymentMethods": "Payment Methods",
+    "expires": "Expires",
+    "default": "Default",
+    "addNewCard": "Add New Card",
+
+    "billingDetails": "Billing Details",
+    "edit": "Edit",
+
+    "detailName": "Name",
+    "detailEmail": "Email",
+    "detailAddress": "Address",
+    "detailPhone": "Phone",
+    "detailTaxId": "Tax ID",
+
+    "setDefault": "Set as default",
+    "editCard": "Edit card",
+    "removeCard": "Remove card",
+    "bitelySignatureMonthly": "Bitely Signature – Monthly"
   },
 
   "checkout": {

@@ -7,6 +7,7 @@ export type FoodItem = {
   id: string;
   name: LocalizedText;
   description: LocalizedText;
+  category: string;
   calories?: number;
   protein?: number;
   carbs?: number;
@@ -16,5 +17,3 @@ export type FoodItem = {
   tag?: string;
   customMacros?: boolean;
 };
-
-

@@ -1,6 +1,5 @@
 import { FoodItem } from "@/types/menu";
 
-
 export const DIET_TABS = [
   { id: "all", label: { en: "All dishes", ar: "الكل" }, icon: "/media/images/categories/food.png" },
   { id: "high-protein", label: { en: "High Protein", ar: "بروتين عالي" }, icon: "/media/images/categories/meat.png" },
@@ -11,10 +10,10 @@ export const DIET_TABS = [
   { id: "low-carb", label: { en: "Low Carb", ar: "قليل الكربوهيدرات" }, icon: "/media/images/categories/strawberry.png" },
 ];
 
-
 export const FOOD_ITEMS: FoodItem[] = [
   {
     id: "1",
+    category: "lunch",
     name: { en: "Fiesta Chicken Bowl", ar: "طبق دجاج فييستا" },
     description: {
       en: "Grilled chicken with rice, beans, and fresh veggies.",
@@ -29,6 +28,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "2",
+    category: "dinner",
     name: { en: "Mexican Chicken Enchilada", ar: "إنتشيلادا دجاج مكسيكية" },
     description: {
       en: "Soft tortillas stuffed with chicken and rich Mexican sauce.",
@@ -43,6 +43,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "3",
+    category: "dinner",
     name: { en: "Basil Chicken Alfredo Linguine", ar: "لينجويني ألفريدو بالدجاج والريحان" },
     description: {
       en: "Creamy Alfredo pasta with basil and tender chicken.",
@@ -57,6 +58,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "4",
+    category: "lunch",
     name: { en: "Koshari", ar: "كشري" },
     description: {
       en: "Egyptian mix of rice, pasta, lentils, and tomato sauce.",
@@ -71,6 +73,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "5",
+    category: "dinner",
     name: { en: "Steak & Mash", ar: "ستيك مع بطاطس مهروسة" },
     description: {
       en: "Juicy steak served with creamy mashed potatoes.",
@@ -82,6 +85,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "6",
+    category: "dinner",
     name: { en: "Beef and Parm Cannelloni", ar: "كانيلوني لحم بالبارميزان" },
     description: {
       en: "Stuffed pasta rolls with beef and parmesan cheese.",
@@ -96,6 +100,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "7",
+    category: "lunch",
     name: { en: "Fettucine al Limone", ar: "فيتوتشيني بالليمون" },
     description: {
       en: "Light pasta with lemon zest and creamy sauce.",
@@ -110,6 +115,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "8",
+    category: "dinner",
     name: { en: "Truffle Fettucine Pasta", ar: "فيتوتشيني بالكمأة" },
     description: {
       en: "Rich pasta infused with truffle flavor and cream.",
@@ -124,6 +130,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "9",
+    category: "lunch",
     name: { en: "Tuscan Chicken with Rice", ar: "دجاج توسكان مع الأرز" },
     description: {
       en: "Herbed chicken served with flavorful rice.",
@@ -138,6 +145,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "10",
+    category: "dinner",
     name: { en: "Vegetable Lasagna", ar: "لازانيا بالخضار" },
     description: {
       en: "Layered pasta with mixed vegetables and cheese.",
@@ -152,6 +160,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "11",
+    category: "lunch",
     name: { en: "Beef Tikka Bowl", ar: "طبق تيكا اللحم" },
     description: {
       en: "Spiced beef tikka served with rice and sides.",
@@ -163,6 +172,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "12",
+    category: "snacks",
     name: { en: "Classic Caesar Salad", ar: "سلطة سيزر الكلاسيكية" },
     description: {
       en: "Crisp lettuce with Caesar dressing and grilled chicken.",
@@ -177,6 +187,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "13",
+    category: "lunch",
     name: { en: "Shrimp Murabyan", ar: "روبيان مربيان" },
     description: {
       en: "Spiced shrimp dish served with rice.",
@@ -191,6 +202,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "14",
+    category: "snacks",
     name: { en: "Turkey Pizza Rolls", ar: "رولات بيتزا بالديك الرومي" },
     description: {
       en: "Baked rolls filled with turkey and cheese.",
@@ -205,6 +217,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "15",
+    category: "dinner",
     name: { en: "Shawarma Power Bowl", ar: "طبق شاورما بروتين" },
     description: {
       en: "High-protein shawarma with grains and veggies.",
@@ -219,6 +232,7 @@ export const FOOD_ITEMS: FoodItem[] = [
   },
   {
     id: "16",
+    category: "breakfast",
     name: { en: "Paneer Burjee with Rice", ar: "بانير بهورجي مع الأرز" },
     description: {
       en: "Spiced scrambled paneer served with rice.",

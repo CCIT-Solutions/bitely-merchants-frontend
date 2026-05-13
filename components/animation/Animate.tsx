@@ -10,8 +10,9 @@ import {
 import type { ReactNode } from "react";
 
 type MotionElementTag =
-  | "div"
-  | "section"
+| "div" 
+| "aside" 
+| "section"
   | "article"
   | "header"
   | "footer"
