@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 const ChangePassword = dynamic(
-  () => import("@/modules/settings/ChangePassword"),
+  () => import("@/modules/account/ChangePassword"),
 );
 
 export const metadata: Metadata = {

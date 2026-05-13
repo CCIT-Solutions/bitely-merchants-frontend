@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-const MyProgress = dynamic(() => import("@/modules/settings/MyProgress"));
+const MyProgress = dynamic(() => import("@/modules/account/MyProgress"));
 
 export const metadata: Metadata = {
   title: "Bitely -  My Progress",

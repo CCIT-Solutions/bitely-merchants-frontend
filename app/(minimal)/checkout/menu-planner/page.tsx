@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-const Menu = dynamic(() => import("@/modules/settings/MyMeals"));
+const Menu = dynamic(() => import("@/modules/account/MyMeals"));
 
 export const metadata: Metadata = {
   title: "Bitely - Menu",

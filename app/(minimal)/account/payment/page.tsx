@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-const Payment = dynamic(() => import("@/modules/settings/Payment"));
+const Payment = dynamic(() => import("@/modules/account/Payment"));
 
 export const metadata: Metadata = {
   title: "Bitely - Payment",

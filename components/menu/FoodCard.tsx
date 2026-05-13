@@ -61,10 +61,10 @@ const FoodCard = ({
           aria-label={isFavourite ? t("menu.unfavourite") : t("menu.favourite")}
           onClick={() => onToggleFavourite?.(item.id)}
           className={cn(
-            "absolute top-2.5 inset-e-2.5 size-8 rounded-full flex items-center justify-center bg-background/10 cursor-pointer",
+            "absolute top-2.5 inset-e-2.5 size-7 rounded-full flex items-center justify-center bg-background/10 cursor-pointer",
             "shadow-md backdrop-blur-xs transition-all duration-200",
             isFavourite
-              ? " text-white scale-110"
+              ? " text-red-400 scale-110"
               : " text-foreground/40 hover:text-red-400"
           )}
         >

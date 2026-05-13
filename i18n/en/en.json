@@ -407,6 +407,22 @@
     "filterPlantBased": "Plant-based",
     "confirmSwap": "Confirm swap",
     "confirmAdd": "Confirm add",
+    "today": "Today",
+    "replacing": "Replacing",
+     "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    },
     "days": {
       "mon": "Mon",
       "tue": "Tue",
@@ -419,7 +435,8 @@
     "slots": {
       "breakfast": "Breakfast",
       "lunch": "Lunch",
-      "dinner": "Dinner"
+      "dinner": "Dinner",      "snacks": "Snacks",
+      "anytime": "Anytime"
     },
     "times": {
       "breakfast": "7–9 AM",

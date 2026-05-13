@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,9 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
   "include": [
@@ -37,9 +31,9 @@
     "components/home/Community.jsx",
     "components/home/FindYourPLan.jsx",
     "components/home/Testimonial.jsx",
-    ".next/dev/types/**/*.ts"
-, "modules/settings/MyPlan.jsx", "modules/settings/MyProfile.jsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    ".next/dev/types/**/*.ts",
+    "modules/account/MyPlan.jsx",
+    "modules/account/MyProfile.jsx"
+  ],
+  "exclude": ["node_modules"]
 }
