@@ -365,7 +365,7 @@ const MyOrdersPage = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 border-b border-foreground/8 overflow-x-auto pb-1 -mx-3 px-3">
+        <div className="flex gap-1 overflow-x-auto -mx-3 px-3">
           {TABS.map(({ key, labelKey }) => (
             <button
               key={key}
