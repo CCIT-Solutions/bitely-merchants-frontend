@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Google_Sans_Flex } from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers";
 import "@/i18n/i18n";
@@ -24,12 +24,12 @@ export const leagueSpartan = localFont({
   preload: true,
 });
 
-const IBMPlexSansArabic = IBM_Plex_Sans_Arabic({
+const IBMPlexSansArabic = Google_Sans_Flex({
   variable: "--font-IBMPlexSansArabic",
   weight: ["100", "400", "500", "600", "700"],
   display: "swap",
   preload: true,
-  subsets: ["arabic", "latin"],
+  subsets: [ "latin"],
 });
 
 export const metadata: Metadata = {
