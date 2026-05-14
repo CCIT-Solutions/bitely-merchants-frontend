@@ -237,7 +237,7 @@
     "dietTypes": "Diet Types",
     "resetFilters": "Reset Filters",
     "applyFilters": "Apply Filters",
-   
+
     "nav": {
       "home": "Home",
       "meals": "Meals",
@@ -314,8 +314,8 @@
           "desc": "Life changes and your plan can too. Adjust up to 24 hours before delivery with no hassle."
         }
       ]
-    }, 
-       "search": {
+    },
+    "search": {
       "placeholder": "Search meals, ingredients...",
       "allCategories": "All Categories",
       "allDiets": "All Diets",
@@ -363,7 +363,7 @@
       "lowSugar": "Low Sugar"
     },
     "filters": {
-      "resetFilters": "Reset Filters", 
+      "resetFilters": "Reset Filters",
       "filters": "Filters"
     },
     "banner": {
@@ -385,8 +385,6 @@
       "feature3Title": "New meals every week",
       "feature3Desc": "Fresh, exciting recipes to keep your meals enjoyable."
     }
-    
-  
   },
 
   "account": {
@@ -405,8 +403,8 @@
     "takeTheGuessworkOut": "Take the guesswork out of eating healthy. Let Bitely handle the planning.",
     "explorePlans": "Explore Plans",
     "healthyMealsAlt": "healthy meals",
-    "sidebarDishAlt": "Sidebar Dish", 
-     "currentSubscription": "Current Subscription",
+    "sidebarDishAlt": "Sidebar Dish",
+    "currentSubscription": "Current Subscription",
     "bitelySignature": "Bitely Signature",
     "active": "Active",
     "perfectBalanceDescription": "Perfect balance of personalization, variety, and expert guidance.",
@@ -424,7 +422,7 @@
     "proMember": "Pro Member",
     "joined": "Joined",
     "edit": "Edit",
-     "day": "Day",
+    "day": "Day",
     "mealsCooked": "Meals Cooked",
     "currentStreak": "Current Streak",
     "weightLost": "Weight Lost",
@@ -455,8 +453,8 @@
     "spiceLevel": "Spice Level",
     "mild": "Mild",
     "units": "Units",
-    "metric": "Metric (kg, cm)", 
-      "currentSubscription": "Current Subscription",
+    "metric": "Metric (kg, cm)",
+    "currentSubscription": "Current Subscription",
     "bitelySignature": "Bitely Signature",
     "active": "Active",
     "perfectBalanceDescription": "Perfect balance of personalization, variety, and expert guidance.",
@@ -511,7 +509,7 @@
     "confirmAdd": "Confirm add",
     "today": "Today",
     "replacing": "Replacing",
-     "months": {
+    "months": {
       "jan": "Jan",
       "feb": "Feb",
       "mar": "Mar",
@@ -537,7 +535,8 @@
     "slots": {
       "breakfast": "Breakfast",
       "lunch": "Lunch",
-      "dinner": "Dinner",      "snacks": "Snacks",
+      "dinner": "Dinner",
+      "snacks": "Snacks",
       "anytime": "Anytime"
     },
     "times": {
@@ -818,7 +817,7 @@
 
     "fields": {
       "fullName": "Full Name",
-      "fullNamePlaceholder": "Mira Lahoud",
+      "fullNamePlaceholder": "ashedAhmed",
       "email": "Email",
       "emailPlaceholder": "you@domain.com",
       "phoneOptional": "Phone (Optional)",

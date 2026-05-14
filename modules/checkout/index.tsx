@@ -487,7 +487,7 @@ function ApplePayPane({
         {[
           ["Pay to", "Bitely Foods Co."],
           ["Card", "•••• 4929 · Visa"],
-          ["Contact", "mira@example.com"],
+          ["Contact", "rashed@example.com"],
           ["Shipping", "Riyadh · 11564"],
         ].map(([l, v]) => (
           <div
@@ -670,7 +670,7 @@ function OrderSummary({
         onClick={onPay}
         disabled={loading}
         className={`w-full py-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 disabled:opacity-70
-          ${method === "apple" ? "bg-white text-black hover:bg-gray-100" : "bg-primary text-primary-foreground hover:brightness-105"}`}
+          ${method === "apple" ? "bg-white text-black hover:bg-gray-100" : "bg-primary text-white hover:brightness-105"}`}
       >
         {loading ? (
           <svg
@@ -737,8 +737,8 @@ export default function CheckoutPage() {
   const contactForm = useForm<ContactFormType>({
     resolver: zodResolver(ContactSchema),
     defaultValues: {
-      fullName: "Mira Lahoud",
-      email: "mira@example.com",
+      fullName: "RashedAhmed",
+      email: "rashed@example.com",
       phone_number: undefined,
       city: "",
       district: "",
@@ -874,14 +874,14 @@ export default function CheckoutPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <CustomField name="fullName" label="Full name">
                         {(field) => (
-                          <Input placeholder="Mira Lahoud" {...field} />
+                          <Input placeholder="RashedAhmed" {...field} />
                         )}
                       </CustomField>
 
                       <CustomField name="email" label="Email">
                         {(field) => (
                           <Input
-                            placeholder="mira@example.com"
+                            placeholder="rashed@example.com"
                             type="email"
                             {...field}
                           />
