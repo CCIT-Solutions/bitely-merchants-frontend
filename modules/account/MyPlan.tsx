@@ -172,9 +172,7 @@ function buildInitialMeals(days: Date[]): MealsMap {
 
 // ─── Draggable Strip Hook ─────────────────────────────────────────────────────
 
-function useDraggableScroll(
-  ref: React.RefObject<HTMLDivElement | null>,
-) {
+function useDraggableScroll(ref: React.RefObject<HTMLDivElement | null>) {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
@@ -269,19 +267,19 @@ function MealCard({ meal, lang, onSwap, t }: MealCardProps) {
           {meal.name[lang]}
         </p>
         <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-mono text-foreground/45">
+          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px]  text-foreground/45">
             <span className="w-1.5 h-1.5 rounded-full bg-green-400/70" />
             {meal.protein}g {t("menu.protein")}
           </span>
-          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-mono text-foreground/45">
+          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px]  text-foreground/45">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400/70" />
             {meal.carbs}g {t("menu.carbs")}
           </span>
-          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-mono text-foreground/45">
+          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px]  text-foreground/45">
             <span className="w-1.5 h-1.5 rounded-full bg-red-400/70" />
             {meal.fat}g {t("menu.fat")}
           </span>
-          <span className="text-[10px] sm:text-[11px] font-semibold font-mono text-foreground/60 ms-auto">
+          <span className="text-[10px] sm:text-[11px] font-semibold  text-foreground/60 ms-auto">
             {meal.calories} {t("menu.kcal")}
           </span>
         </div>
@@ -587,13 +585,13 @@ function SwapModal({
                       </p>
                       {!opt.customMacros ? (
                         <div className="flex gap-2 flex-wrap mt-auto">
-                          <span className="text-[10px] font-mono text-foreground/35">
+                          <span className="text-[10px]  text-foreground/35">
                             {opt.protein}g P
                           </span>
-                          <span className="text-[10px] font-mono text-foreground/35">
+                          <span className="text-[10px]  text-foreground/35">
                             {opt.carbs}g C
                           </span>
-                          <span className="text-[10px] font-mono text-foreground/45 font-semibold">
+                          <span className="text-[10px]  text-foreground/45 font-semibold">
                             {opt.calories} {t("menu.kcal")}
                           </span>
                         </div>
@@ -765,7 +763,7 @@ export default function MenuMealPlanner() {
                 <span className="text-[9px] font-bold uppercase tracking-widest leading-none pointer-events-none">
                   {getDayLabel(d)}
                 </span>
-                <span className="text-base font-bold font-mono mt-1 leading-none pointer-events-none">
+                <span className="text-base font-bold  mt-1 leading-none pointer-events-none">
                   {d.getDate()}
                 </span>
                 {today && !active && (
@@ -781,7 +779,7 @@ export default function MenuMealPlanner() {
           <div>
             <h2 className="text-xl font-bold text-foreground/80">
               {getDayLabel(activeDay)},{" "}
-              <span className="font-mono">{activeDay.getDate()}</span>{" "}
+              <span className="">{activeDay.getDate()}</span>{" "}
               {getMonthLabel(activeDay)}{" "}
               <span className="text-foreground/30 font-normal text-lg">
                 {activeDay.getFullYear()}

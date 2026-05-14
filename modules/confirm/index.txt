@@ -117,7 +117,7 @@ function HeroSection() {
           {/* Badge */}
           <div className="flex items-center gap-2 mb-4">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="font-mono text-[10px] tracking-widest uppercase text-primary font-semibold">
+            <span className=" text-[10px] tracking-widest uppercase text-primary font-semibold">
               Payment Successful
             </span>
           </div>
@@ -257,7 +257,7 @@ function WhatHappensNext() {
                 </div>
                 <span
                   className={cn(
-                    "font-mono text-[10px] tracking-wider uppercase flex-shrink-0 mt-0.5",
+                    " text-[10px] tracking-wider uppercase flex-shrink-0 mt-0.5",
                     step.status === "active"
                       ? "text-primary font-semibold"
                       : "text-muted-foreground",
@@ -290,7 +290,7 @@ function DeliveryWindowCard() {
           Delivery{" "}
           <em className="not-italic text-primary">Window</em>
         </p>
-        <span className="font-mono text-[10px] tracking-widest uppercase bg-primary/10 text-primary px-2.5 py-1 rounded-full">
+        <span className=" text-[10px] tracking-widest uppercase bg-primary/10 text-primary px-2.5 py-1 rounded-full">
           Mon, Apr 21
         </span>
       </div>
@@ -364,7 +364,7 @@ function HaveAQuestion() {
             <span className="font-semibold text-xs text-foreground">
               {c.label}
             </span>
-            <span className="font-mono text-[9px] text-muted-foreground tracking-wide">
+            <span className=" text-[9px] text-muted-foreground tracking-wide">
               {c.sub}
             </span>
           </a>
@@ -393,18 +393,18 @@ function OrderSummaryCard() {
           <h3 className="font-display text-xl font-semibold tracking-tight">
             Order Summary
           </h3>
-          <p className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground mt-1">
+          <p className=" text-[10px] tracking-widest uppercase text-muted-foreground mt-1">
             21 Meals · Weekly
           </p>
         </div>
-        <span className="font-mono text-[10px] tracking-wider text-muted-foreground">
+        <span className=" text-[10px] tracking-wider text-muted-foreground">
           Order #{orderId}
         </span>
       </div>
 
       {/* Week label */}
       <div>
-        <p className="font-mono text-[9px] tracking-widest uppercase text-muted-foreground mb-3">
+        <p className=" text-[9px] tracking-widest uppercase text-muted-foreground mb-3">
           Week of Apr 20 — Apr 26
         </p>
         <div className="flex gap-1.5 flex-wrap">
@@ -472,7 +472,7 @@ function OrderSummaryCard() {
           <span className="font-display text-3xl font-bold flex items-center gap-1">
             98.00 <Currency className="size-5" />
           </span>
-          <span className="text-[10px] font-mono tracking-widest uppercase bg-primary/10 text-primary px-2 py-1 rounded-full">
+          <span className="text-[10px]  tracking-widest uppercase bg-primary/10 text-primary px-2 py-1 rounded-full">
             Paid
           </span>
         </div>
@@ -501,7 +501,7 @@ function OrderSummaryCard() {
       <div className="flex justify-between items-center pt-2 border-t border-border">
         <span className="text-sm text-muted-foreground">Payment Method</span>
         <div className="flex items-center gap-2">
-          <span className="font-mono text-sm text-foreground">•••• 4242</span>
+          <span className=" text-sm text-foreground">•••• 4242</span>
           {/* Mastercard icon */}
           <svg width="32" height="20" viewBox="0 0 36 22" fill="none">
             <circle cx="12" cy="11" r="9" fill="#EB001B" />
@@ -543,7 +543,7 @@ function AppBanner() {
 
         {/* Right — copy */}
         <div className="flex flex-col justify-center px-8 sm:px-10 py-10 flex-1">
-          <span className="font-mono text-[10px] tracking-widest uppercase text-primary mb-3">
+          <span className=" text-[10px] tracking-widest uppercase text-primary mb-3">
             Stay Updated
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white leading-tight mb-3">
@@ -565,7 +565,7 @@ function AppBanner() {
                 <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-42.3-150.3-119.4C37 440.2 27 315.4 27 269.4c0-60.9 14.5-120.5 43.7-171.6C131.7 50.3 210.4 9.5 291.7 9.5c73.4 0 124.3 47.8 166.6 47.8 40.6 0 104-50.6 185.2-50.6 30.5 0 130 4.5 192 77.1zm-217.9-147.9c30.6-33.9 52.5-81 52.5-128.1 0-6.4-.6-12.9-1.9-18.1-49.6 1.9-108.3 33.1-144.2 71.6-28 30.6-54.5 77.6-54.5 125.4 0 7.1 1.3 14.2 1.9 16.5 3.2.6 8.4 1.3 13.5 1.3 44.5 0 97.8-29.7 132.7-68.6z" />
               </svg>
               <div>
-                <p className="font-mono text-[8px] text-white/50 tracking-widest uppercase">
+                <p className=" text-[8px] text-white/50 tracking-widest uppercase">
                   Download on the
                 </p>
                 <p className="text-white font-semibold text-sm leading-tight">
@@ -586,7 +586,7 @@ function AppBanner() {
                 <path d="M288 256l96-55v110l-96-55z" fill="#00F076" />
               </svg>
               <div>
-                <p className="font-mono text-[8px] text-white/50 tracking-widest uppercase">
+                <p className=" text-[8px] text-white/50 tracking-widest uppercase">
                   Get it on
                 </p>
                 <p className="text-white font-semibold text-sm leading-tight">
@@ -615,7 +615,7 @@ function Footer() {
           </div>
 
           <div>
-            <p className="font-mono text-[9px] tracking-widest uppercase text-muted-foreground mb-3">
+            <p className=" text-[9px] tracking-widest uppercase text-muted-foreground mb-3">
               Links
             </p>
             {["Menu", "How It Work", "FAQ"].map((item) => (
@@ -630,7 +630,7 @@ function Footer() {
           </div>
 
           <div>
-            <p className="font-mono text-[9px] tracking-widest uppercase text-muted-foreground mb-3">
+            <p className=" text-[9px] tracking-widest uppercase text-muted-foreground mb-3">
               Account
             </p>
             {["Account", "Contact", "Privacy Policy"].map((item) => (
@@ -645,7 +645,7 @@ function Footer() {
           </div>
 
           <div>
-            <p className="font-mono text-[9px] tracking-widest uppercase text-muted-foreground mb-3">
+            <p className=" text-[9px] tracking-widest uppercase text-muted-foreground mb-3">
               Follow us
             </p>
             <div className="flex gap-3 mt-1">

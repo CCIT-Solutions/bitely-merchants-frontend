@@ -42,7 +42,7 @@
   --color-custom-green: var(--custom-green);
   --color-custom-blue: var(--custom-blue);
   --color-custom-dark: var(--custom-dark);
-  --font-spartan: "Spartan", "sans-serif";
+  --font-googleSansFlex: "Google Sans Flex", "sans-serif";
   --font-ibmArabic: "IBM Plex Sans Arabic", "sans-serif";
 }
 
@@ -81,7 +81,7 @@
   --sidebar-ring: oklch(0.708 0 0);
   --custom-green: #003429;
   --custom-dark: #1c0d33;
-  --font-spartan: var(--font-league-spartan);
+  --font-googleSansFlex: var(--font-google-sans-flex);
   --font-ibmArabic: var(--font-IBMPlexSansArabic);
 }
 
@@ -125,6 +125,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-google-sans-flex), sans-serif;
+  }
+
+  :lang(ar) body,
+  [dir="rtl"] body {
+    font-family: var(--font-IBMPlexSansArabic), sans-serif;
   }
 }
 

@@ -89,7 +89,7 @@ function MacroPill({
 }) {
   return (
     <div className="flex flex-col items-center gap-1 px-4 py-3 rounded-xl border border-foreground/8 bg-foreground/[0.02]">
-      <span className={cn("text-base font-bold font-mono", color)}>{value}</span>
+      <span className={cn("text-base font-bold ", color)}>{value}</span>
       <span className="text-[10px] uppercase tracking-widest text-foreground/40">
         {label}
       </span>
@@ -125,7 +125,11 @@ interface RecipeModalProps {
   onClose: () => void;
 }
 
-export default function RecipeDetails({ meal, lang, onClose }: RecipeModalProps) {
+export default function RecipeDetails({
+  meal,
+  lang,
+  onClose,
+}: RecipeModalProps) {
   const recipe = getMockRecipe(meal);
   const [tab, setTab] = useState<"ingredients" | "steps">("ingredients");
   const [checkedSteps, setCheckedSteps] = useState<Set<number>>(new Set());
@@ -223,7 +227,10 @@ export default function RecipeDetails({ meal, lang, onClose }: RecipeModalProps)
         </div>
 
         {/* ── Scrollable body ── */}
-        <div className="flex-1 overflow-y-auto scrollbar-none"   onWheel={(e) => e.stopPropagation()}>
+        <div
+          className="flex-1 overflow-y-auto scrollbar-none"
+          onWheel={(e) => e.stopPropagation()}
+        >
           {/* Title + meta */}
           <div className="px-6 pt-5 pb-4 border-b border-foreground/8">
             <div className="flex items-start justify-between gap-3">
@@ -247,7 +254,13 @@ export default function RecipeDetails({ meal, lang, onClose }: RecipeModalProps)
                   fill="none"
                   className="opacity-60"
                 >
-                  <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.4" />
+                  <circle
+                    cx="7"
+                    cy="7"
+                    r="5.5"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                  />
                   <path
                     d="M7 4.5V7l1.5 1.5"
                     stroke="currentColor"
@@ -255,7 +268,7 @@ export default function RecipeDetails({ meal, lang, onClose }: RecipeModalProps)
                     strokeLinecap="round"
                   />
                 </svg>
-                <span className="text-[11px] font-mono text-foreground/55">
+                <span className="text-[11px]  text-foreground/55">
                   {recipe.prepTime} prep · {recipe.cookTime} cook
                 </span>
               </div>
@@ -328,7 +341,7 @@ export default function RecipeDetails({ meal, lang, onClose }: RecipeModalProps)
                     )}
                   >
                     <span className="text-foreground/70">{ing.name}</span>
-                    <span className="font-mono text-[12px] text-foreground/35">
+                    <span className=" text-[12px] text-foreground/35">
                       {ing.amount}
                     </span>
                   </li>
@@ -377,9 +390,7 @@ export default function RecipeDetails({ meal, lang, onClose }: RecipeModalProps)
                             />
                           </svg>
                         ) : (
-                          <span className="text-[10px] font-mono">
-                            {step.step}
-                          </span>
+                          <span className="text-[10px] ">{step.step}</span>
                         )}
                       </div>
 
@@ -394,7 +405,7 @@ export default function RecipeDetails({ meal, lang, onClose }: RecipeModalProps)
                             {step.title}
                           </span>
                           {step.duration && (
-                            <span className="text-[10px] font-mono text-foreground/30 shrink-0">
+                            <span className="text-[10px]  text-foreground/30 shrink-0">
                               {step.duration}
                             </span>
                           )}
@@ -402,7 +413,9 @@ export default function RecipeDetails({ meal, lang, onClose }: RecipeModalProps)
                         <p
                           className={cn(
                             "text-sm leading-relaxed transition-colors",
-                            done ? "text-foreground/35 line-through" : "text-foreground/60",
+                            done
+                              ? "text-foreground/35 line-through"
+                              : "text-foreground/60",
                           )}
                         >
                           {step.description}
@@ -446,4 +459,3 @@ export default function RecipeDetails({ meal, lang, onClose }: RecipeModalProps)
 
   return createPortal(modal, document.body);
 }
-

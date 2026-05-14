@@ -116,15 +116,51 @@ const MAP_DARK_STYLE: google.maps.MapTypeStyle[] = [
   { elementType: "geometry", stylers: [{ color: "#212121" }] },
   { elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
   { elementType: "labels.text.stroke", stylers: [{ color: "#000000" }] },
-  { featureType: "landscape", elementType: "geometry", stylers: [{ color: "#333333" }] },
-  { featureType: "road", elementType: "geometry", stylers: [{ color: "#6ef843" }] },
-  { featureType: "transit", elementType: "geometry", stylers: [{ color: "#2f3948" }] },
-  { featureType: "water", elementType: "geometry", stylers: [{ color: "#000000" }] },
-  { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#585858" }] },
-  { featureType: "poi", elementType: "geometry", stylers: [{ color: "#3a3a3a" }] },
-  { featureType: "all", elementType: "labels.text.fill", stylers: [{ visibility: "on" }, { color: "#ffffff" }] },
-  { featureType: "all", elementType: "labels.text.stroke", stylers: [{ visibility: "on" }, { color: "#000000" }] },
-  { featureType: "all", elementType: "labels.icon", stylers: [{ visibility: "on" }] },
+  {
+    featureType: "landscape",
+    elementType: "geometry",
+    stylers: [{ color: "#333333" }],
+  },
+  {
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [{ color: "#6ef843" }],
+  },
+  {
+    featureType: "transit",
+    elementType: "geometry",
+    stylers: [{ color: "#2f3948" }],
+  },
+  {
+    featureType: "water",
+    elementType: "geometry",
+    stylers: [{ color: "#000000" }],
+  },
+  {
+    featureType: "administrative",
+    elementType: "geometry",
+    stylers: [{ color: "#585858" }],
+  },
+  {
+    featureType: "poi",
+    elementType: "geometry",
+    stylers: [{ color: "#3a3a3a" }],
+  },
+  {
+    featureType: "all",
+    elementType: "labels.text.fill",
+    stylers: [{ visibility: "on" }, { color: "#ffffff" }],
+  },
+  {
+    featureType: "all",
+    elementType: "labels.text.stroke",
+    stylers: [{ visibility: "on" }, { color: "#000000" }],
+  },
+  {
+    featureType: "all",
+    elementType: "labels.icon",
+    stylers: [{ visibility: "on" }],
+  },
 ];
 
 const MAP_CONTAINER_STYLE: React.CSSProperties = {
@@ -150,19 +186,19 @@ function GoogleMapPicker({
   const [isExpanded, setIsExpanded] = useState(false);
   const [mapMode, setMapMode] = useState<"dark" | "satellite">("dark");
   const [markerPos, setMarkerPos] = useState<LatLng | null>(value ?? null);
- 
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
     libraries: ["places"],
   });
- 
+
   const defaultCenter: LatLng =
-  city && CITY_CENTERS[city]
-    ? CITY_CENTERS[city]
-    : { lat: 25.2048, lng: 55.2708 };
- 
+    city && CITY_CENTERS[city]
+      ? CITY_CENTERS[city]
+      : { lat: 25.2048, lng: 55.2708 };
+
   const center = markerPos ?? defaultCenter;
- 
+
   const reverseGeocode = useCallback(
     (latlng: LatLng) => {
       if (!isLoaded) return;
@@ -182,7 +218,7 @@ function GoogleMapPicker({
     },
     [isLoaded, onChange],
   );
- 
+
   // Re-center when city dropdown changes
   useEffect(() => {
     if (!city || !CITY_CENTERS[city]) return;
@@ -190,7 +226,7 @@ function GoogleMapPicker({
     setMarkerPos(c);
     reverseGeocode(c);
   }, [city, reverseGeocode]);
- 
+
   const handleMapClick = useCallback(
     (e: google.maps.MapMouseEvent) => {
       if (!e.latLng) return;
@@ -200,7 +236,7 @@ function GoogleMapPicker({
     },
     [reverseGeocode],
   );
- 
+
   const handleMarkerDragEnd = useCallback(
     (e: google.maps.MapMouseEvent) => {
       if (!e.latLng) return;
@@ -210,7 +246,7 @@ function GoogleMapPicker({
     },
     [reverseGeocode],
   );
- 
+
   return (
     <div className="flex flex-col gap-2">
       <label className="text-xs font-medium uppercase tracking-wide flex items-center gap-1.5">
@@ -220,7 +256,7 @@ function GoogleMapPicker({
           (optional)
         </span>
       </label>
- 
+
       {/* Collapsed trigger */}
       {!isExpanded ? (
         <button
@@ -231,13 +267,14 @@ function GoogleMapPicker({
           <MapPin size={15} className="text-primary flex-shrink-0" />
           {markerPos ? (
             <span className="text-foreground truncate text-xs">
-              {addressLabel || `${markerPos.lat.toFixed(4)}, ${markerPos.lng.toFixed(4)}`}
+              {addressLabel ||
+                `${markerPos.lat.toFixed(4)}, ${markerPos.lng.toFixed(4)}`}
             </span>
           ) : (
             <span>Click to open map &amp; drop a pin</span>
           )}
           {markerPos && (
-            <span className="ml-auto text-[9px] tracking-widest uppercase text-primary font-mono flex-shrink-0">
+            <span className="ml-auto text-[9px] tracking-widest uppercase text-primary  flex-shrink-0">
               Pinned ✓
             </span>
           )}
@@ -294,7 +331,7 @@ function GoogleMapPicker({
                 Loading map…
               </div>
             )}
- 
+
             {/* Geocoding pill */}
             {isGeocoding && (
               <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1 flex items-center gap-1.5 text-xs text-white shadow-sm whitespace-nowrap">
@@ -302,7 +339,7 @@ function GoogleMapPicker({
                 Resolving address…
               </div>
             )}
- 
+
             {/* Mode toggle — matches LocationMap toggle style */}
             <div className="absolute bottom-3 left-3 flex gap-1.5">
               <button
@@ -330,7 +367,7 @@ function GoogleMapPicker({
                 <FaSatellite size={11} />
               </button>
             </div>
- 
+
             {/* Collapse button */}
             <button
               type="button"
@@ -340,7 +377,7 @@ function GoogleMapPicker({
               <X size={12} />
             </button>
           </div>
- 
+
           {/* Resolved address strip */}
           {addressLabel && (
             <motion.div
@@ -349,10 +386,12 @@ function GoogleMapPicker({
               className="mt-2 flex items-start gap-2 rounded-xl border border-primary/20 bg-primary/5 px-3 py-2.5"
             >
               <MapPin size={12} className="text-primary mt-0.5 flex-shrink-0" />
-              <p className="text-xs text-foreground leading-relaxed">{addressLabel}</p>
+              <p className="text-xs text-foreground leading-relaxed">
+                {addressLabel}
+              </p>
             </motion.div>
           )}
- 
+
           <p className="mt-2 text-[10px] text-muted-foreground tracking-wide">
             Tap the map or drag the pin to adjust your exact drop-off point.
           </p>
@@ -486,8 +525,12 @@ function TamaraPane() {
     >
       <div className="border border-border rounded-xl p-5 bg-background">
         <div className="flex justify-between items-start mb-2">
-     
-         <Image src="/media/images/checkout/tamara.png" alt="Tamara" height={50} width={111}/>
+          <Image
+            src="/media/images/checkout/tamara.png"
+            alt="Tamara"
+            height={50}
+            width={111}
+          />
         </div>
 
         <div className="rounded-xl bg-muted/40 dark:bg-primary-foreground/20 border border-border p-3 text-xs text-muted-foreground leading-relaxed">
@@ -688,7 +731,7 @@ export default function CheckoutPage() {
   const [success, setSuccess] = useState(false);
   const { t, lang, isRTL } = useLang();
   const { isDark } = useThemeStore();
-  const router = useRouter()
+  const router = useRouter();
 
   // ── Contact & delivery form ──
   const contactForm = useForm<ContactFormType>({
@@ -754,7 +797,7 @@ export default function CheckoutPage() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      router.push("/confirm")
+      router.push("/confirm");
     }, 1500);
   };
 
@@ -855,23 +898,19 @@ export default function CheckoutPage() {
                         error={contactForm.formState.errors.phone_number}
                       />
 
-                             {/* Row 4: National Address */}
-                    <CustomField
-                      name="nationalAddress"
-                      label={
-                        <span className="flex flex-col items-center gap-1">
-                          National address
-                       
-                        </span>
-                      }
-                    >
-                      {(field) => (
-                        <Input
-                          placeholder="e.g. RHGA 1234"
-                          {...field}
-                        />
-                      )}
-                    </CustomField>
+                      {/* Row 4: National Address */}
+                      <CustomField
+                        name="nationalAddress"
+                        label={
+                          <span className="flex flex-col items-center gap-1">
+                            National address
+                          </span>
+                        }
+                      >
+                        {(field) => (
+                          <Input placeholder="e.g. RHGA 1234" {...field} />
+                        )}
+                      </CustomField>
                     </div>
 
                     {/* Row 3: District + Street address */}
@@ -892,10 +931,7 @@ export default function CheckoutPage() {
                       </CustomField>
                     </div> */}
 
-             
-
                     {/* Row 5: Apt + Postal code */}
-                   
 
                     {/* Row 6: Google Map Picker */}
                     <GoogleMapPicker
@@ -988,18 +1024,17 @@ export default function CheckoutPage() {
                         )}
                       </div>
 
-              
-                        <div className="h-6 w-18 relative">
-                          <Image
-                            src={`/media/images/checkout/${o.image}.png`}
-                            alt={o.label}
-                            fill
-                            className={cn(
-                              "object-contain",
-                              isRTL ? "object-right" : "object-left",
-                            )}
-                          />
-                        </div>
+                      <div className="h-6 w-18 relative">
+                        <Image
+                          src={`/media/images/checkout/${o.image}.png`}
+                          alt={o.label}
+                          fill
+                          className={cn(
+                            "object-contain",
+                            isRTL ? "object-right" : "object-left",
+                          )}
+                        />
+                      </div>
 
                       <span className="text-xs font-semibold text-foreground pr-4">
                         {o.label}
