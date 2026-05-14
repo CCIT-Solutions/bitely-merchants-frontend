@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { FaMoon, FaSatellite } from "react-icons/fa";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -13,6 +15,8 @@ import {
   Shield,
   RotateCcw,
   BadgeCheck,
+  MapPin,
+  Loader2,
 } from "lucide-react";
 import { CustomField } from "@/components/form/FormField";
 import { Input } from "@/components/ui/input";
@@ -29,10 +33,8 @@ import { useLang } from "@/hooks/useLang";
 import Stepper from "@/components/shared/Stepper";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/custom/card";
@@ -43,10 +45,16 @@ import { useThemeStore } from "@/stores/useThemeStore";
 import { cn } from "@/lib/utils";
 import { FOOD_ITEMS } from "@/data/menu";
 import Currency from "@/components/icons/Currency";
+import { useRouter } from "next/navigation";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-type PaymentMethod = "card" | "apple" | "tabby";
+type PaymentMethod = "card" | "apple" | "tamara";
 type DeliveryWindow = "early" | "breakfast" | "morning";
+
+interface LatLng {
+  lat: number;
+  lng: number;
+}
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function formatCardNumber(value: string) {
@@ -66,9 +74,14 @@ const ContactSchema = z.object({
   email: z.string().email("Enter a valid email").min(5, "Email too short"),
   phone_number: z.number().optional(),
   city: z.string().min(1, "Please select a city"),
+  district: z.string().min(2, "Enter your district / neighbourhood"),
   streetAddress: z.string().min(5, "Enter a valid street address"),
+  nationalAddress: z.string().optional(),
   apt: z.string().optional(),
   postalCode: z.string().optional(),
+  locationLat: z.number().optional(),
+  locationLng: z.number().optional(),
+  locationLabel: z.string().optional(),
 });
 
 const CardSchema = z.object({
@@ -89,6 +102,265 @@ const CITIES = [
   { key: "jeddah", label: { en: "Jeddah", ar: "جدة" } },
   { key: "abudhabi", label: { en: "Abu Dhabi", ar: "أبوظبي" } },
 ] as const;
+
+// City default centers for map initialization
+const CITY_CENTERS: Record<string, LatLng> = {
+  riyadh: { lat: 24.7136, lng: 46.6753 },
+  dubai: { lat: 25.2048, lng: 55.2708 },
+  jeddah: { lat: 21.4858, lng: 39.1925 },
+  abudhabi: { lat: 24.4539, lng: 54.3773 },
+};
+
+// ─── Google Map Picker ────────────────────────────────────────────────────────
+const MAP_DARK_STYLE: google.maps.MapTypeStyle[] = [
+  { elementType: "geometry", stylers: [{ color: "#212121" }] },
+  { elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
+  { elementType: "labels.text.stroke", stylers: [{ color: "#000000" }] },
+  { featureType: "landscape", elementType: "geometry", stylers: [{ color: "#333333" }] },
+  { featureType: "road", elementType: "geometry", stylers: [{ color: "#6ef843" }] },
+  { featureType: "transit", elementType: "geometry", stylers: [{ color: "#2f3948" }] },
+  { featureType: "water", elementType: "geometry", stylers: [{ color: "#000000" }] },
+  { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#585858" }] },
+  { featureType: "poi", elementType: "geometry", stylers: [{ color: "#3a3a3a" }] },
+  { featureType: "all", elementType: "labels.text.fill", stylers: [{ visibility: "on" }, { color: "#ffffff" }] },
+  { featureType: "all", elementType: "labels.text.stroke", stylers: [{ visibility: "on" }, { color: "#000000" }] },
+  { featureType: "all", elementType: "labels.icon", stylers: [{ visibility: "on" }] },
+];
+
+const MAP_CONTAINER_STYLE: React.CSSProperties = {
+  width: "100%",
+  height: "100%",
+  borderRadius: "0.75rem",
+  overflow: "hidden",
+  position: "relative",
+};
+
+function GoogleMapPicker({
+  value,
+  onChange,
+  city,
+}: {
+  value?: LatLng;
+  onChange: (latlng: LatLng, label: string) => void;
+  city?: string;
+}) {
+  const geocoderRef = useRef<google.maps.Geocoder | null>(null);
+  const [isGeocoding, setIsGeocoding] = useState(false);
+  const [addressLabel, setAddressLabel] = useState("");
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [mapMode, setMapMode] = useState<"dark" | "satellite">("dark");
+  const [markerPos, setMarkerPos] = useState<LatLng | null>(value ?? null);
+ 
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
+    libraries: ["places"],
+  });
+ 
+  const defaultCenter: LatLng =
+  city && CITY_CENTERS[city]
+    ? CITY_CENTERS[city]
+    : { lat: 25.2048, lng: 55.2708 };
+ 
+  const center = markerPos ?? defaultCenter;
+ 
+  const reverseGeocode = useCallback(
+    (latlng: LatLng) => {
+      if (!isLoaded) return;
+      if (!geocoderRef.current) {
+        geocoderRef.current = new window.google.maps.Geocoder();
+      }
+      setIsGeocoding(true);
+      geocoderRef.current.geocode({ location: latlng }, (results, status) => {
+        setIsGeocoding(false);
+        const label =
+          status === "OK" && results?.[0]
+            ? results[0].formatted_address
+            : `${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}`;
+        setAddressLabel(label);
+        onChange(latlng, label);
+      });
+    },
+    [isLoaded, onChange],
+  );
+ 
+  // Re-center when city dropdown changes
+  useEffect(() => {
+    if (!city || !CITY_CENTERS[city]) return;
+    const c = CITY_CENTERS[city];
+    setMarkerPos(c);
+    reverseGeocode(c);
+  }, [city, reverseGeocode]);
+ 
+  const handleMapClick = useCallback(
+    (e: google.maps.MapMouseEvent) => {
+      if (!e.latLng) return;
+      const latlng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+      setMarkerPos(latlng);
+      reverseGeocode(latlng);
+    },
+    [reverseGeocode],
+  );
+ 
+  const handleMarkerDragEnd = useCallback(
+    (e: google.maps.MapMouseEvent) => {
+      if (!e.latLng) return;
+      const latlng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+      setMarkerPos(latlng);
+      reverseGeocode(latlng);
+    },
+    [reverseGeocode],
+  );
+ 
+  return (
+    <div className="flex flex-col gap-2">
+      <label className="text-xs font-medium uppercase tracking-wide flex items-center gap-1.5">
+        <MapPin size={11} className="text-primary" />
+        Pin your location
+        <span className="text-muted-foreground normal-case tracking-normal font-normal ml-1">
+          (optional)
+        </span>
+      </label>
+ 
+      {/* Collapsed trigger */}
+      {!isExpanded ? (
+        <button
+          type="button"
+          onClick={() => setIsExpanded(true)}
+          className="w-full flex items-center gap-3 border border-dashed border-border rounded-xl px-4 py-3.5 text-sm text-muted-foreground hover:border-primary/50 hover:text-foreground transition-all duration-200 bg-muted/30"
+        >
+          <MapPin size={15} className="text-primary flex-shrink-0" />
+          {markerPos ? (
+            <span className="text-foreground truncate text-xs">
+              {addressLabel || `${markerPos.lat.toFixed(4)}, ${markerPos.lng.toFixed(4)}`}
+            </span>
+          ) : (
+            <span>Click to open map &amp; drop a pin</span>
+          )}
+          {markerPos && (
+            <span className="ml-auto text-[9px] tracking-widest uppercase text-primary font-mono flex-shrink-0">
+              Pinned ✓
+            </span>
+          )}
+        </button>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          transition={{ duration: 0.3 }}
+          className="overflow-hidden"
+        >
+          {/* Map wrapper — matches LocationMap border + radius */}
+          <div
+            className="relative rounded-xl overflow-hidden"
+            style={{ height: "260px", border: "1px solid #222" }}
+            onWheel={(e) => e.stopPropagation()}
+          >
+            {isLoaded ? (
+              <GoogleMap
+                mapContainerStyle={MAP_CONTAINER_STYLE}
+                center={center}
+                zoom={14}
+                onClick={handleMapClick}
+                options={{
+                  mapTypeId: mapMode === "satellite" ? "hybrid" : "roadmap",
+                  styles: mapMode === "dark" ? MAP_DARK_STYLE : undefined,
+                  disableDefaultUI: true,
+                  gestureHandling: "greedy",
+                  keyboardShortcuts: false,
+                }}
+              >
+                {markerPos && (
+                  <Marker
+                    position={markerPos}
+                    draggable
+                    onDragEnd={handleMarkerDragEnd}
+                    animation={window.google.maps.Animation.DROP}
+                    // icon={
+                    //   mapMode === "dark"
+                    //     ? {
+                    //         url: "/media/icons/map-marker.png",
+                    //         scaledSize: new window.google.maps.Size(60, 60),
+                    //         origin: new window.google.maps.Point(0, 0),
+                    //         anchor: new window.google.maps.Point(30, 30),
+                    //       }
+                    //     : undefined
+                    // }
+                  />
+                )}
+              </GoogleMap>
+            ) : (
+              <div className="absolute inset-0 bg-[#212121] flex items-center justify-center gap-2 text-sm text-white/50">
+                <Loader2 size={16} className="animate-spin" />
+                Loading map…
+              </div>
+            )}
+ 
+            {/* Geocoding pill */}
+            {isGeocoding && (
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1 flex items-center gap-1.5 text-xs text-white shadow-sm whitespace-nowrap">
+                <Loader2 size={11} className="animate-spin" />
+                Resolving address…
+              </div>
+            )}
+ 
+            {/* Mode toggle — matches LocationMap toggle style */}
+            <div className="absolute bottom-3 left-3 flex gap-1.5">
+              <button
+                type="button"
+                onClick={() => setMapMode("dark")}
+                title="Dark mode"
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md border ${
+                  mapMode === "dark"
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-black/70 text-white/60 border-white/10 hover:bg-black/90"
+                }`}
+              >
+                <FaMoon size={11} />
+              </button>
+              <button
+                type="button"
+                onClick={() => setMapMode("satellite")}
+                title="Satellite mode"
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md border ${
+                  mapMode === "satellite"
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-black/70 text-white/60 border-white/10 hover:bg-black/90"
+                }`}
+              >
+                <FaSatellite size={11} />
+              </button>
+            </div>
+ 
+            {/* Collapse button */}
+            <button
+              type="button"
+              onClick={() => setIsExpanded(false)}
+              className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/70 border border-white/10 text-white/80 flex items-center justify-center hover:bg-black/90 transition shadow-sm"
+            >
+              <X size={12} />
+            </button>
+          </div>
+ 
+          {/* Resolved address strip */}
+          {addressLabel && (
+            <motion.div
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-2 flex items-start gap-2 rounded-xl border border-primary/20 bg-primary/5 px-3 py-2.5"
+            >
+              <MapPin size={12} className="text-primary mt-0.5 flex-shrink-0" />
+              <p className="text-xs text-foreground leading-relaxed">{addressLabel}</p>
+            </motion.div>
+          )}
+ 
+          <p className="mt-2 text-[10px] text-muted-foreground tracking-wide">
+            Tap the map or drag the pin to adjust your exact drop-off point.
+          </p>
+        </motion.div>
+      )}
+    </div>
+  );
+}
 
 // ─── Credit Card Visual ───────────────────────────────────────────────────────
 function CreditCardVisual({
@@ -119,23 +391,23 @@ function CreditCardVisual({
           className="object-contain"
         />
       </div>
-      <div className="relative z-10 font-mono text-base tracking-widest mb-4 text-white/90">
+      <div className="relative z-10 text-base tracking-widest mb-4 text-white/90">
         {display}
       </div>
       <div className="relative z-10 flex justify-between items-end">
         <div>
-          <span className="font-mono text-[8px] tracking-widest uppercase text-white/50 block">
+          <span className="text-[8px] tracking-widest uppercase text-white/50 block">
             Cardholder
           </span>
-          <span className="font-mono text-xs tracking-wide text-white/90 uppercase">
+          <span className="text-xs tracking-wide text-white/90 uppercase">
             {name || "Your Name"}
           </span>
         </div>
         <div>
-          <span className="font-mono text-[8px] tracking-widest uppercase text-white/50 block">
+          <span className="text-[8px] tracking-widest uppercase text-white/50 block">
             Expires
           </span>
-          <span className="font-mono text-xs tracking-wide text-white/90">
+          <span className="text-xs tracking-wide text-white/90">
             {exp || "MM / YY"}
           </span>
         </div>
@@ -144,6 +416,7 @@ function CreditCardVisual({
   );
 }
 
+// ─── Apple Pay Pane ───────────────────────────────────────────────────────────
 function ApplePayPane({
   onClose,
   total,
@@ -159,7 +432,7 @@ function ApplePayPane({
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="relative rounded-2xl overflow-hidden p-6 mb-5  max-w-sm bg-linear-to-br from-primary-foreground to-primary-foreground/80 text-white select-none">
+      <div className="relative rounded-2xl overflow-hidden p-6 mb-5 max-w-sm bg-linear-to-br from-primary-foreground to-primary-foreground/80 text-white select-none">
         <div className="absolute inset-0 bg-[radial-gradient(300px_150px_at_100%_0%,rgba(110,248,67,0.18),transparent_60%)] pointer-events-none" />
         <div className="flex justify-between items-center mb-5">
           <span className="font-semibold text-base tracking-tight">
@@ -182,7 +455,7 @@ function ApplePayPane({
             key={l}
             className="flex justify-between py-3 border-b border-white/10 text-sm"
           >
-            <span className="text-white/55 text-xs font-mono tracking-wider uppercase">
+            <span className="text-white/55 text-xs tracking-wider uppercase">
               {l}
             </span>
             <span className="font-medium">{v}</span>
@@ -201,54 +474,32 @@ function ApplePayPane({
   );
 }
 
-function TabbyPane() {
+// ─── Tamara Pane ──────────────────────────────────────────────────────────────
+function TamaraPane() {
   return (
     <motion.div
-      key="tabby"
+      key="tamara"
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.2 }}
     >
       <div className="border border-border rounded-xl p-5 bg-background">
-        <div className="flex justify-between items-start mb-4">
-          <div>
-            <p className="font-semibold text-sm text-foreground">
-              4 interest-free payments
-            </p>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              No fees · No interest · Shariah-compliant
-            </p>
-          </div>
-          <div className="h-6 w-14 relative mb-4">
-            <Image
-              src="/media/images/checkout/tabby.png"
-              alt="Card Chip"
-              fill
-              className="object-contain"
-            />
-          </div>
+        <div className="flex justify-between items-start mb-2">
+     
+         <Image src="/media/images/checkout/tamara.png" alt="Tamara" height={50} width={111}/>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          {["TODAY", "+2 WKS", "+4 WKS", "+6 WKS"].map((label) => (
-            <div
-              key={label}
-              className="bg-muted/50 dark:bg-primary-foreground/40 dark:border-primary-foreground border rounded-xl p-3 text-center"
-            >
-              <div className="font-mono text-[9px] text-muted-foreground tracking-wider mb-1">
-                {label}
-              </div>
-              <div className="font-display text-xl font-medium text-foreground flex items-center justify-center gap-1">
-                24.50 <Currency className="size-4" />
-              </div>
-            </div>
-          ))}
+
+        <div className="rounded-xl bg-muted/40 dark:bg-primary-foreground/20 border border-border p-3 text-xs text-muted-foreground leading-relaxed">
+          You will be redirected to Tamara to complete verification. No credit
+          card required — just your Saudi mobile number and national ID.
         </div>
       </div>
     </motion.div>
   );
 }
 
+// ─── Order Summary ────────────────────────────────────────────────────────────
 function OrderSummary({
   method,
   onPay,
@@ -262,13 +513,13 @@ function OrderSummary({
   const [promoApplied, setPromoApplied] = useState(true);
 
   return (
-    <aside className="rounded-2xl p-6 md:p-8 flex flex-col gap-5 lg:sticky lg:top-6 border dark:bg-primary-foreground/20">
+    <aside className="rounded-2xl p-6 md:p-8 flex flex-col gap-5 lg:sticky lg:top-6 border dark:bg-primary-foreground/20 lg:max-w-sm">
       <div className="flex justify-between items-start pb-5 border-b border-background/10">
         <div>
-          <h4 className="font-display text-xl font-medium tracking-tight">
+          <h4 className="text-xl font-medium tracking-tight">
             Signature <em className="not-italic text-primary">plan</em>
           </h4>
-          <p className=" text-[10px] tracking-widest uppercase text-primary-forground/50 mt-1">
+          <p className="text-[10px] tracking-widest uppercase text-primary-forground/50 mt-1">
             21 meals · weekly
           </p>
         </div>
@@ -278,7 +529,7 @@ function OrderSummary({
       </div>
 
       <div>
-        <p className=" text-[9px] tracking-widest uppercase text-primary-forground/40 mb-3">
+        <p className="text-[9px] tracking-widest uppercase text-primary-forground/40 mb-3">
           Week of Apr 20 — Apr 26
         </p>
         <div className="flex gap-1.5 flex-wrap">
@@ -295,7 +546,6 @@ function OrderSummary({
               />
             </div>
           ))}
-
           <div className="w-15 h-17 md:w-10 md:h-12 rounded-lg border border-primary-forground/20 flex items-center justify-center text-sm sm:text-[10px] text-primary-forground/60">
             +16
           </div>
@@ -328,11 +578,11 @@ function OrderSummary({
           </div>
         ))}
         {promoApplied && (
-          <div className="flex justify-between text-primary ">
+          <div className="flex justify-between text-primary">
             <span>
               Promo · <span>FIRST12</span>
             </span>
-            <span className=" flex items-center gap-1 font-bold">
+            <span className="flex items-center gap-1 font-bold">
               17.50 <Currency className="size-4" />
             </span>
           </div>
@@ -356,16 +606,16 @@ function OrderSummary({
       </div>
 
       <div className="flex justify-between items-end pt-4 border-t border-primary-forground/15">
-        <span className=" text-[10px] tracking-widest uppercase text-primary-forground/50">
+        <span className="text-[10px] tracking-widest uppercase text-primary-forground/50">
           Total today
         </span>
         <div className="text-right">
           <span className="line-through text-primary-forground/30 text-xs mr-1 flex items-center gap-1">
             115.50 <Currency className="size-3" />
           </span>
-          <span className="font-display text-3xl font-medium flex items-center gap-1">
+          <span className="text-3xl font-medium flex items-center gap-1">
             98.00 <Currency className="size-4" />
-            <span className=" text-[10px] text-primary-forground/50 ml-1">
+            <span className="text-[10px] text-primary-forground/50 ml-1">
               /wk
             </span>
           </span>
@@ -404,17 +654,17 @@ function OrderSummary({
           ? "Processing…"
           : method === "apple"
             ? "Pay with Apple Pay"
-            : method === "tabby"
-              ? "Pay with Tabby"
-              : "Confirm & pay $98.00"}
+            : method === "tamara"
+              ? "Pay with Tamara"
+              : "Confirm & pay 98.00"}
       </motion.button>
 
-      <div className="flex items-center justify-center gap-1.5  text-[9px] tracking-widest uppercase text-primary-forground/40">
+      <div className="flex items-center justify-center gap-1.5 text-[9px] tracking-widest uppercase text-primary-forground/40">
         <Shield size={9} />
         256-bit · PCI DSS · 3-D Secure
       </div>
 
-      <div className="flex justify-between  text-[9px] tracking-widest uppercase text-primary-forground/40 pt-1 flex-wrap gap-2">
+      <div className="flex justify-between text-[9px] tracking-widest uppercase text-primary-forground/40 pt-1 flex-wrap gap-2">
         <span className="flex items-center gap-1">
           <BadgeCheck size={9} /> Cancel anytime
         </span>
@@ -429,80 +679,6 @@ function OrderSummary({
   );
 }
 
-// ─── Success Modal ────────────────────────────────────────────────────────────
-function SuccessModal({
-  show,
-  onClose,
-}: {
-  show: boolean;
-  onClose: () => void;
-}) {
-  const orderId = "BTL-24-07739";
-  return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
-          onClick={onClose}
-        >
-          <motion.div
-            initial={{ scale: 0.88, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.92, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 24 }}
-            className="bg-background rounded-3xl p-10 max-w-md w-full text-center shadow-2xl border border-border"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 18,
-                delay: 0.1,
-              }}
-              className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mx-auto mb-5"
-            >
-              <Check
-                size={28}
-                strokeWidth={3}
-                className="text-primary-foreground"
-              />
-            </motion.div>
-            <h3 className="font-display text-3xl font-medium tracking-tight text-foreground mb-2 leading-tight">
-              That&apos;s{" "}
-              <em className="not-italic text-muted-foreground">it.</em>
-              <br />
-              Your first box is cooking.
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-5 mt-2">
-              We&apos;ve charged{" "}
-              <span className="inline-flex gap-1 items-center me-1">
-                98.00 <Currency className="size-3" />
-              </span>{" "}
-              and scheduled Monday&apos;s delivery between 7 and 9 AM. A
-              confirmation just landed in your inbox.
-            </p>
-            <div className="font-mono text-xs bg-muted dark:bg-primary-foreground border border-border dark:border-primary/10 rounded-xl py-3 px-4 tracking-wider text-muted-foreground mb-5">
-              ORDER · #{orderId}
-            </div>
-            <button
-              onClick={onClose}
-              className="w-full bg-foreground text-background py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition"
-            >
-              Pick this week&apos;s meals <ChevronRight size={14} />
-            </button>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
-
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
@@ -512,6 +688,7 @@ export default function CheckoutPage() {
   const [success, setSuccess] = useState(false);
   const { t, lang, isRTL } = useLang();
   const { isDark } = useThemeStore();
+  const router = useRouter()
 
   // ── Contact & delivery form ──
   const contactForm = useForm<ContactFormType>({
@@ -521,9 +698,14 @@ export default function CheckoutPage() {
       email: "mira@example.com",
       phone_number: undefined,
       city: "",
+      district: "",
       streetAddress: "",
+      nationalAddress: "",
       apt: "",
       postalCode: "",
+      locationLat: undefined,
+      locationLng: undefined,
+      locationLabel: "",
     },
   });
 
@@ -539,12 +721,10 @@ export default function CheckoutPage() {
     },
   });
 
-  // Watch card fields to drive the live card visual
   const watchedCardNum = cardForm.watch("cardNumber");
   const watchedCardName = cardForm.watch("cardName");
   const watchedExpiry = cardForm.watch("expiry");
 
-  // Sync formatting
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     cardForm.setValue("cardNumber", formatCardNumber(e.target.value));
   };
@@ -553,12 +733,28 @@ export default function CheckoutPage() {
   };
 
   const selectedCity = contactForm.watch("city");
+  const watchedLocationLat = contactForm.watch("locationLat");
+  const watchedLocationLng = contactForm.watch("locationLng");
+
+  const handleMapChange = useCallback(
+    (latlng: LatLng, label: string) => {
+      contactForm.setValue("locationLat", latlng.lat);
+      contactForm.setValue("locationLng", latlng.lng);
+      contactForm.setValue("locationLabel", label);
+    },
+    [contactForm],
+  );
+
+  const pinValue =
+    watchedLocationLat !== undefined && watchedLocationLng !== undefined
+      ? { lat: watchedLocationLat, lng: watchedLocationLng }
+      : undefined;
 
   const handlePay = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      setSuccess(true);
+      router.push("/confirm")
     }, 1500);
   };
 
@@ -590,15 +786,15 @@ export default function CheckoutPage() {
       sub: "Fastest — Touch ID",
     },
     {
-      id: "tabby",
-      image: "tabby",
-      label: "Split in 4",
-      sub: "No fees · Tabby",
+      id: "tamara",
+      image: "tamara",
+      label: "Tamara",
+      sub: "No fees · Tamara",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans pt-20">
+    <div className="min-h-screen bg-background text-foreground pt-20">
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="space-y-4 mb-4">
           <OrderHeading
@@ -606,7 +802,7 @@ export default function CheckoutPage() {
             title={t("checkout.heading")}
             subheading={t("checkout.subheading")}
           />
-          <Stepper currentIndex={2} />
+          <Stepper currentIndex={1} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-6 items-start">
@@ -616,15 +812,14 @@ export default function CheckoutPage() {
             <Card className="rounded-2xl border-border">
               <CardHeader className="flex flex-row justify-between items-start">
                 <div>
-                  <CardTitle className="font-display text-xl tracking-tight">
-                    Contact <em className=" italic text-primary">& delivery</em>
+                  <CardTitle className="text-xl tracking-tight">
+                    Contact <em className="italic text-primary">& delivery</em>
                   </CardTitle>
                   <CardDescription>
                     So we know where to leave the chilled box.
                   </CardDescription>
                 </div>
-
-                <span className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground/60">
+                <span className="text-[10px] tracking-widest uppercase text-muted-foreground/60">
                   01
                 </span>
               </CardHeader>
@@ -652,7 +847,7 @@ export default function CheckoutPage() {
                     </div>
 
                     {/* Row 2: Phone + City */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2  gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <PhoneField
                         label="Phone"
                         name="phone_number"
@@ -660,55 +855,54 @@ export default function CheckoutPage() {
                         error={contactForm.formState.errors.phone_number}
                       />
 
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs font-medium uppercase tracking-wide">
-                          City
-                        </label>
-                        <Select
-                          value={selectedCity}
-                          onValueChange={(value) =>
-                            contactForm.setValue("city", value)
-                          }
-                        >
-                          <SelectTrigger className="h-20 rounded-full w-full min-h-12 text-sm mt-2">
-                            <SelectValue placeholder="Select city" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {CITIES.map((city) => (
-                              <SelectItem key={city.key} value={city.key}>
-                                {city.label[lang]}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        {contactForm.formState.errors.city && (
-                          <p className="text-xs text-destructive mt-1">
-                            {contactForm.formState.errors.city.message}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Row 3: Street address */}
-                    <CustomField name="streetAddress" label="Street address">
+                             {/* Row 4: National Address */}
+                    <CustomField
+                      name="nationalAddress"
+                      label={
+                        <span className="flex flex-col items-center gap-1">
+                          National address
+                       
+                        </span>
+                      }
+                    >
                       {(field) => (
                         <Input
-                          placeholder="Building, street, district"
+                          placeholder="e.g. RHGA 1234"
                           {...field}
                         />
                       )}
                     </CustomField>
-
-                    {/* Row 4: Apt + Postal code */}
-                    <div className="grid grid-cols-2 gap-3">
-                      <CustomField name="apt" label="Apt / floor">
-                        {(field) => <Input placeholder="Apt 21B" {...field} />}
-                      </CustomField>
-
-                      <CustomField name="postalCode" label="Postal code">
-                        {(field) => <Input placeholder="11564" {...field} />}
-                      </CustomField>
                     </div>
+
+                    {/* Row 3: District + Street address */}
+                    {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <CustomField name="district" label="District / Neighbourhood">
+                        {(field) => (
+                          <Input placeholder="e.g. Al Olaya" {...field} />
+                        )}
+                      </CustomField>
+
+                      <CustomField name="streetAddress" label="Street address">
+                        {(field) => (
+                          <Input
+                            placeholder="Building, street"
+                            {...field}
+                          />
+                        )}
+                      </CustomField>
+                    </div> */}
+
+             
+
+                    {/* Row 5: Apt + Postal code */}
+                   
+
+                    {/* Row 6: Google Map Picker */}
+                    <GoogleMapPicker
+                      value={pinValue}
+                      onChange={handleMapChange}
+                      city={selectedCity}
+                    />
                   </div>
                 </FormProvider>
               </CardContent>
@@ -718,20 +912,19 @@ export default function CheckoutPage() {
             <Card className="rounded-2xl border-border">
               <CardHeader className="flex flex-row justify-between items-start">
                 <div>
-                  <CardTitle className="font-display text-xl tracking-tight">
-                    Delivery <em className=" italic text-primary">Window</em>
+                  <CardTitle className="text-xl tracking-tight">
+                    Delivery <em className="italic text-primary">Window</em>
                   </CardTitle>
                   <CardDescription>
                     Your first box arrives Monday morning, chilled to 4°C.
                   </CardDescription>
                 </div>
-
-                <span className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground/60">
+                <span className="text-[10px] tracking-widest uppercase text-muted-foreground/60">
                   02
                 </span>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2  sm:grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                   {deliveryOptions.map((o) => (
                     <motion.button
                       key={o.id}
@@ -741,13 +934,13 @@ export default function CheckoutPage() {
                       ${
                         deliveryWindow === o.id
                           ? "bg-background border-foreground dark:border-primary/10"
-                          : "bg-background border-border hover:border-foreground/50 "
+                          : "bg-background border-border hover:border-foreground/50"
                       }`}
                     >
-                      <span className="font-display text-lg font-medium leading-tight">
+                      <span className="text-lg font-medium leading-tight">
                         {o.time}
                       </span>
-                      <span className="font-mono text-[9px] tracking-wider uppercase opacity-60">
+                      <span className="text-[9px] tracking-wider uppercase opacity-60">
                         {o.label}
                       </span>
                     </motion.button>
@@ -760,15 +953,14 @@ export default function CheckoutPage() {
             <Card className="rounded-2xl border-border">
               <CardHeader className="flex flex-row justify-between items-start">
                 <div>
-                  <CardTitle className="font-display text-xl tracking-tight">
+                  <CardTitle className="text-xl tracking-tight">
                     Payment
                   </CardTitle>
                   <CardDescription>
                     Encrypted end-to-end. We never see your card number.
                   </CardDescription>
                 </div>
-
-                <span className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground/60">
+                <span className="text-[10px] tracking-widest uppercase text-muted-foreground/60">
                   03
                 </span>
               </CardHeader>
@@ -795,28 +987,31 @@ export default function CheckoutPage() {
                           <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                         )}
                       </div>
-                      <div className="h-6 w-18 relative ">
-                        <Image
-                          src={`/media/images/checkout/${o.image}.png`}
-                          alt="Card Chip"
-                          fill
-                          className={cn(
-                            "object-contain ",
-                            isRTL ? "object-right" : "object-left",
-                          )}
-                        />
-                      </div>
+
+              
+                        <div className="h-6 w-18 relative">
+                          <Image
+                            src={`/media/images/checkout/${o.image}.png`}
+                            alt={o.label}
+                            fill
+                            className={cn(
+                              "object-contain",
+                              isRTL ? "object-right" : "object-left",
+                            )}
+                          />
+                        </div>
+
                       <span className="text-xs font-semibold text-foreground pr-4">
                         {o.label}
                       </span>
-                      <span className="font-mono text-[9px] tracking-wider uppercase text-muted-foreground">
+                      <span className="text-[9px] tracking-wider uppercase text-muted-foreground">
                         {o.sub}
                       </span>
                     </motion.button>
                   ))}
                 </div>
 
-                {/* Payment panes — card pane wrapped in its own FormProvider */}
+                {/* Payment panes */}
                 <AnimatePresence mode="wait">
                   {paymentMethod === "card" && (
                     <FormProvider {...cardForm}>
@@ -883,14 +1078,10 @@ export default function CheckoutPage() {
                               )}
                             </CustomField>
                           </div>
-                          <label className="flex items-center gap-2 cursor-pointer">
-                            <Checkbox
-                            // checked={rememberMe}
-                            // onCheckedChange={(value) => setRememberMe(Boolean(value))}
-                            />
 
-                            <span className=" text-base">
-                              {" "}
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <Checkbox />
+                            <span className="text-base">
                               Save card for next week
                             </span>
                           </label>
@@ -902,11 +1093,11 @@ export default function CheckoutPage() {
                   {paymentMethod === "apple" && (
                     <ApplePayPane
                       onClose={() => setPaymentMethod("card")}
-                      total="$98.00"
+                      total="98.00"
                     />
                   )}
 
-                  {paymentMethod === "tabby" && <TabbyPane />}
+                  {paymentMethod === "tamara" && <TamaraPane />}
                 </AnimatePresence>
               </CardContent>
             </Card>
@@ -920,8 +1111,6 @@ export default function CheckoutPage() {
           />
         </div>
       </main>
-
-      <SuccessModal show={success} onClose={() => setSuccess(false)} />
     </div>
   );
 }

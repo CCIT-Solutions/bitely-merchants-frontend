@@ -3,7 +3,7 @@ import { FaCheck } from "react-icons/fa6";
 
 
 function Stepper({currentIndex}: {currentIndex: number}) {
-  const steps = ["plan", "menu", "checkout", "confirm"];
+  const steps = ["plan", "checkout", "confirm"];
   const {t} = useLang()
   return (
     <div className="flex items-center gap-3 flex-wrap mb-8">

@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { DIET_OPTIONS } from "@/data/dietOptions";
+import { useRouter } from "next/navigation";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -164,6 +165,7 @@ const SummaryPanel = ({
   lang: Language;
   t: (k: string) => string;
 }) => {
+  const router = useRouter()
   const isRTL = lang === "ar";
   const dietData = DIET_OPTIONS.find((d) => d.id === selectedDiet);
   const basePrice = dietData?.priceBase || 8.5;
@@ -181,6 +183,10 @@ const SummaryPanel = ({
   ].join(", ");
 
   const freqLabel = t(`plans.${selectedFreq}`);
+
+  function onSubmit(){
+router.push("/checkout")
+  }
 
   return (
     <div className={`rounded-3xl p-6 flex flex-col gap-5 border bg-primary/2`}>
@@ -283,6 +289,7 @@ const SummaryPanel = ({
 
       {/* CTA */}
       <button
+      onClick={onSubmit}
         className={`w-full h-14 rounded-2xl bg-primary border-primary hover:bg-primary/80 active:bg-primary-foreground text-white font-bold text-base transition-colors duration-200 shadow-lg hover:border-primary/20 flex justify-center items-center cursor-pointer ${
           isRTL ? "text-right" : "text-left"
         }`}

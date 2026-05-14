@@ -210,7 +210,6 @@
     "myMeals": "My Meals",
     "myMealsSubtitle": "All your saved meals, in one place.",
     "searchPlaceholder": "Search your meals...",
-    "filters": "Filters",
     "filtersPlaceholder": "Filter options will appear here.",
     "allMeals": "All Meals",
     "breakfast": "Breakfast",
@@ -238,6 +237,37 @@
     "dietTypes": "Diet Types",
     "resetFilters": "Reset Filters",
     "applyFilters": "Apply Filters",
+   
+    "nav": {
+      "home": "Home",
+      "meals": "Meals",
+      "plans": "Plans",
+      "howItWorks": "How It Works",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "hero": {
+      "title": "Explore our",
+      "titleHighlight": "delicious menu.",
+      "subtitle": "Handpicked dishes for every craving.",
+      "tagline": "Eat healthy, live happily."
+    },
+    "meal": {
+      "kcal": "kcal",
+      "protein": "P",
+      "carbs": "C",
+      "fat": "F",
+      "min": "min",
+      "favourite": "Add to favourites",
+      "unfavourite": "Remove from favourites",
+      "customizableMacros": "Customizable Macros"
+    },
+    "loadMore": "Load more meals",
+    "youveSeen": "You've seen {{seen}} of {{total}} meals",
+    "noResults": "No meals found matching your filters.",
+    "viewRecipe": "View recipe",
+    "thisWeeksHighlights": "This week's highlights",
+    "dishes": "dishes",
     "dietTabs": [
       {
         "id": "all",
@@ -284,7 +314,79 @@
           "desc": "Life changes and your plan can too. Adjust up to 24 hours before delivery with no hassle."
         }
       ]
+    }, 
+       "search": {
+      "placeholder": "Search meals, ingredients...",
+      "allCategories": "All Categories",
+      "allDiets": "All Diets",
+      "maxPrepTime": "Max Prep Time",
+      "sortBy": "Sort by",
+      "popular": "Popular",
+      "newest": "Newest",
+      "quickest": "Quickest",
+      "highestRated": "Highest Rated"
+    },
+    "categories": {
+      "title": "Categories",
+      "all": "All Categories",
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "snacks": "Snacks"
+    },
+    "dietary": {
+      "title": "Dietary Preference",
+      "highProtein": "High Protein",
+      "lowCarb": "Low Carb",
+      "vegan": "Vegan",
+      "vegetarian": "Vegetarian",
+      "glutenFree": "Gluten Free",
+      "dairyFree": "Dairy Free",
+      "ketoFriendly": "Keto Friendly",
+      "balanced": "Balanced",
+      "customMacros": "Custom Macros",
+      "showMore": "Show more"
+    },
+    "cookingTime": {
+      "title": "Cooking Time",
+      "under15": "Under 15 min",
+      "15to30": "15 – 30 min",
+      "30to45": "30 – 45 min",
+      "45plus": "45+ min"
+    },
+    "nutritionGoals": {
+      "title": "Nutrition Goals",
+      "weightLoss": "Weight Loss",
+      "muscleGain": "Muscle Gain",
+      "maintenance": "Maintenance",
+      "heartHealthy": "Heart Healthy",
+      "lowSugar": "Low Sugar"
+    },
+    "filters": {
+      "resetFilters": "Reset Filters", 
+      "filters": "Filters"
+    },
+    "banner": {
+      "line1": "One plan.",
+      "line2": "Zero stress.",
+      "line3": "All delicious.",
+      "description": "Let us plan your week and take the guesswork out of meals.",
+      "viewPlans": "View Plans",
+      "weeklyPlan": "Your Weekly Plan",
+      "weekOf": "Week of May 20 – May 26",
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "feature1Title": "Personalized for your goals",
+      "feature1Desc": "Meals tailored to your preferences and nutrition needs.",
+      "feature2Title": "Smart grocery list",
+      "feature2Desc": "We create your list as you save time and shop smarter.",
+      "feature3Title": "New meals every week",
+      "feature3Desc": "Fresh, exciting recipes to keep your meals enjoyable."
     }
+    
+  
   },
 
   "account": {

@@ -24,7 +24,7 @@ function Home() {
      
       {/* <Testimonial /> */}
       {/* <FindYourPLan />  */}
-      <Pricing/>
+      {/* <Pricing/> */}
       <FAQ />
       {/* <Community /> */}
        <CTA />
