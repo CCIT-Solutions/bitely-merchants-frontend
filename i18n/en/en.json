@@ -387,6 +387,87 @@
     }
   },
 
+   "confirm": {
+    "badge": "Payment Successful",
+    "heading": "Thank you,",
+    "subheading": "Your order has been confirmed and we're preparing fresh meals just for you.",
+    "paymentConfirmed": "Payment Confirmed",
+    "paymentDescription": "Your payment of",
+    "paymentSuccess": "was successful.",
+    "whatNext": "What happens next?",
+    "steps": {
+      "preparing": {
+        "title": "Preparing your meals",
+        "description": "Our chefs are cooking your meals with fresh ingredients.",
+        "time": "Now"
+      },
+      "ontheway": {
+        "title": "On the way",
+        "description": "Your box is packed and on its way to you.",
+        "time": "Today, 9:00 AM"
+      },
+      "delivered": {
+        "title": "Delivered to your door",
+        "description": "Your meals will be delivered chilled and ready to enjoy.",
+        "time": "Today, 10:00 AM"
+      }
+    },
+    "delivery": {
+      "title": "Delivery",
+      "titleHighlight": "Window",
+      "date": "Mon, Apr 21",
+      "window": "7:00 AM – 9:00 AM",
+      "notify": "We'll notify you when your box is nearby."
+    },
+    "support": {
+      "title": "Have a question?",
+      "subtitle": "We're here to help!",
+      "liveChat": "Live Chat",
+      "liveChatSub": "Chat with us",
+      "email": "Email Us",
+      "emailSub": "hello@bitely.com",
+      "phone": "Call Us",
+      "phoneSub": "+976 11 123 4567"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "mealsWeekly": "21 Meals · Weekly",
+      "orderPrefix": "Order #",
+      "weekLabel": "Week of Apr 20 — Apr 26",
+      "moreItems": "+16",
+      "subtotal": "Subtotal",
+      "delivery": "Delivery",
+      "deliveryFree": "Free",
+      "taxes": "Taxes (5%)",
+      "promo": "Promo ·",
+      "totalPaid": "Total Paid",
+      "paidBadge": "Paid",
+      "savedTitle": "You saved",
+      "savedSubtitle": "Nice choice! You're eating healthy and saving more.",
+      "paymentMethod": "Payment Method",
+      "cardMask": "•••• 4242",
+      "downloadReceipt": "Download Receipt"
+    },
+    "app": {
+      "badge": "Stay Updated",
+      "title": "Track your order in",
+      "titleHighlight": "real-time",
+      "description": "Get live updates, manage preferences, and reschedule anytime in the Bitely app.",
+      "downloadOn": "Download on the",
+      "appStore": "App Store",
+      "getItOn": "Get it on",
+      "googlePlay": "Google Play"
+    },
+    "nav": {
+      "home": "Home",
+      "menu": "Menu",
+      "howItWork": "How It Work",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "startNow": "Start Now"
+    }
+  },
+
   "account": {
     "myProfile": "My Profile",
     "myPlan": "My Plan",
