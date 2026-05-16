@@ -120,7 +120,8 @@ const FoodCard = ({
               return (
                 <div
                   key={key}
-                  className="flex items-center justify-center gap-1 py-3 border border-foreground/5 rounded-xl dark:bg-primary-foreground/20"
+                  className="flex items-center justify-center gap-1 py-3 border border-foreground/5 rounded-xl dark:bg-primary-foreground/20  px-2"
+                  title={`${value} ${unit} ${t(labelKey)}`}
                 >
                   <div
                     className={cn(
@@ -128,7 +129,7 @@ const FoodCard = ({
                       macroColors[key]
                     )}
                   />
-                  <span className="text-xs text-foreground/80">
+                  <span className="text-xs text-foreground/80 line-clamp-1">
                     {value}
                     {unit} {t(labelKey)}
                   </span>

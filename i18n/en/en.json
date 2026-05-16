@@ -221,7 +221,7 @@
     "caloriesAsc": "Calories (Low → High)",
     "caloriesDesc": "Calories (High → Low)",
     "name": "Name",
-    "loadMore": "Load more meals",
+    "loadMore": "Load more",
     "noMealsFound": "No meals found",
     "noMealsFoundSubtitle": "Try adjusting your search or filters.",
     "createMealTitle": "Create your own meal",
@@ -250,7 +250,10 @@
       "title": "Explore our",
       "titleHighlight": "delicious menu.",
       "subtitle": "Handpicked dishes for every craving.",
-      "tagline": "Eat healthy, live happily."
+      "tagline": "Eat healthy, live happily.", 
+      "thisWeeksHighlights": "This Week’s Highlights",
+      "viewRecipe": "View Recipe",
+      "dishes": "Dishes"
     },
     "meal": {
       "kcal": "kcal",
@@ -262,7 +265,7 @@
       "unfavourite": "Remove from favourites",
       "customizableMacros": "Customizable Macros"
     },
-    "loadMore": "Load more meals",
+   
     "youveSeen": "You've seen {{seen}} of {{total}} meals",
     "noResults": "No meals found matching your filters.",
     "viewRecipe": "View recipe",
@@ -316,7 +319,7 @@
       ]
     },
     "search": {
-      "placeholder": "Search meals, ingredients...",
+     "placeholder": "Search for meals, ingredients...",
       "allCategories": "All Categories",
       "allDiets": "All Diets",
       "maxPrepTime": "Max Prep Time",
@@ -324,7 +327,9 @@
       "popular": "Popular",
       "newest": "Newest",
       "quickest": "Quickest",
-      "highestRated": "Highest Rated"
+      "highestRated": "Highest Rated",
+      "cookingTime": "Cooking Time",
+      "nutritionGoals": "Nutrition Goals"
     },
     "categories": {
       "title": "Categories",
@@ -345,9 +350,14 @@
       "ketoFriendly": "Keto Friendly",
       "balanced": "Balanced",
       "customMacros": "Custom Macros",
+      "all": "All",
+      "high-protein": "High Protein",
+      "low-carb": "Low Carb",
+      "custom-macros": "Custom Macros",
       "showMore": "Show more"
     },
     "cookingTime": {
+        "all": "All",
       "title": "Cooking Time",
       "under15": "Under 15 min",
       "15to30": "15 – 30 min",
@@ -355,6 +365,7 @@
       "45plus": "45+ min"
     },
     "nutritionGoals": {
+      "all": "All",
       "title": "Nutrition Goals",
       "weightLoss": "Weight Loss",
       "muscleGain": "Muscle Gain",
@@ -364,7 +375,8 @@
     },
     "filters": {
       "resetFilters": "Reset Filters",
-      "filters": "Filters"
+      "filters": "Filters", 
+      "clearAll": "Clear All"
     },
     "banner": {
       "line1": "One plan.",

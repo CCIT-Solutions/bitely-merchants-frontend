@@ -16,4 +16,6 @@ export type FoodItem = {
   dietType?: string;
   tag?: string;
   customMacros?: boolean;
+  cookingTime?: number;
+  nutritionGoals?: string[];
 };

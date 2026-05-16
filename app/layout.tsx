@@ -1,4 +1,5 @@
-import { IBM_Plex_Sans_Arabic, Google_Sans_Flex } from "next/font/google";
+import localFont from "next/font/local";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers";
 import "@/i18n/i18n";
@@ -6,12 +7,36 @@ import { Toaster } from "@/components/ui/sonner";
 import { Metadata } from "next";
 import Script from "next/script";
 
-const GoogleSansFlex = Google_Sans_Flex({
+const GoogleSansFlex = localFont({
+  src: [
+    {
+      path: "./fonts/GoogleSansFlex_24pt-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GoogleSansFlex_24pt-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GoogleSansFlex_24pt-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GoogleSansFlex_24pt-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GoogleSansFlex_24pt-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-google-sans-flex",
-  weight: ["100", "400", "500", "600", "700"],
   display: "swap",
-  preload: true,
-  subsets: ["latin"],
 });
 
 const IBMPlexSansArabic = IBM_Plex_Sans_Arabic({
