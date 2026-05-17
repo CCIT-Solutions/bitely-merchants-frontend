@@ -19,51 +19,58 @@ import { GoHeart } from "react-icons/go";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { GiShoppingBag } from "react-icons/gi";
 import SidebarCTA from "@/components/account/SidebarCTA";
+import { FiSettings } from "react-icons/fi";
 
 const menuItems = [
   {
     id: "my-profile",
     label: "account.myProfile",
     path: "/account/my-profile",
-    icon: <User />,
+    icon: <User className={"size-4"}/>,
   },
 
   {
     id: "my-plan",
     label: "account.myPlan",
     path: "/account/my-plan",
-    icon: <GiShoppingBag />,
+    icon: <GiShoppingBag className={"size-4"}/>,
   },
   {
     id: "my-orders",
     label: "account.myOrders",
     path: "/account/my-orders",
-    icon: <HiOutlineShoppingBag />,
+    icon: <HiOutlineShoppingBag className={"size-4"}/>,
   },
   {
     id: "my-meals",
     label: "account.myMeals",
     path: "/account/my-meals",
-    icon: <GiHotMeal />,
+    icon: <GiHotMeal className={"size-4"}/>,
   },
 
   {
     id: "favorites",
     label: "account.favorites",
     path: "/account/favorites",
-    icon: <GoHeart />,
+    icon: <GoHeart className={"size-4"}/>,
   },
   {
     id: "my-progress",
     label: "account.myProgress",
     path: "/account/my-progress",
-    icon: <IoPulseOutline />,
+    icon: <IoPulseOutline className={"size-4"}/>,
   },
   {
     id: "payment",
     label: "account.paymentAndBilling",
     path: "/account/payment",
-    icon: <BsCreditCardFill />,
+    icon: <BsCreditCardFill className={"size-4"}/>,
+  },
+   {
+    id: "settings",
+    label: "account.settings",
+    path: "/account/settings",
+    icon: <FiSettings className={"size-4"}/>,
   },
 ];
 
@@ -81,6 +88,7 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
     if (pathname?.includes("/favorites")) return "favorites";
     if (pathname?.includes("/my-progress")) return "my-progress";
     if (pathname?.includes("/payment")) return "payment";
+    if (pathname?.includes("/settings")) return "settings";
 
     return "my-profile";
   };
@@ -196,13 +204,21 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
                   key={item.id}
                   href={item.path}
                   className={cn(
-                    "flex items-center gap-3 px-4 py-3 rounded-2xl text-sm transition-all duration-200 border border-transparent",
+                    "flex items-center gap-3 px-4 py-2 rounded-2xl text-sm transition-all duration-200 border border-transparent group",
                     isActive
-                      ? "bg-primary/5 text-primary-foreground border border-primary/50"
+                      ? "bg-custom-green/10 text-primary-foreground border border-custom-green/30"
                       : "text-foreground/60 hover:text-foreground hover:bg-foreground/2 hover:border-border",
                   )}
                 >
+                  <span className={cn(
+                    "flex items-center justify-center rounded-md size-8 transition-colors",
+                    isActive
+                      ? "bg-custom-green/90 text-white"
+                      : "text-foreground/60 hover:text-foreground group-hover:bg-foreground/5 hover:border-border",
+                  )}>
+
                   {item.icon}
+                  </span>
                   <span className="font-medium">{t(item.label)}</span>
                 </Link>
               );
