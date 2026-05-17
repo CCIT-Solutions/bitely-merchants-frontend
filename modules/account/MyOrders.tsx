@@ -142,7 +142,7 @@ const ActiveOrderCard = ({
 
       {/* Meal info row */}
       <div className="flex items-start gap-2 px-3 py-2">
-        <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0">
+        <div className="relative size-10 rounded-xl overflow-hidden shrink-0">
           <Image
             src={order.image}
             alt={order.planName[lang as "en" | "ar"]}
@@ -174,7 +174,7 @@ const ActiveOrderCard = ({
       </div>
 
       {/* Stepper */}
-      <div className="px-3">
+      <div className="px-3 mb-3">
         <OrderStepper status={order.status} t={t} />
       </div>
 
@@ -182,11 +182,11 @@ const ActiveOrderCard = ({
       <div className="grid grid-cols-2 gap-2 px-3 py-3 border-t border-foreground/6">
         <Button
           variant="outline"
-          className="rounded-lg border-foreground/15 text-xs font-medium h-8"
+          className="rounded-full border-foreground/15 text-xs font-medium py-5 cursor-pointer"
         >
           {t("orders.viewDetails")}
         </Button>
-        <Button className="rounded-lg bg-primary text-primary-foreground text-xs font-medium h-8 gap-1 hover:bg-primary/90">
+        <Button className="rounded-full bg-primary text-primary-foreground text-xs font-medium py-5 gap-1 hover:bg-primary/90 cursor-pointer">
           <MapPin className="w-3 h-3" />
           {t("orders.trackOrder")}
         </Button>
