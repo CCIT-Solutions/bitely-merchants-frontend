@@ -288,7 +288,7 @@ const MyProgressPage = () => {
                   className="flex items-center gap-1 text-xs text-foreground/50 hover:text-foreground transition-colors"
                 >
                   {currentRangeLabel ? t(currentRangeLabel) : ""}
-                  <ChevronDown className="w-3 h-3" />
+                  <ChevronDown className={"w-3 h-3"} />
                 </button>
                 {rangeOpen && (
                   <div className="absolute end-0 top-full mt-1 z-10 bg-popover border border-foreground/10 rounded-xl shadow-lg min-w-32 py-1">
@@ -333,9 +333,9 @@ const MyProgressPage = () => {
               ))}
             </ul>
 
-            <Button className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 gap-2 justify-between">
+            <Button className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 gap-2 justify-between cursor-pointer">
               {t("progress.viewFullReport")}
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className= {cn("w-4 h-4",  isRTL ? "rotate-180" : "")} />
             </Button>
           </div>
         </div>
@@ -412,13 +412,13 @@ const MyProgressPage = () => {
 
             <button className="flex items-center gap-1 text-sm text-primary font-medium hover:opacity-80 transition-opacity mt-1">
               {t("progress.viewAllMilestones")}
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className={cn("w-3.5 h-3.5", isRTL ? "rotate-180" : "")} />
             </button>
           </div>
         </div>
 
         {/* ── Coach Banner ── */}
-        <CoachBanner t={t} />
+        <CoachBanner t={t} isRTL={isRTL}/>
       </div>
     </div>
   );
@@ -454,7 +454,7 @@ const StatCard = ({
 // Coach Banner
 // ─────────────────────────────────────────────
 
-const CoachBanner = ({ t }: { t: (key: string) => string }) => (
+const CoachBanner = ({ t , isRTL}: { t: (key: string) => string; isRTL: boolean }) => (
   <div className="relative rounded-3xl overflow-hidden bg-muted/50 border border-foreground/5 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
     <div className="absolute -top-8 -end-8 w-32 h-32 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
     <div className="absolute bottom-0 start-1/3 w-20 h-20 rounded-full bg-primary/5 blur-xl pointer-events-none" />
@@ -471,7 +471,7 @@ const CoachBanner = ({ t }: { t: (key: string) => string }) => (
         className="rounded-full mt-3 border-foreground/15 text-foreground/70 hover:text-foreground gap-2 px-5"
       >
         {t("progress.chatWithCoach")}
-        <ArrowRight className="w-3.5 h-3.5" />
+        <ArrowRight className={cn("w-3.5 h-3.5",  isRTL ? "rotate-180" : "")} />
       </Button>
     </div>
 
