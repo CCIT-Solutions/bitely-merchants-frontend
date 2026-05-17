@@ -205,7 +205,7 @@
     "protein": "بروتين",
     "carbs": "كربوهيدرات",
     "fat": "دهون",
-    "kcal": "سعرة حرارية",
+    "kcal": "سعرة",
     "customizableMacros": "تخصيص الماكروز",
     "myMeals": "وجباتي",
     "myMealsSubtitle": "كل وجباتك المحفوظة في مكان واحد.",
@@ -544,6 +544,102 @@
     "changePassword": "تغيير كلمة المرور"
   },
 
+  "myPlan": {
+    "today": "اليوم",
+    "days": {
+      "short": {
+        "sun": "الأحد",
+        "mon": "الاثنين",
+        "tue": "الثلاثاء",
+        "wed": "الأربعاء",
+        "thu": "الخميس",
+        "fri": "الجمعة",
+        "sat": "السبت"
+      },
+      "full": {
+        "sunday": "الأحد",
+        "monday": "الاثنين",
+        "tuesday": "الثلاثاء",
+        "wednesday": "الأربعاء",
+        "thursday": "الخميس",
+        "friday": "الجمعة",
+        "saturday": "السبت"
+      }
+    },
+    "months": {
+      "jan": "يناير",
+      "feb": "فبراير",
+      "mar": "مارس",
+      "apr": "أبريل",
+      "may": "مايو",
+      "jun": "يونيو",
+      "jul": "يوليو",
+      "aug": "أغسطس",
+      "sep": "سبتمبر",
+      "oct": "أكتوبر",
+      "nov": "نوفمبر",
+      "dec": "ديسمبر"
+    },
+    "slots": {
+      "breakfast": {
+        "label": "الفطور",
+        "time": "7–9 ص"
+      },
+      "lunch": {
+        "label": "الغداء",
+        "time": "12–2 م"
+      },
+      "dinner": {
+        "label": "العشاء",
+        "time": "6–8 م"
+      },
+      "snacks": {
+        "label": "سناكات",
+        "time": "أي وقت"
+      }
+    },
+    "actions": {
+      "add": "إضافة",
+      "swap": "تبديل",
+      "remove": "حذف",
+      "addSlot": "إضافة {{slot}}"
+    },
+    "nutrients": {
+      "proteinShort": "ب",
+      "carbsShort": "ك"
+    },
+    "filters": {
+      "all": "الكل",
+      "high-protein": "عالي البروتين",
+      "low-cal": "أقل من 400 سعرة",
+      "vegetarian": "نباتي"
+    },
+    "modal": {
+      "titleAdd": "إضافة وجبة",
+      "titleSwap": "تبديل الوجبة",
+      "close": "إغلاق",
+      "replacing": "استبدال",
+      "searchPlaceholder": "ابحث عن وجبة…",
+      "noDishes": "ما فيه وجبات",
+      "confirmAdd": "إضافة للخطة",
+      "confirmSwap": "تأكيد التبديل"
+    },
+    "weeklyOverview": {
+      "title": "نظرة أسبوعية",
+      "hint": "اضغط على أي خانة للإضافة أو التبديل · اختر يوم للتركيز عليه",
+      "mealLabel": "الوجبة",
+      "totalLabel": "الإجمالي",
+      "protLabel": "بروتين"
+    },
+    "progress": {
+      "label": "الوجبات اليومية",
+      "count": "{{filled}}/{{total}}",
+      "calories": "السعرات",
+      "protein": "البروتين",
+      "carbs": "الكاربوهيدرات"
+    }
+  },
+
   "preferences": {
     "personalPreferences": "التفضيلات الشخصية",
     "dietaryPreference": "النظام الغذائي المفضل",
@@ -692,84 +788,6 @@
     "setDefault": "تعيين كافتراضي",
     "editCard": "تعديل البطاقة",
     "removeCard": "حذف البطاقة"
-  },
-
-  "mealPlanner": {
-    "order": "الطلب",
-    "heading": "حضَر وجبات <custom>أسبوعك.</custom>",
-    "subheading": "اضغط على أي طبق لاستبداله ، يتم تحديث القيم الغذائية مباشرة. يتم غلق مطعمنا يوم الأحد الساعة 12 مساءً.",
-    "exportWeek": "تصدير الأسبوع",
-    "confirmWeek": "تأكيد الأسبوع",
-    "plates": "أطباق",
-    "addPlate": "+ إضافة طبق",
-    "add": "+ إضافة",
-    "emptySlot": "خانة فارغة",
-    "swap": "استبدال",
-    "kcal": "سعرة ",
-    "protein": "بروتين",
-    "statsMealsPlanned": "عدد الوجبات",
-    "statsDailyAvg": "المتوسط اليومي",
-    "statsAvgProtein": "متوسط البروتين / وجبة",
-    "statsFirstDelivery": "أول توصيل",
-    "statsFirstDeliveryValue": "الإثنين",
-    "statsFirstDeliverySub": "20",
-    "statsKitchenLocks": "إغلاق المطبخ",
-    "statsKitchenLocksValue": "الأحد",
-    "statsKitchenLocksSub": "8 مساءً",
-    "week": "الأسبوع",
-    "weekRange": "20 أبريل — 26 أبريل 2026",
-    "viewWeek": "عرض الأسبوع",
-    "viewDay": "عرض اليوم",
-    "viewList": "عرض القائمة",
-    "keepPlate": "حفظ",
-    "chef": "الشيف",
-    "viewRecipe": "عرض الوصفة",
-    "choosePlate": "اختر طبقًا…",
-    "swapFor": "استبدل بـ…",
-    "filter": "تصفية",
-    "filterAll": "الكل",
-    "filterHighProtein": "عالي البروتين",
-    "filterLowCal": "< 500 سعرة حرارية",
-    "filterPlantBased": "نباتي",
-    "confirmSwap": "تأكيد الاستبدال",
-    "confirmAdd": "تأكيد الإضافة",
-    "today": "اليوم",
-    "replacing": "جاري الاستبدال",
-    "months": {
-      "jan": "يناير",
-      "feb": "فبراير",
-      "mar": "مارس",
-      "apr": "أبريل",
-      "may": "مايو",
-      "jun": "يونيو",
-      "jul": "يوليو",
-      "aug": "أغسطس",
-      "sep": "سبتمبر",
-      "oct": "أكتوبر",
-      "nov": "نوفمبر",
-      "dec": "ديسمبر"
-    },
-    "days": {
-      "mon": "الإثنين",
-      "tue": "الثلاثاء",
-      "wed": "الأربعاء",
-      "thu": "الخميس",
-      "fri": "الجمعة",
-      "sat": "السبت",
-      "sun": "الأحد"
-    },
-    "slots": {
-      "breakfast": "فطور",
-      "lunch": "غداء",
-      "dinner": "عشاء",
-      "snacks": "سناك",
-      "anytime": "في أي وقت"
-    },
-    "times": {
-      "breakfast": "٧–٩ ص",
-      "lunch": "١٢–٢ م",
-      "dinner": "٦–٨ م"
-    }
   },
 
   "checkout": {

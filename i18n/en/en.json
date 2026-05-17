@@ -535,6 +535,102 @@
     "changePassword": "Change Password"
   },
 
+   "myPlan": {
+    "today": "Today",
+    "days": {
+      "short": {
+        "sun": "Sun",
+        "mon": "Mon",
+        "tue": "Tue",
+        "wed": "Wed",
+        "thu": "Thu",
+        "fri": "Fri",
+        "sat": "Sat"
+      },
+      "full": {
+        "sunday": "Sunday",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday"
+      }
+    },
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    },
+    "slots": {
+      "breakfast": {
+        "label": "Breakfast",
+        "time": "7–9 AM"
+      },
+      "lunch": {
+        "label": "Lunch",
+        "time": "12–2 PM"
+      },
+      "dinner": {
+        "label": "Dinner",
+        "time": "6–8 PM"
+      },
+      "snacks": {
+        "label": "Snacks",
+        "time": "Anytime"
+      }
+    },
+    "actions": {
+      "add": "Add",
+      "swap": "Swap",
+      "remove": "Remove",
+      "addSlot": "Add {{slot}}"
+    },
+    "nutrients": {
+      "proteinShort": "P",
+      "carbsShort": "C"
+    },
+    "filters": {
+      "all": "All",
+      "high-protein": "High Protein",
+      "low-cal": "< 400 kcal",
+      "vegetarian": "Plant-based"
+    },
+    "modal": {
+      "titleAdd": "Add dish",
+      "titleSwap": "Swap dish",
+      "close": "Close",
+      "replacing": "Replacing",
+      "searchPlaceholder": "Search dishes…",
+      "noDishes": "No dishes found",
+      "confirmAdd": "Add to plan",
+      "confirmSwap": "Confirm swap"
+    },
+    "weeklyOverview": {
+      "title": "Weekly Overview",
+      "hint": "Click any cell to add or swap · tap a day to focus",
+      "mealLabel": "MEAL",
+      "totalLabel": "TOTAL",
+      "protLabel": "prot"
+    },
+    "progress": {
+      "label": "Daily meals",
+      "count": "{{filled}}/{{total}}",
+      "calories": "Calories",
+      "protein": "Protein",
+      "carbs": "Carbs"
+    }
+  },
+
   "preferences": {
     "personalPreferences": "Personal Preferences",
     "dietaryPreference": "Dietary Preference",
@@ -561,83 +657,7 @@
     "manageSubscription": "Manage Subscription"
   },
 
-  "mealPlanner": {
-    "order": "Order",
-    "heading": "Plate your <custom>week.</custom/>",
-    "subheading": "Click any plate to swap it, nutrition recalculates live and we lock the kitchen on Sunday, 12 PM.",
-    "exportWeek": "Export week",
-    "confirmWeek": "Confirm week",
-    "plates": "plates",
-    "addPlate": "+ add plate",
-    "add": "+ add",
-    "emptySlot": "Empty slot",
-    "swap": "Swap",
-    "kcal": "kcal",
-    "protein": "Protein",
-    "statsMealsPlanned": "Meals planned",
-    "statsDailyAvg": "Daily avg.",
-    "statsAvgProtein": "Avg protein / meal",
-    "statsFirstDelivery": "First Delivery",
-    "statsFirstDeliveryValue": "Mon",
-    "statsFirstDeliverySub": "20",
-    "statsKitchenLocks": "Kitchen locks",
-    "statsKitchenLocksValue": "Sun",
-    "statsKitchenLocksSub": "8 PM",
-    "week": "Week",
-    "weekRange": "April 20 — April 26, 2026",
-    "viewWeek": "Week",
-    "viewDay": "Day",
-    "viewList": "List",
-    "keepPlate": "Keep plate",
-    "chef": "Chef",
-    "viewRecipe": "View recipe",
-    "choosePlate": "Choose a plate…",
-    "swapFor": "Swap for…",
-    "filter": "Filter",
-    "filterAll": "All",
-    "filterHighProtein": "High protein",
-    "filterLowCal": "< 500 kcal",
-    "filterPlantBased": "Plant-based",
-    "confirmSwap": "Confirm swap",
-    "confirmAdd": "Confirm add",
-    "today": "Today",
-    "replacing": "Replacing",
-    "months": {
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
-    },
-    "days": {
-      "mon": "Mon",
-      "tue": "Tue",
-      "wed": "Wed",
-      "thu": "Thu",
-      "fri": "Fri",
-      "sat": "Sat",
-      "sun": "Sun"
-    },
-    "slots": {
-      "breakfast": "Breakfast",
-      "lunch": "Lunch",
-      "dinner": "Dinner",
-      "snacks": "Snacks",
-      "anytime": "Anytime"
-    },
-    "times": {
-      "breakfast": "7–9 AM",
-      "lunch": "12–2 PM",
-      "dinner": "6–8 PM"
-    }
-  },
+ 
 
   "orders": {
     "myOrders": "My Orders",

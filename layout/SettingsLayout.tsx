@@ -27,6 +27,7 @@ const menuItems = [
     path: "/account/my-profile",
     icon: <User />,
   },
+
   {
     id: "my-plan",
     label: "account.myPlan",
@@ -34,17 +35,18 @@ const menuItems = [
     icon: <GiShoppingBag />,
   },
   {
-    id: "my-meals",
-    label: "account.myMeals",
-    path: "/account/my-meals",
-    icon: <GiHotMeal />,
-  },
-  {
     id: "my-orders",
     label: "account.myOrders",
     path: "/account/my-orders",
     icon: <HiOutlineShoppingBag />,
   },
+  {
+    id: "my-meals",
+    label: "account.myMeals",
+    path: "/account/my-meals",
+    icon: <GiHotMeal />,
+  },
+
   {
     id: "favorites",
     label: "account.favorites",
@@ -65,11 +67,7 @@ const menuItems = [
   },
 ];
 
-export default function SettingsLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function SettingsLayout({ children }: { children: ReactNode }) {
   const { t, isRTL } = useLang();
   const pathname = usePathname();
 
@@ -92,7 +90,7 @@ export default function SettingsLayout({
 
   return (
     <div className="min-h-screen bg-background">
-      <Container className="flex flex-col lg:flex-row min-h-screen px-4 sm:px-6 pt-22 lg:pt-25 gap-4 lg:gap-6">
+      <Container className="flex flex-col lg:flex-row min-h-screen sm:px-6 pt-22 lg:pt-25 gap-4 lg:gap-6">
         {/* Mobile Topbar */}
         <div className="lg:hidden sticky top-22 z-30">
           <button
@@ -142,7 +140,9 @@ export default function SettingsLayout({
               >
                 <div className="flex items-center justify-between mb-6">
                   <div>
-                    <p className="text-lg font-bold">{t("account.myAccount")}</p>
+                    <p className="text-lg font-bold">
+                      {t("account.myAccount")}
+                    </p>
                     <p className="text-xs text-foreground/50">
                       {t("account.manageProfileAndPlans")}
                     </p>
@@ -196,10 +196,10 @@ export default function SettingsLayout({
                   key={item.id}
                   href={item.path}
                   className={cn(
-                    "flex items-center gap-3 px-4 py-3 rounded-2xl text-sm transition-all duration-200",
+                    "flex items-center gap-3 px-4 py-3 rounded-2xl text-sm transition-all duration-200 border border-transparent",
                     isActive
                       ? "bg-primary/5 text-primary-foreground border border-primary/50"
-                      : "text-foreground/60 hover:text-foreground hover:bg-foreground/3",
+                      : "text-foreground/60 hover:text-foreground hover:bg-foreground/2 hover:border-border",
                   )}
                 >
                   {item.icon}

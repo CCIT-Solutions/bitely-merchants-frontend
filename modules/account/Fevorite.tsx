@@ -282,7 +282,7 @@ const onClearAllFavourites = () => {
                   className="rounded-xl border-foreground/10 gap-2 shrink-0"
                 >
                   <SlidersHorizontal className="w-4 h-4" />
-                  <span className="hidden sm:inline">{t("menu.filters")}</span>
+                  <span className="hidden sm:inline">{t("menu.filters.filters")}</span>
                 </Button>
               </SheetTrigger>
               <SheetContent
