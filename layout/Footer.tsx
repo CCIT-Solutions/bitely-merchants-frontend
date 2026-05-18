@@ -102,11 +102,11 @@ export default function Footer({
 
                     <div className="flex flex-col gap-8">
                       <MaybeLink href="/menu">
-                        <Translate text="footer.links.blog" />
+                        <Translate text="footer.links.menu" />
                       </MaybeLink>
 
                       <MaybeLink href="/contact">
-                        <Translate text="footer.links.support" />
+                        <Translate text="footer.links.contact" />
                       </MaybeLink>
                     </div>
                   </div>
@@ -121,14 +121,14 @@ export default function Footer({
                   <p className="text-neutral-500 text-sm mt-2 mb-6">
                     <Translate text="footer.newsletter.description" />
                   </p>
-                  <div className="flex w-full rounded-full border border-neutral-300 dark:border-primary/10 bg-white dark:bg-transparent overflow-hidden items-center ">
+                  <div className=" w-full rounded-full border border-neutral-300 dark:border-primary/10 bg-white dark:bg-transparent items-center relative">
                     <input
                       type="email"
                       placeholder={t("footer.newsletter.email")}
-                      className="flex-1  px-5 py-3 text-neutral-700 dark:text-neutral-100 outline-none text-sm"
+                      className=" ps-5 py-3 text-neutral-700 dark:text-neutral-100 outline-none text-sm w-full pe-12"
                     />
                     <button
-                      className="bg-custom-green size-8 flex items-center justify-center text-white rounded-full aspect-square shrink-0 me-2 cursor-pointer"
+                      className="absolute top-1.5 inset-e-0 size-8 bg-custom-green flex items-center justify-center text-white rounded-full shrink-0 me-2 cursor-pointer"
                       aria-label="Newsleteer"
                     >
                       <LuArrowRight
