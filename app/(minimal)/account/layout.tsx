@@ -1,4 +1,4 @@
-import SettingsLayout from "@/layout/SettingsLayout";
+import AccountLayout from "@/layout/AccountLayout";
 
 export default async function Layout({
   children,
@@ -6,5 +6,5 @@ export default async function Layout({
   children: React.ReactNode;
 }>) {
 
-  return <SettingsLayout>{children}</SettingsLayout>;
+  return <AccountLayout>{children}</AccountLayout>;
 }

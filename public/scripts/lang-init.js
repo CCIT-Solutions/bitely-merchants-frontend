@@ -12,22 +12,22 @@
     );
 
     //  Theme (from Zustand persist)
-    // const storedTheme = localStorage.getItem("app-theme");
+    const storedTheme = localStorage.getItem("app-theme");
 
-    // let theme = "light";
+    let theme = "light";
 
-    // if (storedTheme) {
-    //   try {
-    //     const parsed = JSON.parse(storedTheme);
-    //     theme = parsed?.state?.theme || "light";
-    //   } catch (e) {}
-    // }
+    if (storedTheme) {
+      try {
+        const parsed = JSON.parse(storedTheme);
+        theme = parsed?.state?.theme || "light";
+      } catch (e) {}
+    }
 
-    // if (theme === "dark") {
-    //   document.documentElement.classList.add("dark");
-    // } else {
-    //   document.documentElement.classList.remove("dark");
-    // }
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   } catch (e) {
   }
 })();

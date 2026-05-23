@@ -19,62 +19,62 @@ import { GoHeart } from "react-icons/go";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { GiShoppingBag } from "react-icons/gi";
 import SidebarCTA from "@/components/account/SidebarCTA";
-import { FiSettings } from "react-icons/fi";
+import { FiChevronRight, FiSettings } from "react-icons/fi";
 
 const menuItems = [
   {
     id: "my-profile",
     label: "account.myProfile",
     path: "/account/my-profile",
-    icon: <User className={"size-4"}/>,
+    icon: <User className={"size-4"} />,
   },
 
   {
     id: "my-plan",
     label: "account.myPlan",
     path: "/account/my-plan",
-    icon: <GiShoppingBag className={"size-4"}/>,
+    icon: <GiShoppingBag className={"size-4"} />,
   },
   {
     id: "my-orders",
     label: "account.myOrders",
     path: "/account/my-orders",
-    icon: <HiOutlineShoppingBag className={"size-4"}/>,
+    icon: <HiOutlineShoppingBag className={"size-4"} />,
   },
   {
     id: "my-meals",
     label: "account.myMeals",
     path: "/account/my-meals",
-    icon: <GiHotMeal className={"size-4"}/>,
+    icon: <GiHotMeal className={"size-4"} />,
   },
 
   {
     id: "favorites",
     label: "account.favorites",
     path: "/account/favorites",
-    icon: <GoHeart className={"size-4"}/>,
+    icon: <GoHeart className={"size-4"} />,
   },
   {
     id: "my-progress",
     label: "account.myProgress",
     path: "/account/my-progress",
-    icon: <IoPulseOutline className={"size-4"}/>,
+    icon: <IoPulseOutline className={"size-4"} />,
   },
   {
     id: "payment",
     label: "account.paymentAndBilling",
     path: "/account/payment",
-    icon: <BsCreditCardFill className={"size-4"}/>,
+    icon: <BsCreditCardFill className={"size-4"} />,
   },
-   {
+  {
     id: "settings",
     label: "account.settings",
     path: "/account/settings",
-    icon: <FiSettings className={"size-4"}/>,
+    icon: <FiSettings className={"size-4"} />,
   },
 ];
 
-export default function SettingsLayout({ children }: { children: ReactNode }) {
+export default function AccountLayout({ children }: { children: ReactNode }) {
   const { t, isRTL } = useLang();
   const pathname = usePathname();
 
@@ -194,7 +194,7 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
         <Animate
           variants={fade}
           element="aside"
-          className="hidden lg:block w-64 h-fit shrink-0 p-2 border border-foreground/5 rounded-3xl bg-background/70 backdrop-blur-xl sticky top-24 mb-6"
+          className="hidden lg:block w-60 h-fit shrink-0 p-2 border border-foreground/5 rounded-3xl bg-background/70 backdrop-blur-xl sticky top-24 mb-6"
         >
           <nav className="space-y-2">
             {menuItems.map((item) => {
@@ -204,22 +204,30 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
                   key={item.id}
                   href={item.path}
                   className={cn(
-                    "flex items-center gap-3 px-4 py-2 rounded-2xl text-sm transition-all duration-200 border border-transparent group",
+                    "flex items-center gap-3 px-3 py-2 rounded-2xl text-sm transition-all duration-200 border border-transparent group",
                     isActive
                       ? "bg-custom-green/10 text-primary-foreground border border-custom-green/30"
                       : "text-foreground/60 hover:text-foreground hover:bg-foreground/2 hover:border-border",
                   )}
                 >
-                  <span className={cn(
-                    "flex items-center justify-center rounded-md size-8 transition-colors",
-                    isActive
-                      ? "bg-custom-green/90 text-white"
-                      : "text-foreground/60 hover:text-foreground group-hover:bg-foreground/5 hover:border-border",
-                  )}>
-
-                  {item.icon}
+                  <span
+                    className={cn(
+                      "flex items-center justify-center rounded-md size-8 transition-colors",
+                      isActive
+                        ? "bg-custom-green/90 text-white"
+                        : "bg-foreground/3  text-foreground/60 hover:text-foreground group-hover:bg-foreground/5 hover:border-border",
+                    )}
+                  >
+                    {item.icon}
                   </span>
                   <span className="font-medium">{t(item.label)}</span>
+                  <FiChevronRight
+                    className={cn(
+                      "ms-auto w-4 h-4  hidden lg:block",
+                      isRTL ? "rotate-180" : "",
+                      isActive? "text-custom-green": "text-foreground/20"
+                    )}
+                  />
                 </Link>
               );
             })}
