@@ -35,7 +35,7 @@ export default function Footer({
     children: React.ReactNode;
   }) =>
     preventLinks ? (
-      <span className="text-neutral-500 dark:text-[#888E9E] hover:text-primary dark:hover:text-primary cursor-default">
+      <span className="text-neutral-500 dark:text-[#888E9E] hover:text-primary dark:hover:text-primary cursor-default text-sm">
         {children}
       </span>
     ) : (
@@ -53,7 +53,7 @@ export default function Footer({
         <Container>
           {!minimal && (
             <div className="pt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-16 xl:gap-32 py-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-16 py-10">
                 {/* Left Section */}
                 <div className="flex flex-col gap-2">
                   <Logo className="w-20" />
@@ -80,8 +80,8 @@ export default function Footer({
                 </div>
 
                 {/* Middle Navigation */}
-                <div className="flex flex-col font-semibold text-lg gap-6 h-full">
-                  <div className="flex sm:gap-20 flex-wrap sm:flex-nowrap justify-between sm:justify-start items-center h-full">
+                <div className="flex flex-col font-semibold text-lg gap-6 h-full w-full">
+                  <div className="flex flex-wrap sm:flex-nowrap justify-between items-center h-full w-full">
                     <div className="flex flex-col gap-8">
                       <MaybeLink href="/#home">
                         <Translate text="footer.links.home" />
