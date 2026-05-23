@@ -13,7 +13,7 @@ import {
   Salad,
   X,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/custom/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -33,6 +33,8 @@ import {
 import { DIET_TABS, FOOD_ITEMS } from "@/data/menu";
 import FoodCard from "@/components/menu/FoodCard";
 import { Checkbox } from "@/components/ui/checkbox";
+import Image from "next/image";
+import { IoArrowForwardSharp } from "react-icons/io5";
 
 // ─────────────────────────────────────────────
 // Types
@@ -226,7 +228,7 @@ const MyMealsPage = () => {
       dir={isRtl ? "rtl" : "ltr"}
       className="min-h-screen bg-background text-foreground"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* Header */}
         <div>
           <h1 className="text-2xl font-bold text-foreground">
@@ -260,7 +262,9 @@ const MyMealsPage = () => {
                 className="rounded-xl border-foreground/10 gap-2 shrink-0"
               >
                 <SlidersHorizontal className="w-4 h-4" />
-                <span className="hidden sm:inline">{t("menu.filters.filters")}</span>
+                <span className="hidden sm:inline">
+                  {t("menu.filters.filters")}
+                </span>
               </Button>
             </SheetTrigger>
             <SheetContent
@@ -476,28 +480,43 @@ const MyMealsPage = () => {
 // Create Your Own Meal Banner
 // ─────────────────────────────────────────────
 
-const CreateMealBanner = ({ t }: { t: (key: string) => string }) => (
-  <div className="relative rounded-3xl overflow-hidden bg-muted/50 border border-foreground/5 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-    <div className="absolute -top-8 -end-8 w-32 h-32 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
-    <div className="absolute bottom-0 start-1/3 w-20 h-20 rounded-full bg-green-400/10 blur-xl pointer-events-none" />
-
-    <div className="relative z-10 space-y-1">
-      <h2 className="text-base font-bold text-foreground">
-        {t("menu.createMealTitle")}
-      </h2>
-      <p className="text-sm text-foreground/50 max-w-xs">
-        {t("menu.createMealSubtitle")}
-      </p>
-    </div>
-
-    <div className="relative z-10 flex items-center gap-4">
-      <div className="hidden sm:flex w-16 h-16 rounded-full bg-white shadow-md items-center justify-center text-2xl select-none">
-        🥗
+const CreateMealBanner = ({ t }: { t: (k: string) => string }) => (
+  <div className="relative rounded-2xl overflow-hidden border border-foreground/8 px-4 flex justify-between items-center gap-3 py-4 mx-auto">
+    <div className="relative h-full flex  flex-col sm:flex-row items-center gap-6 ps-4">
+      <div className="relative size-20 bg-primary/10 border border-primary/40 rounded-3xl flex justify-center items-center">
+        <Image
+          src={`/media/images/account/meal-icon.png`}
+          alt="Support"
+          height={60}
+          width={60}
+          className="object-contain"
+        />
       </div>
-      <Button className="rounded-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-6 shadow-sm">
-        <Plus className="w-4 h-4" />
-        {t("menu.createMeal")}
-      </Button>
+      <div className="flex flex-col items-center sm:items-start">
+        <h2 className="text-xl font-bold text-foreground">
+          {t("menu.createMealTitle")}
+        </h2>
+        <p className="text-md max-w-60 text-foreground/50 mt-0.5 text-center sm:text-start">
+          {t("menu.createMealSubtitle")}
+        </p>
+        <Button
+          variant="outline"
+          size="lg"
+          className="mt-3 rounded-full border-foreground/20 text-xs py-4 px-5 flex gap-2 items-center"
+        >
+          <span className="block">{t("menu.createMeal")}</span>
+          <IoArrowForwardSharp />
+        </Button>
+      </div>
+    </div>
+    <div className="relative h-40 w-50 hidden sm:block">
+      <div className="absolute top-0 inset-e-4 w-40 h-full bg-linear-to-b from-custom-green/10 rounded-full to-transparent" />
+      <Image
+        src={`/media/images/account/meal.png`}
+        alt="Support"
+        fill
+        className="object-contain"
+      />
     </div>
   </div>
 );

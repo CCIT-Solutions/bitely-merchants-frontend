@@ -264,7 +264,7 @@ function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-start justify-between py-3 border-b border-fobg-foreground/2 last:border-0">
       <span className="text-sm text-foreground/50 w-36 shrink-0">{label}</span>
-      <span className="text-sm font-medium text-gray-800 text-end">
+      <span className="text-sm font-medium text-gray-800 text-end line-clamp-1">
         {value}
       </span>
     </div>
@@ -389,7 +389,7 @@ function AccountTab({
               </Label>
               <Input
                 defaultValue="Rashed Ahmed"
-                className="h-9 text-sm border-foreground/20 focus-visible:ring-custom-green"
+                className="h-9 text-sm border-foreground/20 focus-visible:ring-custom-green line-clamp-1"
               />
             </div>
             <div className="space-y-1.5">
@@ -400,7 +400,7 @@ function AccountTab({
                 <FiMail className="absolute inset-s-3 top-1/2 -translate-y-1/2 text-foreground/50 w-3.5 h-3.5" />
                 <Input
                   defaultValue="rashedahmed.gmail.com"
-                  className="h-9 text-sm ps-9 border-foreground/20 focus-visible:ring-custom-green"
+                  className="h-9 text-sm ps-9 border-foreground/20 focus-visible:ring-custom-green line-clamp-1"
                 />
               </div>
             </div>

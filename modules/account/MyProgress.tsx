@@ -25,12 +25,13 @@ import {
   Clock,
   ArrowRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/custom/button";
 import AccountStatCard from "@/components/account/AccountStatCard";
 import { GiHotMeal } from "react-icons/gi";
 import { MdOutlineElectricBolt } from "react-icons/md";
 import { FaWeight } from "react-icons/fa";
-import { IoPulseOutline } from "react-icons/io5";
+import { IoArrowForwardSharp, IoPulseOutline } from "react-icons/io5";
+import Image from "next/image";
 
 // ─────────────────────────────────────────────
 // Types
@@ -418,7 +419,7 @@ const MyProgressPage = () => {
         </div>
 
         {/* ── Coach Banner ── */}
-        <CoachBanner t={t} isRTL={isRTL}/>
+        <CoachBanner t={t}/>
       </div>
     </div>
   );
@@ -454,31 +455,46 @@ const StatCard = ({
 // Coach Banner
 // ─────────────────────────────────────────────
 
-const CoachBanner = ({ t , isRTL}: { t: (key: string) => string; isRTL: boolean }) => (
-  <div className="relative rounded-3xl overflow-hidden bg-muted/50 border border-foreground/5 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-    <div className="absolute -top-8 -end-8 w-32 h-32 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
-    <div className="absolute bottom-0 start-1/3 w-20 h-20 rounded-full bg-primary/5 blur-xl pointer-events-none" />
-
-    <div className="relative z-10 space-y-1.5">
-      <h2 className="text-base font-bold text-foreground">
-        {t("progress.coachTitle")}
-      </h2>
-      <p className="text-sm text-foreground/50 max-w-xs">
+const CoachBanner = ({ t }: { t: (k: string) => string }) => (
+  <div className="relative rounded-2xl overflow-hidden border border-foreground/8 px-4 flex justify-between items-center gap-3 py-4 mx-auto">
+    <div className="relative h-full flex  flex-col sm:flex-row items-center gap-6 ps-4">
+      <div className="relative size-20 bg-primary/10 border border-primary/40 rounded-3xl flex justify-center items-center">
+        <Image
+          src={`/media/images/account/chef-icon.png`}
+          alt="Support"
+          height={60}
+          width={60}
+          className="object-contain"
+        />
+      </div>
+      <div className="flex flex-col items-center sm:items-start">
+        <h2 className="text-xl font-bold text-foreground">
+     {t("progress.coachTitle")}
+        </h2>
+        <p className="text-md max-w-60 text-foreground/50 mt-0.5 text-center sm:text-start">
         {t("progress.coachSubtitle")}
-      </p>
-      <Button
-        variant="outline"
-        className="rounded-full mt-3 border-foreground/15 text-foreground/70 hover:text-foreground gap-2 px-5"
-      >
-        {t("progress.chatWithCoach")}
-        <ArrowRight className={cn("w-3.5 h-3.5",  isRTL ? "rotate-180" : "")} />
-      </Button>
+        </p>
+        <Button
+          variant="outline"
+          size="lg"
+          className="mt-3 rounded-full border-foreground/20 text-xs py-4 px-5 flex gap-2 items-center"
+        >
+          <span className="block">   {t("progress.chatWithCoach")}</span>
+          <IoArrowForwardSharp />
+        </Button>
+      </div>
     </div>
-
-    <div className="relative z-10 hidden sm:flex w-20 h-20 rounded-full bg-primary/10 items-center justify-center text-4xl select-none shrink-0">
-      👩‍💼
+    <div className="relative h-40 w-50 hidden sm:block">
+      <div className="absolute top-0 inset-e-4 w-40 h-full bg-linear-to-b from-custom-green/10 rounded-full to-transparent" />
+      <Image
+        src={`/media/images/account/chef.png`}
+        alt="Support"
+        fill
+        className="object-contain"
+      />
     </div>
   </div>
 );
+
 
 export default MyProgressPage;

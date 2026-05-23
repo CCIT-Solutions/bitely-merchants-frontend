@@ -14,21 +14,43 @@ import {
   RotateCcw,
   MapPin,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/custom/button";
 import { Badge } from "@/components/ui/badge";
 import { Order, OrderStatus, OrderTab } from "@/types/orders";
 import { orders } from "@/data/orders";
 import Currency from "@/components/icons/Currency";
+import { IoArrowForwardSharp } from "react-icons/io5";
+
 
 // ─────────────────────────────────────────────
 // Status stepper config
 // ─────────────────────────────────────────────
 
-const STATUS_STEPS: { key: OrderStatus; labelKey: string; Icon: React.FC<{ className?: string }> }[] = [
-  { key: "confirmed",   labelKey: "orders.confirmed",  Icon: ({ className }) => <CheckCircle2 className={className} /> },
-  { key: "preparing",   labelKey: "orders.preparing",  Icon: ({ className }) => <ChefHat className={className} /> },
-  { key: "on_the_way",  labelKey: "orders.onTheWay",   Icon: ({ className }) => <Bike className={className} /> },
-  { key: "delivered",   labelKey: "orders.delivered",  Icon: ({ className }) => <PackageCheck className={className} /> },
+const STATUS_STEPS: {
+  key: OrderStatus;
+  labelKey: string;
+  Icon: React.FC<{ className?: string }>;
+}[] = [
+  {
+    key: "confirmed",
+    labelKey: "orders.confirmed",
+    Icon: ({ className }) => <CheckCircle2 className={className} />,
+  },
+  {
+    key: "preparing",
+    labelKey: "orders.preparing",
+    Icon: ({ className }) => <ChefHat className={className} />,
+  },
+  {
+    key: "on_the_way",
+    labelKey: "orders.onTheWay",
+    Icon: ({ className }) => <Bike className={className} />,
+  },
+  {
+    key: "delivered",
+    labelKey: "orders.delivered",
+    Icon: ({ className }) => <PackageCheck className={className} />,
+  },
 ];
 
 const STATUS_INDEX: Record<OrderStatus, number> = {
@@ -59,7 +81,13 @@ const formatShortDate = (iso: string, lang: string) =>
 // Status Stepper
 // ─────────────────────────────────────────────
 
-const OrderStepper = ({ status, t }: { status: OrderStatus; t: (k: string) => string }) => {
+const OrderStepper = ({
+  status,
+  t,
+}: {
+  status: OrderStatus;
+  t: (k: string) => string;
+}) => {
   const currentIdx = STATUS_INDEX[status];
 
   return (
@@ -74,10 +102,10 @@ const OrderStepper = ({ status, t }: { status: OrderStatus; t: (k: string) => st
                 className={cn(
                   "w-7 h-7 rounded-full flex items-center justify-center border-2 transition-all",
                   done
-                    ? "bg-primary border-primary text-primary-foreground"
+                    ? "bg-custom-green border-custom-green/30 text-background"
                     : active
-                    ? "bg-primary border-primary text-primary-foreground shadow-md shadow-primary/30"
-                    : "bg-background border-foreground/15 text-foreground/30"
+                      ? "bg-custom-green border-custom-green text-white shadow-md shadow-custom-green/30"
+                      : "bg-background border-foreground/15 text-foreground/30",
                 )}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -85,7 +113,11 @@ const OrderStepper = ({ status, t }: { status: OrderStatus; t: (k: string) => st
               <span
                 className={cn(
                   "text-[8px] text-center leading-tight",
-                  active ? "font-bold text-foreground" : done ? "text-foreground/60" : "text-foreground/30"
+                  active
+                    ? "font-bold text-foreground"
+                    : done
+                      ? "text-foreground/60"
+                      : "text-foreground/30",
                 )}
               >
                 {t(labelKey)}
@@ -98,8 +130,8 @@ const OrderStepper = ({ status, t }: { status: OrderStatus; t: (k: string) => st
                 <div className="absolute inset-0 bg-foreground/10 rounded-full" />
                 <div
                   className={cn(
-                    "absolute inset-y-0 start-0 bg-primary rounded-full transition-all duration-500",
-                    done ? "end-0" : "end-full"
+                    "absolute inset-y-0 inset-s-0 bg-custom-green rounded-full transition-all duration-500",
+                    done ? "inset-e-0" : "inset-e-full",
                   )}
                 />
               </div>
@@ -130,12 +162,13 @@ const ActiveOrderCard = ({
     <div className="rounded-xl border border-foreground/8 bg-card overflow-hidden shadow-sm">
       {/* Status bar */}
       <div className="flex items-center justify-between px-3 pt-3 pb-1">
-        <span className="text-xs font-semibold text-primary capitalize">
+        <span className="text-xs font-semibold text-custom-green capitalize">
           {t(statusLabelKey)}
         </span>
         {order.deliveryDate && (
           <span className="text-xs text-foreground/50">
-            {t("orders.deliveryToday")} {formatShortDate(order.deliveryDate, lang)}
+            {t("orders.deliveryToday")}{" "}
+            {formatShortDate(order.deliveryDate, lang)}
           </span>
         )}
       </div>
@@ -186,7 +219,7 @@ const ActiveOrderCard = ({
         >
           {t("orders.viewDetails")}
         </Button>
-        <Button className="rounded-full bg-primary text-primary-foreground text-xs font-medium py-5 gap-1 hover:bg-primary/90 cursor-pointer">
+        <Button className="rounded-full bg-custom-green/5 font-bold text-custom-green text-xs py-5 gap-1 border border-custom-green/50 hover:bg-primary/90 hover:text-primary-foreground hover:border-custom-green/20 cursor-pointer">
           <MapPin className="w-3 h-3" />
           {t("orders.trackOrder")}
         </Button>
@@ -299,25 +332,45 @@ const CancelledOrderRow = ({
 // ─────────────────────────────────────────────
 
 const SupportBanner = ({ t }: { t: (k: string) => string }) => (
-  <div className="relative rounded-2xl overflow-hidden bg-muted/50 border border-foreground/5 px-4 py-4 flex items-center justify-between gap-3">
-    <div className="absolute -top-4 -end-4 w-20 h-20 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
-    <div className="relative z-10">
-      <h2 className="text-sm font-bold text-foreground">
-        {t("orders.supportTitle")}
-      </h2>
-      <p className="text-xs text-foreground/50 mt-0.5">
-        {t("orders.supportSubtitle")}
-      </p>
-      <Button
-        variant="outline"
-        size="sm"
-        className="mt-3 rounded-full border-foreground/20 text-xs gap-1.5 px-3"
-      >
-        {t("orders.contactSupport")}
-      </Button>
+  <div className="relative rounded-2xl overflow-hidden border border-foreground/8 px-4 flex justify-between items-center gap-3 py-4 mx-auto">
+    <div className="relative h-full flex  flex-col sm:flex-row items-center gap-6 ps-4">
+      <div className="relative size-20 bg-primary/10 border border-primary/40 rounded-3xl flex justify-center items-center">
+        <Image
+          src={`/media/images/account/support-icon.png`}
+          alt="Support"
+          height={60}
+          width={60}
+          className="object-contain"
+        />
+      </div>
+      <div className="flex flex-col items-center sm:items-start">
+        <h2 className="text-xl font-bold text-foreground">
+          {t("orders.supportTitle")}
+        </h2>
+        <p className="text-md max-w-60 text-foreground/50 mt-0.5 text-center sm:text-start">
+          {t("orders.supportSubtitle")}
+        </p>
+        <Button
+          variant="outline"
+          size="lg"
+          className="mt-3 rounded-full border-foreground/20 text-xs py-4 px-5 flex gap-2 items-center"
+        >
+          <span className="block">
+
+          {t("orders.contactSupport")}
+          </span>
+          <IoArrowForwardSharp/>
+        </Button>
+      </div>
     </div>
-    <div className="relative z-10 shrink-0 text-4xl select-none hidden sm:block">
-      <Headphones className="w-12 h-12 text-primary/40" strokeWidth={1.5} />
+    <div className="relative h-40 w-50 hidden sm:block">
+      <div className="absolute top-0 inset-e-4 w-40 h-full bg-linear-to-b from-custom-green/10 rounded-full to-transparent" />
+      <Image
+        src={`/media/images/account/support.png`}
+        alt="Support"
+        fill
+        className="object-contain"
+      />
     </div>
   </div>
 );
@@ -327,8 +380,8 @@ const SupportBanner = ({ t }: { t: (k: string) => string }) => (
 // ─────────────────────────────────────────────
 
 const TABS: { key: OrderTab; labelKey: string }[] = [
-  { key: "active",    labelKey: "orders.activeOrders" },
-  { key: "past",      labelKey: "orders.pastOrders" },
+  { key: "active", labelKey: "orders.activeOrders" },
+  { key: "past", labelKey: "orders.pastOrders" },
   { key: "cancelled", labelKey: "orders.cancelled" },
 ];
 
@@ -349,7 +402,9 @@ const MyOrdersPage = () => {
   const pastOrders = orders.filter((o) => o.tab === "past");
   const cancelledOrders = orders.filter((o) => o.tab === "cancelled");
 
-  const visiblePast = showAllPast ? pastOrders : pastOrders.slice(0, PAST_PREVIEW);
+  const visiblePast = showAllPast
+    ? pastOrders
+    : pastOrders.slice(0, PAST_PREVIEW);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -373,8 +428,8 @@ const MyOrdersPage = () => {
               className={cn(
                 "px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-200 border-b-2 -mb-px",
                 activeTab === key
-                  ? "border-primary text-primary"
-                  : "border-transparent text-foreground/50 hover:text-foreground"
+                  ? "border-custom-green text-custom-green"
+                  : "border-transparent text-foreground/50 hover:text-foreground",
               )}
             >
               {t(labelKey)}
@@ -389,7 +444,12 @@ const MyOrdersPage = () => {
               <EmptyState message={t("orders.noActiveOrders")} />
             ) : (
               activeOrders.map((order) => (
-                <ActiveOrderCard key={order.id} order={order} lang={lang} t={t} />
+                <ActiveOrderCard
+                  key={order.id}
+                  order={order}
+                  lang={lang}
+                  t={t}
+                />
               ))
             )}
 
@@ -401,25 +461,34 @@ const MyOrdersPage = () => {
                 </h2>
                 <div className="rounded-xl border border-foreground/8 bg-card px-3 divide-y divide-foreground/6 shadow-sm">
                   {visiblePast.map((order) => (
-                    <PastOrderRow key={order.id} order={order} lang={lang} t={t} />
+                    <PastOrderRow
+                      key={order.id}
+                      order={order}
+                      lang={lang}
+                      t={t}
+                    />
                   ))}
                 </div>
 
                 {pastOrders.length > PAST_PREVIEW && (
                   <button
                     onClick={() => setShowAllPast((v) => !v)}
-                    className="mt-2 flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                    className="mt-2 flex items-center gap-1 text-sm font-medium text-custom-green hover:underline"
                   >
                     {showAllPast
                       ? t("orders.showLess")
                       : t("orders.viewAllPastOrders")}
-                    <ArrowRight className={cn("w-4 h-4 transition-transform", isRtl && "rotate-180", showAllPast && "rotate-90")} />
+                    <ArrowRight
+                      className={cn(
+                        "w-4 h-4 transition-transform",
+                        isRtl && "rotate-180",
+                        showAllPast && "rotate-90",
+                      )}
+                    />
                   </button>
                 )}
               </div>
             )}
-
-            <SupportBanner t={t} />
           </div>
         )}
 
@@ -431,7 +500,12 @@ const MyOrdersPage = () => {
             ) : (
               <div className="rounded-xl border border-foreground/8 bg-card px-3 shadow-sm">
                 {pastOrders.map((order) => (
-                  <PastOrderRow key={order.id} order={order} lang={lang} t={t} />
+                  <PastOrderRow
+                    key={order.id}
+                    order={order}
+                    lang={lang}
+                    t={t}
+                  />
                 ))}
               </div>
             )}
@@ -447,13 +521,20 @@ const MyOrdersPage = () => {
             ) : (
               <div className="rounded-xl border border-foreground/8 bg-card px-3 shadow-sm">
                 {cancelledOrders.map((order) => (
-                  <CancelledOrderRow key={order.id} order={order} lang={lang} t={t} />
+                  <CancelledOrderRow
+                    key={order.id}
+                    order={order}
+                    lang={lang}
+                    t={t}
+                  />
                 ))}
               </div>
             )}
-            <SupportBanner t={t} />
           </div>
         )}
+      </div>
+      <div className="max-w-2xl mx-auto flex justify-center">
+        <SupportBanner t={t} />
       </div>
     </div>
   );
